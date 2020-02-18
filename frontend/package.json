@@ -1,7 +1,7 @@
 {
-  "name": "sick-fits-frontend",
+  "name": "Grandpa_Roure_frontend",
   "version": "1.0.0",
-  "description": "Sick Fits! An example React, GraphQL, Next and Apollo",
+  "description": "Grandpa roure is a intergenerational programme of shared accommodation between the elderly and young people ",
   "main": "index.js",
   "scripts": {
     "dev": "next -p 7777",
