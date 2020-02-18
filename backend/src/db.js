@@ -1,4 +1,4 @@
-// this file connect to Primsa DB
+// this file connect to Prisma DB
 
 const { Prisma } = require('prisma-binding');
 
