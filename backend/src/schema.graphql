@@ -13,20 +13,15 @@ type Mutation {
   ): User!
 }
 type Query {
-  query(): User
+  hi: String
 }
 
 type User {
-  id: ID! @id
   name: String!
   lastname: String!
   phone: String!
-  email: String! @unique
+  email: String!
   password: String!
-  typeUser: TypeUser!
-  createDate: DateTime @createdAt
-  updateDate: DateTime @updatedAt
-  resetToken: String
-  resetTokenExpiry: Float
-  permissions: [Permissions] @scalarList(strategy: RELATION)
+  typeUser: String!
+  permissions: [String]
 }
