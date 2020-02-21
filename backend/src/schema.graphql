@@ -1,11 +1,32 @@
-type User {
-  id: ID!
-  name: String!
+type SuccessMessage {
+  message: String
 }
 
 type Mutation {
-  muationExample: String!
+  signup(
+    name: String!
+    lastname: String!
+    phone: String!
+    email: String!
+    password: String!
+    typeUser: String!
+  ): User!
 }
 type Query {
-  queryExample: String!
+  query(): User
+}
+
+type User {
+  id: ID! @id
+  name: String!
+  lastname: String!
+  phone: String!
+  email: String! @unique
+  password: String!
+  typeUser: TypeUser!
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permissions] @scalarList(strategy: RELATION)
 }

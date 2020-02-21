@@ -1,6 +1,7 @@
 enum Permissions {
+  USER
   ADMIN
-  ASSOCIATION
+  TECH
   STUDENT
   ADMINASSOCIATION
   GRANDPA
@@ -40,6 +41,9 @@ type User {
   typeUser: TypeUser!
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
 type UserEstudent {
@@ -49,7 +53,7 @@ type UserEstudent {
   numberDocument: String!
   techResponsible: UserTech!
   studing: String
-  career: CarrersModel
+  career: CareersModel
   university: UniversitiesModel
   classSchedule: String
   sourceExternal: SourcesModel
@@ -87,7 +91,6 @@ type UserTech {
   phoneOffice: String!
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
-  permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
 type UserGrandpa {
@@ -107,7 +110,6 @@ type UserGrandpa {
   updateDate: DateTime @updatedAt
   adress: String
   house: Houses
-  permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
 type TypeUser {
@@ -115,7 +117,7 @@ type TypeUser {
   typeName: String!
 }
 
-type CarrersModel {
+type CareersModel {
   id: ID! @id
   carrerName: String!
   university: UniversitiesModel!
