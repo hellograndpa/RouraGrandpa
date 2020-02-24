@@ -116,12 +116,8 @@ class Signup extends Component {
               <label htmlFor="typeUser">
                 Type User
                 <Query query={ALL_TYPEUSER_QUERY}>
-                  {data => {
-                    {
-                      data.typeUsers.map(i => {
-                        i.typeName;
-                      });
-                    }
+                  {({ data, error, loading }) => {
+                    return data.typeUsers.map(i => i.typeName);
                   }}
                 </Query>
               </label>
