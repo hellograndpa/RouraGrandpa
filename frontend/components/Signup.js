@@ -19,6 +19,7 @@ const SIGNUP_MUTATION = gql`
     $lastname: String!
     $phone: String!
     $password: String!
+    $typeUser: String!
   ) {
     signup(
       email: $email
@@ -26,7 +27,12 @@ const SIGNUP_MUTATION = gql`
       lastname: $lastname
       phone: $phone
       password: $password
-    )
+      typeUser: $typeUser
+    ) {
+      id
+      email
+      name
+    }
   }
 `;
 class Signup extends Component {
@@ -115,11 +121,23 @@ class Signup extends Component {
               </label>
               <label htmlFor="typeUser">
                 Type User
-                <Query query={ALL_TYPEUSER_QUERY}>
-                  {({ data, error, loading }) => {
-                    return data.typeUsers.map(i => i.typeName);
-                  }}
-                </Query>
+                <select
+                  name="typeUser"
+                  placeholder="typeUser"
+                  value={this.state.typeUser}
+                  onChange={this.saveToState}
+                >
+                  <Query query={ALL_TYPEUSER_QUERY}>
+                    {({ data, error, loading }) => {
+                      return data.typeUsers.map(i => (
+                        <option key={i.id} value={i.typeName}>
+                          {i.typeName}
+                        </option>
+                      ));
+                    }}
+                  </Query>
+                </select>
+                ;
               </label>
               <button type="submit">Create New User</button>
             </fieldset>

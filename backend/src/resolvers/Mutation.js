@@ -4,14 +4,26 @@ const jwt = require('jsonwebtoken');
 const mutations = {
   async signup(parent, args, ctx, info) {
     // email all write in lowCase
-    args.email = args.eamil.toLowerCase();
+    args.email = args.email.toLowerCase();
     // Hash their password
     const password = await bcrypt.hash(args.password, 10);
+    // query look for de id of typeUser
+    const userType = await ctx.db.query.typeUser({
+      where: { typeName: args.typeUser }
+    });
+    console.log('uno que va' + args.typeUser);
+    console.log('uno que va' + userType.id);
+
     // create de user in the DB
     const user = await ctx.db.mutation.createUser(
       {
         data: {
           ...args,
+          typeUser: {
+            connect: {
+              id: userType.id
+            }
+          },
           password,
           permissions: { set: ['USER'] }
         }

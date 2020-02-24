@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Fri Feb 21 2020 11:28:44 GMT+0100 (Central European Standard Time)
+# timestamp: Mon Feb 24 2020 16:48:44 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociations {
   count: Int!
@@ -3367,6 +3367,7 @@ input TypeUserWhereInput {
 
 input TypeUserWhereUniqueInput {
   id: ID
+  typeName: String
 }
 
 type UniversitiesModel implements Node {

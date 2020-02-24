@@ -114,7 +114,7 @@ type UserGrandpa {
 
 type TypeUser {
   id: ID! @id
-  typeName: String!
+  typeName: String! @unique
 }
 
 type CareersModel {
