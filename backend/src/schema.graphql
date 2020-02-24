@@ -1,7 +1,3 @@
-type SuccessMessage {
-  message: String
-}
-
 type Mutation {
   signup(
     name: String!
@@ -13,7 +9,7 @@ type Mutation {
   ): User!
 }
 type Query {
-  hi: String
+  typeUsers: [TypeUser]!
 }
 
 type User {
