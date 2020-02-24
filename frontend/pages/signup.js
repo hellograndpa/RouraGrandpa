@@ -12,8 +12,6 @@ const Columns = styled.div`
 const SignupPage = props => (
   <Columns>
     <Signup />
-    <Signup />
-    <Signup />
   </Columns>
 );
 

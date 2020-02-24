@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Mutation } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Error from './ErrorMessage';
 
-const TYPE_USER_QUERY = gql`
-  query TYPE_USER_QUERY($id: id!, $name: name!) {
-    typeUser
+const ALL_TYPEUSER_QUERY = gql`
+  query TYPE_USER_QUERY {
+    typeUsers {
+      id
+      typeName
+    }
   }
 `;
 
@@ -33,6 +36,7 @@ class Signup extends Component {
     lastname: '',
     phone: '',
     password: '',
+    typeUser: ''
   };
   saveToState = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -43,12 +47,20 @@ class Signup extends Component {
         {(signup, { error, loading }) => (
           <form
             method="post"
-            onSubmit={e => {
+            onSubmit={async e => {
               e.preventDefault();
-              signup();
+              await signup();
+              this.setState({
+                email: '',
+                name: '',
+                lastname: '',
+                phone: '',
+                password: '',
+                typeUser: ''
+              });
             }}
           >
-            <fieldset disable={loading} area-busy={loading}>
+            <fieldset disabled={loading} aria-busy={loading}>
               <h2>Sign Up for new user</h2>
               <Error error={error} />
               <label htmlFor="email">
@@ -82,7 +94,7 @@ class Signup extends Component {
                 />
               </label>
               <label htmlFor="phone">
-                phone
+                Phone
                 <input
                   type="text"
                   name="phone"
@@ -92,7 +104,7 @@ class Signup extends Component {
                 />
               </label>
               <label htmlFor="password">
-                password
+                Password
                 <input
                   type="password"
                   name="password"
@@ -100,6 +112,18 @@ class Signup extends Component {
                   value={this.state.password}
                   onChange={this.saveToState}
                 />
+              </label>
+              <label htmlFor="typeUser">
+                Type User
+                <Query query={ALL_TYPEUSER_QUERY}>
+                  {data => {
+                    {
+                      data.typeUsers.map(i => {
+                        i.typeName;
+                      });
+                    }
+                  }}
+                </Query>
               </label>
               <button type="submit">Create New User</button>
             </fieldset>

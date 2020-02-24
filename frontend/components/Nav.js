@@ -2,8 +2,13 @@ import Link from 'next/link';
 
 const Nav = () => (
   <div>
-    <Link href="/signup">GO TO SIGNUP</Link>
-    {' || '} <Link href="/">got to home</Link>
+    <Link href="/signup">
+      <a> GO TO SIGNUP</a>
+    </Link>
+    {' || '}{' '}
+    <Link href="/">
+      <a>got to home</a>
+    </Link>
   </div>
 );
 
