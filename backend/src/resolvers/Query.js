@@ -1,12 +1,16 @@
 const { forwardTo } = require('prisma-binding');
 
 const Query = {
-  // this is old way to do it.
-  // async typeUsers(parent, args, ctx, info) {
-  //   const typeUser = await ctx.db.query.typeUser();
-  //   return typeUser;
-  // }
-  typeUsers: forwardTo('db')
+  typeUsers: forwardTo('db'),
+
+  // with this query we know who is the person and we can ask for the type
+  me(parent, args, ctx, info) {
+    //check if there is a current user ID
+    if (!ctx.request.userId) {
+      return null;
+    }
+    return ctx.db.query.user({ where: { id: ctx.request.userId } }, info);
+  }
 };
 
 module.exports = Query;

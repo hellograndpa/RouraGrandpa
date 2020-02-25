@@ -12,4 +12,5 @@ type Mutation {
 }
 type Query {
   typeUsers: [TypeUser]!
+  me: User
 }

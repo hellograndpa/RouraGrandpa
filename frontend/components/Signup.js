@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Error from './ErrorMessage';
+import User from './User';
 
 const ALL_TYPEUSER_QUERY = gql`
   query TYPE_USER_QUERY {
