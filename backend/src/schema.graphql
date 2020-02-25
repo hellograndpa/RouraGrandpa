@@ -9,6 +9,7 @@ type Mutation {
     password: String!
     typeUser: String!
   ): User!
+  signin(email: String!, password: String!): User!
 }
 type Query {
   typeUsers: [TypeUser]!

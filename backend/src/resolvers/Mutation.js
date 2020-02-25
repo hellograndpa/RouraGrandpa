@@ -11,9 +11,6 @@ const mutations = {
     const userType = await ctx.db.query.typeUser({
       where: { typeName: args.typeUser }
     });
-    console.log('uno que va' + args.typeUser);
-    console.log('uno que va' + userType.id);
-
     // create de user in the DB
     const user = await ctx.db.mutation.createUser(
       {
@@ -39,7 +36,30 @@ const mutations = {
     });
     // return the user create
     return user;
+  },
+
+  async signin(parent, { email, password }, ctx, info) {
+    // 1.- check email exist
+    const user = await ctx.db.query.user({ where: { email } });
+    if (!user) {
+      throw new Error(`not such user found for email ${email}`);
+    }
+    // 2.- check de password is ok
+    const valid = await bcrypt.compare(password, user.password);
+    if (!valid) {
+      throw new Error('Invalid Password');
+    }
+    // 3.- JWT token
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    // 4.- Set the cookie with token
+    ctx.response.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+    });
+    // 5.- Return user
+    return user;
   }
 };
 
 module.exports = mutations;
+w;

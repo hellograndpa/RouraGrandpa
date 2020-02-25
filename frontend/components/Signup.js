@@ -128,6 +128,7 @@ class Signup extends Component {
                   value={this.state.typeUser}
                   onChange={this.saveToState}
                 >
+                  <option>Selecciona un tipo de usuario </option>
                   <Query query={ALL_TYPEUSER_QUERY}>
                     {({ data, error, loading }) => {
                       return data.typeUsers.map(i => (
