@@ -41,6 +41,7 @@ const mutations = {
   async signin(parent, { email, password }, ctx, info) {
     // 1.- check email exist
     const user = await ctx.db.query.user({ where: { email } });
+
     if (!user) {
       throw new Error(`not such user found for email ${email}`);
     }
@@ -56,10 +57,10 @@ const mutations = {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
+
     // 5.- Return user
     return user;
   }
 };
 
 module.exports = mutations;
-w;

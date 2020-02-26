@@ -1,31 +1,14 @@
 import React, { Component } from 'react';
-import { Mutation, Query } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Error from './ErrorMessage';
-import User from './User';
 import { CURRENT_USER_QUERY } from './User';
-
-const ALL_TYPEUSER_QUERY = gql`
-  query TYPE_USER_QUERY {
-    typeUsers {
-      id
-      typeName
-    }
-  }
-`;
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
     signin(email: $email, password: $password) {
       id
       email
-      name
-      phone
-      lastname
-      typeUser {
-        id
-        typeName
-      }
     }
   }
 `;

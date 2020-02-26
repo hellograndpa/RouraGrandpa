@@ -11,7 +11,6 @@ const CURRENT_USER_QUERY = gql`
       phone
       email
       typeUser {
-        id
         typeName
       }
       permissions

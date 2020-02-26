@@ -150,3 +150,4 @@ class Signup extends Component {
   }
 }
 export default Signup;
+export { ALL_TYPEUSER_QUERY };
