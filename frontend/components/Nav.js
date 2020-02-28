@@ -8,12 +8,16 @@ const Nav = () => (
         if (me)
           return (
             <p>
-              {me.name} {me.typeUser.typeName}
+              Hello {me.name} you type of user is {me.typeUser.typeName}
             </p>
           );
         return null;
       }}
     </User>
+    <Link href="/profile">
+      <a> GO TO PROFILE</a>
+    </Link>{' '}
+    {' || '}{' '}
     <Link href="/signup">
       <a> GO TO SIGNUP</a>
     </Link>{' '}
