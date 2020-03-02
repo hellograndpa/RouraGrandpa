@@ -10,8 +10,15 @@ type Mutation {
     typeUser: String!
   ): User!
   signin(email: String!, password: String!): User!
+  updateMe(
+    name: String!
+    lastname: String!
+    phone: String!
+    email: String!
+  ): User!
 }
 type Query {
   typeUsers: [TypeUser]!
   me: User
+  user(where: UserWhereUniqueInput!): User
 }

@@ -60,6 +60,27 @@ const mutations = {
 
     // 5.- Return user
     return user;
+  },
+
+  async updateMe(parent, args, ctx, info) {
+    args.email = args.email.toLowerCase();
+    const user = await ctx.db.mutation.updateUser(
+      {
+        data: {
+          ...args
+        }
+      },
+      info
+    );
+    // create the JWT token for them
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    //  we set the jwt as a cookie on the response
+    ctx.response.cookie('token', token, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+    });
+    // return the user create
+    return user;
   }
 };
 

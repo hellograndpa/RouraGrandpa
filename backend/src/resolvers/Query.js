@@ -2,6 +2,7 @@ const { forwardTo } = require('prisma-binding');
 
 const Query = {
   typeUsers: forwardTo('db'),
+  user: forwardTo('db'),
 
   // with this query we know who is the person and we can ask for the type
   me(parent, args, ctx, info) {
