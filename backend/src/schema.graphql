@@ -11,10 +11,11 @@ type Mutation {
   ): User!
   signin(email: String!, password: String!): User!
   updateMe(
-    name: String!
-    lastname: String!
-    phone: String!
-    email: String!
+    id: ID!
+    name: String
+    lastname: String
+    phone: String
+    email: String
   ): User!
 }
 type Query {
