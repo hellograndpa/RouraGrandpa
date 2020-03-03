@@ -21,6 +21,7 @@ type Mutation {
 type Query {
   typeUsers: [TypeUser]!
   users: [User!]
+  usersConnection(where: UserWhereInput): UserConnection!
   me: User
   user(where: UserWhereUniqueInput!): User
 }
