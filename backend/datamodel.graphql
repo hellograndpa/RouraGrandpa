@@ -92,6 +92,7 @@ type UserEstudent {
   imageDocument: [imagesDocument]
   imageProfile: String!
   imageUniversity: [imagesUniversity]
+  coupleID: Couple
   # permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
@@ -131,6 +132,7 @@ type UserGrandpa {
   typeDocument: [TypeDocument]! @scalarList(strategy: RELATION)
   numberDocument: String!
   imageProfile: String
+  coupleID: Couple
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
   adress: String
@@ -159,6 +161,12 @@ type ProvincesModel {
   country: CountriesModel!
 }
 
+type Couple{
+  id: ID! @id
+  idUserStudent: User
+  idUserGandPa: User
+}
+
 type SourcesModel {
   id: ID! @id
   sourceName: String!
@@ -168,7 +176,6 @@ type CountriesModel {
   id: ID! @id
   countryName: String!
 }
-
 
 type Association {
   id:	ID! @id
