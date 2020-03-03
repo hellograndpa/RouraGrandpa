@@ -170,7 +170,7 @@ type CountriesModel {
 }
 
 
-type Associations {
+type Association {
   id:	ID! @id
   name:	String!
   province:	ProvincesModel!
