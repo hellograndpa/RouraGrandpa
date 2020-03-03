@@ -63,15 +63,28 @@ const mutations = {
   },
 
   async updateMe(parent, args, ctx, info) {
-    args.email = args.email.toLowerCase();
-    const user = await ctx.db.mutation.updateUser(
+    // 1.- first take a copy of the updates
+    const updates = { ...args };
+    //2.- remove the ID from the updates
+    delete updates.id;
+    //3.-  check if the same user
+    const ownsUser = args.id === ctx.request.userId;
+
+    // TODO 4.- manage de permissions and check if the user have them to modify it (!ownsUser && hasPermissions)
+    if (!ownsUser) {
+      throw new Error("You don't have permission to do that!");
+    }
+    //5.-  run the update method
+    return ctx.db.mutation.updateUser(
       {
-        data: {
-          ...args
+        data: updates,
+        where: {
+          id: args.id
         }
       },
       info
     );
+
     // create the JWT token for them
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     //  we set the jwt as a cookie on the response
