@@ -11,14 +11,17 @@ type Mutation {
   ): User!
   signin(email: String!, password: String!): User!
   updateMe(
-    name: String!
-    lastname: String!
-    phone: String!
-    email: String!
+    id: ID!
+    name: String
+    lastname: String
+    phone: String
+    email: String
   ): User!
 }
 type Query {
   typeUsers: [TypeUser]!
+  users: [User!]
+  usersConnection(where: UserWhereInput): UserConnection!
   me: User
   user(where: UserWhereUniqueInput!): User
 }
