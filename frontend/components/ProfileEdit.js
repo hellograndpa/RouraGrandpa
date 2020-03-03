@@ -7,12 +7,19 @@ import User from './User';
 
 const UPDATE_USER_MUTATION = gql`
   mutation UPDATE_PROFILE_MUTATION(
+    $id: ID!
     $email: String!
     $name: String!
     $lastname: String!
     $phone: String!
   ) {
-    updateMe(email: $email, name: $name, lastname: $lastname, phone: $phone) {
+    updateMe(
+      id: $id
+      email: $email
+      name: $name
+      lastname: $lastname
+      phone: $phone
+    ) {
       id
       email
       name
@@ -35,7 +42,7 @@ class ProfileEdit extends Component {
         {({ data: { me } }) => {
           if (me)
             return (
-              <div>
+              <Mutation mutation={UPDATE_USER_MUTATION} variables={this.state}>
                 <form>
                   <fieldset>
                     <h2>Sign Up for new user</h2>
@@ -89,7 +96,7 @@ class ProfileEdit extends Component {
                 <p>Type User: {me.typeUser.typeName}</p>
                 <p>Phone: {me.phone}</p>
                 <p>Email: {me.email}</p>
-              </div>
+              </Mutation>
             );
           return null;
         }}
