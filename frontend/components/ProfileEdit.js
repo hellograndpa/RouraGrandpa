@@ -105,13 +105,6 @@ class ProfileEdit extends Component {
                       </label>
                       <button type="submit">Update User</button>
                     </fieldset>
-
-                    <p>Id: {me.id}</p>
-                    <p>Name: {me.name}</p>
-                    <p>Last Name: {me.lastname}</p>
-                    <p>Type User: {me.typeUser.typeName}</p>
-                    <p>Phone: {me.phone}</p>
-                    <p>Email: {me.email}</p>
                   </form>
                 )}
               </Mutation>

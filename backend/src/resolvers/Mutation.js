@@ -63,17 +63,18 @@ const mutations = {
   },
 
   async updateMe(parent, args, ctx, info) {
-    // first take a copy of the updates
+    // 1.- first take a copy of the updates
     const updates = { ...args };
-    // remove the ID from the updates
+    //2.- remove the ID from the updates
     delete updates.id;
-    // check if the same user
+    //3.-  check if the same user
     const ownsUser = args.id === ctx.request.userId;
 
+    // TODO 4.- manage de permissions and check if the user have them to modify it (!ownsUser && hasPermissions)
     if (!ownsUser) {
       throw new Error("You don't have permission to do that!");
     }
-    // run the update method
+    //5.-  run the update method
     return ctx.db.mutation.updateUser(
       {
         data: updates,
