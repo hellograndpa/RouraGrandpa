@@ -14,8 +14,12 @@ const Nav = () => (
         return null;
       }}
     </User>
+    <Link href="/users">
+      <a> GO TO USERS LIST</a>
+    </Link>{' '}
+    {' || '}{' '}
     <Link href="/profile">
-      <a> GO TO PROFILE</a>
+      <a> GO TO MY PROFILE</a>
     </Link>{' '}
     {' || '}{' '}
     <Link href="/signup">

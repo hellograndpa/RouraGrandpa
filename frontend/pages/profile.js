@@ -1,4 +1,3 @@
-import User from '../components/User';
 import Profile from '../components/Profile';
 
 const ProfilePage = props => (

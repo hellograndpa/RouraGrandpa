@@ -20,6 +20,7 @@ type Mutation {
 }
 type Query {
   typeUsers: [TypeUser]!
+  users: [User!]
   me: User
   user(where: UserWhereUniqueInput!): User
 }
