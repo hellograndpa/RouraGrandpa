@@ -38,7 +38,7 @@ type User {
   phone: String!
   email: String! @unique
   password: String!
-  typeUser: TypeUser!
+  typeUser: TypeUser
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
   resetToken: String

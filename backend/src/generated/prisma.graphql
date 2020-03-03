@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Mon Feb 24 2020 16:48:44 GMT+0100 (Central European Standard Time)
+# timestamp: Wed Feb 26 2020 10:03:41 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociations {
   count: Int!
@@ -3262,9 +3262,11 @@ input TypeUserUpdateManyMutationInput {
   typeName: String
 }
 
-input TypeUserUpdateOneRequiredInput {
+input TypeUserUpdateOneInput {
   create: TypeUserCreateInput
   connect: TypeUserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: TypeUserUpdateDataInput
   upsert: TypeUserUpsertNestedInput
 }
@@ -3595,7 +3597,7 @@ type User implements Node {
   phone: String!
   email: String!
   password: String!
-  typeUser: TypeUser!
+  typeUser: TypeUser
   createDate: DateTime
   updateDate: DateTime
   resetToken: String
@@ -3623,7 +3625,7 @@ input UserCreateInput {
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserCreatepermissionsInput
-  typeUser: TypeUserCreateOneInput!
+  typeUser: TypeUserCreateOneInput
 }
 
 input UserCreateOneInput {
@@ -5068,7 +5070,7 @@ input UserUpdateDataInput {
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
-  typeUser: TypeUserUpdateOneRequiredInput
+  typeUser: TypeUserUpdateOneInput
 }
 
 input UserUpdateInput {
@@ -5080,7 +5082,7 @@ input UserUpdateInput {
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
-  typeUser: TypeUserUpdateOneRequiredInput
+  typeUser: TypeUserUpdateOneInput
 }
 
 input UserUpdateManyMutationInput {
