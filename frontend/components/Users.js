@@ -3,6 +3,29 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Pagination from './Pagination';
 import { perPage } from '../config';
+import styled from 'styled-components';
+
+const CustomTable = styled.table`
+	&&& {
+		table,
+		th,
+		td {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		th,
+		td,
+		tr {
+			padding: 5px;
+		}
+		th {
+			text-align: left;
+		}
+		table {
+			width: 100%;
+		}
+	}
+`;
 
 const ALL_USERS_QUERY = gql`
   query ALL_USERS_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
@@ -37,33 +60,35 @@ class Users extends Component {
 						if (error) return <p> Error: {error.message}</p>;
 
 						return (
-							<table>
-								<thead>
-									<tr>
-										<td> id</td>
-										<td> Name</td>
-										<td> Last Name</td>
-										<td> Email</td>
-										<td> Phone </td>
-										<td> Type of User</td>
-									</tr>
-								</thead>
-								<tbody>
-									{data.users.map((user, index) => {
-										const { id, name, lastname, email, phone, typeUser: { typeName } } = user;
-										return (
-											<tr key={id}>
-												<td> {id}</td>
-												<td> {name}</td>
-												<td> {lastname}</td>
-												<td> {email}</td>
-												<td> {phone}</td>
-												<td> {typeName}</td>
-											</tr>
-										);
-									})}
-								</tbody>
-							</table>
+							<CustomTable>
+								<table>
+									<thead>
+										<tr>
+											<th> id</th>
+											<th> Name</th>
+											<th> Last Name</th>
+											<th> Email</th>
+											<th> Phone </th>
+											<th> Type of User</th>
+										</tr>
+									</thead>
+									<tbody>
+										{data.users.map((user, index) => {
+											const { id, name, lastname, email, phone, typeUser: { typeName } } = user;
+											return (
+												<tr key={id}>
+													<td> {id}</td>
+													<td> {name}</td>
+													<td> {lastname}</td>
+													<td> {email}</td>
+													<td> {phone}</td>
+													<td> {typeName}</td>
+												</tr>
+											);
+										})}
+									</tbody>
+								</table>
+							</CustomTable>
 						);
 					}}
 				</Query>
