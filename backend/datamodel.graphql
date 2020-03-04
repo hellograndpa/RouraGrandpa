@@ -14,10 +14,12 @@ enum Title {
   GESTOR
   OTROS
 }
+
 enum TypeDocument {
   DNI
   NIE
 }
+
 enum Gender {
   MALE
   FEMALE
@@ -46,6 +48,26 @@ type User {
   permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
+type House {
+  id:	ID! @id
+  uiserId:	User!
+  province:	ProvincesModel!
+  city:	String!
+  adress:	String!
+  cp:	String!
+  coordinates:	Float!
+  characteristics:	[Characteristics!]
+  m2:	Int!
+  bathrooms:	Int!
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
+}
+
+type Characteristics {
+  id:	ID! @id
+  name:	String!
+}
+
 type UserEstudent {
   id: ID! @id
   uiserId: User!
@@ -70,18 +92,22 @@ type UserEstudent {
   imageDocument: [imagesDocument]
   imageProfile: String!
   imageUniversity: [imagesUniversity]
+  coupleID: Couple
   # permissions: [Permissions] @scalarList(strategy: RELATION)
 }
+
 type imagesDocument {
   id: ID! @id
   photo: String!
   user: User!
 }
+
 type imagesUniversity {
   id: ID! @id
   photo: String!
   user: User!
 }
+
 type UserTech {
   id: ID! @id
   uiserId: User!
@@ -96,7 +122,7 @@ type UserTech {
 type UserGrandpa {
   id: ID! @id
   uiserId: User!
-  association: Associations!
+  association: Associations! 
   evaluation: [EvaluationsGrandpa]
   interview: [Interviews]
   gender: [Gender] @scalarList(strategy: RELATION)
@@ -106,10 +132,10 @@ type UserGrandpa {
   typeDocument: [TypeDocument]! @scalarList(strategy: RELATION)
   numberDocument: String!
   imageProfile: String
+  coupleID: Couple
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
   adress: String
-  house: Houses
 }
 
 type TypeUser {
@@ -122,6 +148,7 @@ type CareersModel {
   carrerName: String!
   university: UniversitiesModel!
 }
+
 type UniversitiesModel {
   id: ID! @id
   universityName: String!
@@ -134,6 +161,12 @@ type ProvincesModel {
   country: CountriesModel!
 }
 
+type Couple{
+  id: ID! @id
+  idUserStudent: User
+  idUserGandPa: User
+}
+
 type SourcesModel {
   id: ID! @id
   sourceName: String!
@@ -143,22 +176,34 @@ type CountriesModel {
   id: ID! @id
   countryName: String!
 }
-type Houses {
-  id: ID! @id
-  name: String
+
+type Association {
+  id:	ID! @id
+  name:	String!
+  province:	ProvincesModel!
+  city:	String!
+  adress:	String!
+  cp:	String!
+  coordinates: Float!
+  phone: String!
+  email: String!
+  description: String!
+  logo: String!
+  images:	[String] @scalarList(strategy: RELATION)
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
 }
-type Associations {
-  id: ID! @id
-  name: String
-}
+
 type EvaluationsGrandpa {
   id: ID! @id
   name: String
 }
+
 type EvaluationsStudent {
   id: ID! @id
   name: String
 }
+
 type Interviews {
   id: ID! @id
   name: String
