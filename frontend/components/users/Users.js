@@ -51,6 +51,7 @@ class Users extends Component {
 
 				<Query
 					query={ALL_USERS_QUERY}
+					fetchPolicy="network-only"
 					variables={{
 						skip: this.props.page * perPage - perPage,
 						first: perPage,
