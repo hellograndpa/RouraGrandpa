@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import User from './User';
-import ProfileEdit from './ProfileEdit';
+import User from './UserMe.component';
+import ProfileEdit from './ProfileEdit.component';
 
 class Profile extends Component {
   state = {

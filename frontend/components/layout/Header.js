@@ -4,27 +4,27 @@ import Router from 'next/router';
 import NProgress from 'nprogress';
 
 Router.onRouteChangeStart = () => {
-  NProgress.start();
+	NProgress.start();
 };
 
 Router.onRouteChangeComplete = () => {
-  NProgress.done();
+	NProgress.done();
 };
 
 Router.onRouteChangeError = () => {
-  NProgress.done();
+	NProgress.done();
 };
 
 const Header = () => (
-  <div>
-    <div>
-      <Link href="/">
-        <a> LOGO </a>
-      </Link>
-    </div>
-    <div>
-      <Nav />
-    </div>
-  </div>
+	<div>
+		<div>
+			<Link href="/">
+				<a> LOGO </a>
+			</Link>
+		</div>
+		<div>
+			<Nav />
+		</div>
+	</div>
 );
 export default Header;
