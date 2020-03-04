@@ -6,7 +6,7 @@ import { perPage } from '../config';
 
 const ALL_USERS_QUERY = gql`
   query ALL_USERS_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
-    users(first: $first, skip: $skip, orderBy: createAt_DESC) {
+    users(first: $first, skip: $skip, orderBy: name_DESC) {
       id
       name
       lastname

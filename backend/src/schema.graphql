@@ -21,7 +21,7 @@ type Query {
   typeUsers: [TypeUser]!
   users(
     where: UserWhereInput
-    orderBy: UserOrdereByInput
+    orderBy: UserOrderByInput
     skip: Int
     first: Int
   ): [User!]
