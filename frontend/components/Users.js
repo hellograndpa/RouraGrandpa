@@ -23,7 +23,7 @@ class Users extends Component {
     return (
       <div>
         <h2>User List</h2>
-        <Pagination></Pagination>
+        <Pagination page={this.props.page} />
 
         <Query query={ALL_USERS_QUERY}>
           {({ data, error, loading }) => {
@@ -40,7 +40,7 @@ class Users extends Component {
                       lasname,
                       email,
                       phone,
-                      typeUser: { typeName }
+                      typeUser: { typeName },
                     } = user;
                     return (
                       <tr>
@@ -58,7 +58,7 @@ class Users extends Component {
             );
           }}
         </Query>
-        <Pagination></Pagination>
+        <Pagination page={this.props.page} />
       </div>
     );
   }
