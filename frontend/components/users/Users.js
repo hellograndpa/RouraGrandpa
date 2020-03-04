@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import Pagination from './Pagination';
-import { perPage } from '../config';
+import Pagination from './Pagination.component';
+import { perPage } from '../../config';
 import styled from 'styled-components';
 
 const CustomTable = styled.table`

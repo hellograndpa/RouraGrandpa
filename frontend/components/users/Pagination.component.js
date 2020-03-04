@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { perPage } from '../config';
+import { perPage } from '../../config';
 
 import Head from 'next/head';
 import Link from 'next/link';
