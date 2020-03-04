@@ -20,7 +20,12 @@ type Mutation {
 }
 type Query {
   typeUsers: [TypeUser]!
-  users: [User!]
+  users(
+    where: UserWhereInput
+    orderBy: UserOrdereByInput
+    skip: Int
+    first: Int
+  ): [User!]
   usersConnection(where: UserWhereInput): UserConnection!
   me: User
   user(where: UserWhereUniqueInput!): User
