@@ -1,5 +1,5 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const mutations = {
   async signup(parent, args, ctx, info) {
@@ -11,6 +11,10 @@ const mutations = {
     const userType = await ctx.db.query.typeUser({
       where: { typeName: args.typeUser }
     });
+    // check if the userType isn't empty
+    if (!userType) {
+      throw new Error("You need to select a users type");
+    }
     // create de user in the DB
     const user = await ctx.db.mutation.createUser(
       {
@@ -22,15 +26,19 @@ const mutations = {
             }
           },
           password,
-          permissions: { set: ['USER'] }
+          permissions: { set: ["USER"] }
         }
       },
       info
     );
+
+    //TODO select usertype
+    //TODO create new datas before create el
+
     // create the JWT token for them
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     //  we set the jwt as a cookie on the response
-    ctx.response.cookie('token', token, {
+    ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
@@ -48,12 +56,12 @@ const mutations = {
     // 2.- check de password is ok
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) {
-      throw new Error('Invalid Password');
+      throw new Error("Invalid Password");
     }
     // 3.- JWT token
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     // 4.- Set the cookie with token
-    ctx.response.cookie('token', token, {
+    ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
@@ -88,7 +96,7 @@ const mutations = {
     // create the JWT token for them
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     //  we set the jwt as a cookie on the response
-    ctx.response.cookie('token', token, {
+    ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
