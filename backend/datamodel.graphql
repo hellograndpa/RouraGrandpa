@@ -1,212 +1,212 @@
 enum Permissions {
-	USER
-	ADMIN
-	TECH
-	STUDENT
-	ADMINASSOCIATION
-	GRANDPA
+  USER
+  ADMIN
+  TECH
+  STUDENT
+  ADMINASSOCIATION
+  GRANDPA
 }
 
 enum Title {
-	PSICOLOGO
-	TARBAJADOR_SOCIAL
-	ADMINISTRATIVO
-	GESTOR
-	OTROS
+  PSICOLOGO
+  TARBAJADOR_SOCIAL
+  ADMINISTRATIVO
+  GESTOR
+  OTROS
 }
 
 enum TypeDocument {
-	DNI
-	NIE
+  DNI
+  NIE
 }
 
 enum Gender {
-	MALE
-	FEMALE
-	NO_GENDE
+  MALE
+  FEMALE
+  NO_GENDE
 }
 
 enum StateProcess {
-	ACTIVE
-	INACTIVE
-	SELECTED
-	CUPLE
+  ACTIVE
+  INACTIVE
+  SELECTED
+  CUPLE
 }
 
 type User {
-	id: ID! @id
-	name: String!
-	lastname: String!
-	phone: String!
-	email: String! @unique
-	password: String!
-	typeUser: TypeUser
-	createDate: DateTime @createdAt
-	updateDate: DateTime @updatedAt
-	resetToken: String
-	resetTokenExpiry: Float
-	permissions: [Permissions] @scalarList(strategy: RELATION)
+  id: ID! @id
+  name: String!
+  lastname: String!
+  phone: String!
+  email: String! @unique
+  password: String!
+  typeUser: TypeUser
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
+  resetToken: String
+  resetTokenExpiry: Float
+  permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
 type House {
-	id: ID! @id
-	uiserId: User!
-	province: ProvincesModel!
-	city: String!
-	adress: String!
-	cp: String!
-	coordinates: Float!
-	characteristics: [Characteristics!]
-	m2: Int!
-	bathrooms: Int!
-	createDate: DateTime @createdAt
-	updateDate: DateTime @updatedAt
+  id: ID! @id
+  uiserId: User!
+  province: ProvincesModel!
+  city: String!
+  adress: String!
+  cp: String!
+  coordinates: Float!
+  characteristics: [Characteristics!]
+  m2: Int!
+  bathrooms: Int!
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
 }
 
 type Characteristics {
-	id: ID! @id
-	name: String!
+  id: ID! @id
+  name: String!
 }
 
-type UserEstudent {
-	id: ID! @id
-	uiserId: User!
-	association: Association!
-	typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
-	numberDocument: String
-	techResponsible: UserTech
-	studing: String
-	career: CareersModel
-	university: UniversitiesModel
-	classSchedule: String
-	sourceExternal: SourcesModel
-	gender: [Gender] @scalarList(strategy: RELATION)
-	birthData: DateTime
-	originCountry: CountriesModel
-	weekendFree: String
-	evaluarion: [EvaluationsStudent]
-	interview: [Interviews]
-	state: [StateProcess] @scalarList(strategy: RELATION)
-	adress: String
-	createDate: DateTime @createdAt
-	updateDate: DateTime @updatedAt
-	imageDocument: [imagesDocument]
-	imageProfile: String
-	imageUniversity: [imagesUniversity]
-	coupleID: Couple
-	# permissions: [Permissions] @scalarList(strategy: RELATION)
+type UserStudent {
+  id: ID! @id
+  uiserId: User!
+  association: Association!
+  typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
+  numberDocument: String
+  techResponsible: UserTech
+  studing: String
+  career: CareersModel
+  university: UniversitiesModel
+  classSchedule: String
+  sourceExternal: SourcesModel
+  gender: [Gender] @scalarList(strategy: RELATION)
+  birthData: DateTime
+  originCountry: CountriesModel
+  weekendFree: String
+  evaluarion: [EvaluationsStudent]
+  interview: [Interviews]
+  state: [StateProcess] @scalarList(strategy: RELATION)
+  adress: String
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
+  imageDocument: [imagesDocument]
+  imageProfile: String
+  imageUniversity: [imagesUniversity]
+  coupleID: Couple
+  # permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
 type imagesDocument {
-	id: ID! @id
-	photo: String!
-	user: User!
+  id: ID! @id
+  photo: String!
+  user: User!
 }
 
 type imagesUniversity {
-	id: ID! @id
-	photo: String!
-	user: User!
+  id: ID! @id
+  photo: String!
+  user: User!
 }
 
 type UserTech {
-	id: ID! @id
-	uiserId: User!
-	association: Association!
-	title: [Title] @scalarList(strategy: RELATION)
-	titleOthers: String
-	phoneOffice: String
-	createDate: DateTime @createdAt
-	updateDate: DateTime @updatedAt
+  id: ID! @id
+  uiserId: User!
+  association: Association!
+  title: [Title] @scalarList(strategy: RELATION)
+  titleOthers: String
+  phoneOffice: String
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
 }
 
 type UserGrandpa {
-	id: ID! @id
-	uiserId: User!
-	association: Association!
-	evaluation: [EvaluationsGrandpa]
-	interview: [Interviews]
-	gender: [Gender] @scalarList(strategy: RELATION)
-	birthData: DateTime
-	originCountry: CountriesModel
-	techResponsible: UserTech
-	typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
-	numberDocument: String
-	imageProfile: String
-	coupleID: Couple
-	createDate: DateTime @createdAt
-	updateDate: DateTime @updatedAt
-	adress: String
+  id: ID! @id
+  uiserId: User!
+  association: Association!
+  evaluation: [EvaluationsGrandpa]
+  interview: [Interviews]
+  gender: [Gender] @scalarList(strategy: RELATION)
+  birthData: DateTime
+  originCountry: CountriesModel
+  techResponsible: UserTech
+  typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
+  numberDocument: String
+  imageProfile: String
+  coupleID: Couple
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
+  adress: String
 }
 
 type TypeUser {
-	id: ID! @id
-	typeName: String! @unique
+  id: ID! @id
+  typeName: String! @unique
 }
 
 type CareersModel {
-	id: ID! @id
-	carrerName: String!
-	university: UniversitiesModel!
+  id: ID! @id
+  carrerName: String!
+  university: UniversitiesModel!
 }
 
 type UniversitiesModel {
-	id: ID! @id
-	universityName: String!
-	province: ProvincesModel
+  id: ID! @id
+  universityName: String!
+  province: ProvincesModel
 }
 
 type ProvincesModel {
-	id: ID! @id
-	provinceName: String!
-	country: CountriesModel!
+  id: ID! @id
+  provinceName: String!
+  country: CountriesModel!
 }
 
 type Couple {
-	id: ID! @id
-	uiserIdStudent: User! @relation(name: "UserStuden")
-	uiserIdGrandpa: User! @relation(name: "UserGrandpa")
-	description: String
+  id: ID! @id
+  uiserIdStudent: User! @relation(name: "UserStuden")
+  uiserIdGrandpa: User! @relation(name: "UserGrandpa")
+  description: String
 }
 
 type SourcesModel {
-	id: ID! @id
-	sourceName: String!
+  id: ID! @id
+  sourceName: String!
 }
 
 type CountriesModel {
-	id: ID! @idf
-	countryName: String!
+  id: ID! @id
+  countryName: String!
 }
 
 type Association {
-	id: ID! @id
-	name: String
-	# province: ProvincesModel!
-	# city: String!
-	# adress: String!
-	# cp: String!
-	# coordinates: Float!
-	# phone: String!
-	# email: String!
-	# description: String!
-	# logo: String!
-	# images: [String] @scalarList(strategy: RELATION)
-	# createDate: DateTime @createdAt
-	# updateDate: DateTime @updatedAt
+  id: ID! @id
+  name: String
+  # province: ProvincesModel!
+  # city: String!
+  # adress: String!
+  # cp: String!
+  # coordinates: Float!
+  # phone: String!
+  # email: String!
+  # description: String!
+  # logo: String!
+  # images: [String] @scalarList(strategy: RELATION)
+  # createDate: DateTime @createdAt
+  # updateDate: DateTime @updatedAt
 }
 
 type EvaluationsGrandpa {
-	id: ID! @id
-	name: String
+  id: ID! @id
+  name: String
 }
 
 type EvaluationsStudent {
-	id: ID! @id
-	name: String
+  id: ID! @id
+  name: String
 }
 
 type Interviews {
-	id: ID! @id
-	name: String
+  id: ID! @id
+  name: String
 }

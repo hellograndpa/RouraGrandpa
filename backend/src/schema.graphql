@@ -1,35 +1,35 @@
 # import * from './generated/prisma.graphql'
 type Mutation {
-	signup(
-		name: String!
-		lastname: String!
-		phone: String!
-		email: String!
-		password: String!
-		typeUser: String!
-	): User!
-	signin(email: String!, password: String!): User!
-	updateMe(
-		id: ID!
-		name: String
-		lastname: String
-		phone: String
-		email: String
-	): User!
-	# createUserStudent(userId: ID!): UserStudent!
-	# createUserTech(userId: ID!): UserTech!
-	# createUserGrandpa(userId: ID!): UserGrandpa!
+  signup(
+    name: String!
+    lastname: String!
+    phone: String!
+    email: String!
+    password: String!
+    typeUser: String!
+  ): User!
+  signin(email: String!, password: String!): User!
+  updateMe(
+    id: ID!
+    name: String
+    lastname: String
+    phone: String
+    email: String
+  ): User!
+  createUserStudent(userId: ID!): UserStudent!
+  createUserTech(userId: ID!): UserTech!
+  createUserGrandpa(userId: ID!): UserGrandpa!
 }
 
 type Query {
-	typeUsers: [TypeUser]!
-	users(
-		where: UserWhereInput
-		orderBy: UserOrderByInput
-		skip: Int
-		first: Int
-	): [User!]
-	usersConnection(where: UserWhereInput): UserConnection!
-	me: User
-	user(where: UserWhereUniqueInput!): User
+  typeUsers: [TypeUser]!
+  users(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    first: Int
+  ): [User!]
+  usersConnection(where: UserWhereInput): UserConnection!
+  me: User
+  user(where: UserWhereUniqueInput!): User
 }
