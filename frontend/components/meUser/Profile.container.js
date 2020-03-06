@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import User from './UserMe.component';
-import ProfileEdit from './ProfileEdit.component';
+import React, { Component } from "react";
+import User from "./UserMe.component";
+import ProfileEdit from "./ProfileEdit.component";
+import UserTech from "./userTech/UserTech.component";
 
 class Profile extends Component {
   state = {
@@ -43,6 +44,7 @@ class Profile extends Component {
             <ProfileEdit />
           </div>
         )}
+        <UserTech />
       </div>
     );
   }

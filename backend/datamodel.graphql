@@ -51,7 +51,7 @@ type User {
 type House {
   id: ID! @id
   uiserId: User!
-  province: ProvincesModel!
+  province: Province!
   city: String!
   adress: String!
   cp: String!
@@ -70,7 +70,7 @@ type Characteristics {
 
 type UserStudent {
   id: ID! @id
-  uiserId: User!
+  userId: User!
   association: Association!
   typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
   numberDocument: String
@@ -111,9 +111,9 @@ type imagesUniversity {
 
 type UserTech {
   id: ID! @id
-  uiserId: User!
+  userId: User!
   association: Association!
-  title: [Title] @scalarList(strategy: RELATION)
+  title: [Title!] @scalarList(strategy: RELATION)
   titleOthers: String
   phoneOffice: String
   createDate: DateTime @createdAt
@@ -122,7 +122,7 @@ type UserTech {
 
 type UserGrandpa {
   id: ID! @id
-  uiserId: User!
+  userId: User!
   association: Association!
   evaluation: [EvaluationsGrandpa]
   interview: [Interviews]
@@ -153,10 +153,10 @@ type CareersModel {
 type UniversitiesModel {
   id: ID! @id
   universityName: String!
-  province: ProvincesModel
+  province: Province
 }
 
-type Provincia {
+type Province {
   id: ID! @id
   provinceName: String!
   country: CountriesModel!
@@ -164,7 +164,7 @@ type Provincia {
 
 type Couple {
   id: ID! @id
-  uiserIdStudent: User! @relation(name: "UserStuden")
+  userIdStudent: User! @relation(name: "UserStuden")
   uiserIdGrandpa: User! @relation(name: "UserGrandpa")
   description: String
 }

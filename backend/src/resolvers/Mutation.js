@@ -16,35 +16,21 @@ const mutations = {
       throw new Error('You need to select a users type');
     }
     // create de user in the DB
-    const user = await ctx.db.mutation
-      .createUser(
-        {
-          data: {
-            ...args,
-            typeUser: {
-              connect: {
-                id: userType.id
-              }
-            },
-            password,
-            permissions: { set: ['USER'] }
-          }
-        },
-        info
-      )
-      .then(user => {
-        if (user.typeUser.typeName === 'Tech') {
-          const userTech = ctx.db.mutation.createUserTech(
-            {
-              data: {
-                userId: user.id
-              }
-            },
-            info
-          );
-          return userTech;
+    const user = await ctx.db.mutation.createUser(
+      {
+        data: {
+          ...args,
+          typeUser: {
+            connect: {
+              id: userType.id
+            }
+          },
+          password,
+          permissions: { set: ['USER'] }
         }
-      });
+      },
+      info
+    );
 
     //TODO select usertype
     //TODO create new datas before create el
