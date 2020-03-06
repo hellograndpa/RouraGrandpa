@@ -156,7 +156,7 @@ type UniversitiesModel {
   province: ProvincesModel
 }
 
-type ProvincesModel {
+type Provincia {
   id: ID! @id
   provinceName: String!
   country: CountriesModel!
