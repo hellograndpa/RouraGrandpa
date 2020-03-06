@@ -50,7 +50,7 @@ type User {
 
 type House {
   id: ID! @id
-  uiserId: User!
+  userId: User!
   province: Province!
   city: String!
   adress: String!
