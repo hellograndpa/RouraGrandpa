@@ -1,3 +1,5 @@
+/** @format */
+
 const { forwardTo } = require('prisma-binding');
 
 const Query = {
@@ -24,7 +26,7 @@ const Query = {
       { where: { userId: ctx.request.userId } },
       info
     );
-  }
+  },
 };
 
 module.exports = Query;

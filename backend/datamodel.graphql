@@ -1,3 +1,5 @@
+# @format
+
 enum Permissions {
   USER
   ADMIN
@@ -111,11 +113,11 @@ type ImagesUniversity {
 
 type UserTech {
   id: ID! @id
-  userId: User!
+  userId: User! @unique
   association: Association!
-  title: [Title] @scalarList(strategy: RELATION)
-  titleOthers: String!
-  phoneOffice: String!
+  title: [Title] @scalarList(strategy: RELATION) @default(value: PSICOLOGO)
+  titleOthers: String
+  phoneOffice: String
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
 }
@@ -137,6 +139,7 @@ type UserGrandpa {
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
   adress: String
+  house: House!
 }
 
 type TypeUser {

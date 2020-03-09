@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Mon Mar 09 2020 17:31:13 GMT+0100 (Central European Standard Time)
+# timestamp: Mon Mar 09 2020 23:48:00 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociation {
   count: Int!
@@ -1866,6 +1866,11 @@ input HouseCreateInput {
   characteristics: CharacteristicsCreateManyInput
 }
 
+input HouseCreateOneInput {
+  create: HouseCreateInput
+  connect: HouseWhereUniqueInput
+}
+
 """An edge in a connection."""
 type HouseEdge {
   """The item at the end of the edge."""
@@ -1947,6 +1952,18 @@ input HouseSubscriptionWhereInput {
   node: HouseWhereInput
 }
 
+input HouseUpdateDataInput {
+  city: String
+  adress: String
+  cp: String
+  coordinates: Float
+  m2: Int
+  bathrooms: Int
+  userId: UserUpdateOneRequiredInput
+  province: ProvinceUpdateOneRequiredInput
+  characteristics: CharacteristicsUpdateManyInput
+}
+
 input HouseUpdateInput {
   city: String
   adress: String
@@ -1966,6 +1983,18 @@ input HouseUpdateManyMutationInput {
   coordinates: Float
   m2: Int
   bathrooms: Int
+}
+
+input HouseUpdateOneRequiredInput {
+  create: HouseCreateInput
+  connect: HouseWhereUniqueInput
+  update: HouseUpdateDataInput
+  upsert: HouseUpsertNestedInput
+}
+
+input HouseUpsertNestedInput {
+  update: HouseUpdateDataInput!
+  create: HouseCreateInput!
 }
 
 input HouseWhereInput {
@@ -3220,11 +3249,11 @@ Long can represent values between -(2^63) and 2^63 - 1.
 scalar Long
 
 type Mutation {
-  createHouse(data: HouseCreateInput!): House!
   createUserStudent(data: UserStudentCreateInput!): UserStudent!
   createUserGrandpa(data: UserGrandpaCreateInput!): UserGrandpa!
   createSource(data: SourceCreateInput!): Source!
   createImagesDocument(data: ImagesDocumentCreateInput!): ImagesDocument!
+  createHouse(data: HouseCreateInput!): House!
   createEvaluationsGrandpa(data: EvaluationsGrandpaCreateInput!): EvaluationsGrandpa!
   createUniversity(data: UniversityCreateInput!): University!
   createTypeUser(data: TypeUserCreateInput!): TypeUser!
@@ -3239,11 +3268,11 @@ type Mutation {
   createCharacteristics(data: CharacteristicsCreateInput!): Characteristics!
   createCareer(data: CareerCreateInput!): Career!
   createAssociation(data: AssociationCreateInput!): Association!
-  updateHouse(data: HouseUpdateInput!, where: HouseWhereUniqueInput!): House
   updateUserStudent(data: UserStudentUpdateInput!, where: UserStudentWhereUniqueInput!): UserStudent
   updateUserGrandpa(data: UserGrandpaUpdateInput!, where: UserGrandpaWhereUniqueInput!): UserGrandpa
   updateSource(data: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source
   updateImagesDocument(data: ImagesDocumentUpdateInput!, where: ImagesDocumentWhereUniqueInput!): ImagesDocument
+  updateHouse(data: HouseUpdateInput!, where: HouseWhereUniqueInput!): House
   updateEvaluationsGrandpa(data: EvaluationsGrandpaUpdateInput!, where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
   updateUniversity(data: UniversityUpdateInput!, where: UniversityWhereUniqueInput!): University
   updateTypeUser(data: TypeUserUpdateInput!, where: TypeUserWhereUniqueInput!): TypeUser
@@ -3258,11 +3287,11 @@ type Mutation {
   updateCharacteristics(data: CharacteristicsUpdateInput!, where: CharacteristicsWhereUniqueInput!): Characteristics
   updateCareer(data: CareerUpdateInput!, where: CareerWhereUniqueInput!): Career
   updateAssociation(data: AssociationUpdateInput!, where: AssociationWhereUniqueInput!): Association
-  deleteHouse(where: HouseWhereUniqueInput!): House
   deleteUserStudent(where: UserStudentWhereUniqueInput!): UserStudent
   deleteUserGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
   deleteSource(where: SourceWhereUniqueInput!): Source
   deleteImagesDocument(where: ImagesDocumentWhereUniqueInput!): ImagesDocument
+  deleteHouse(where: HouseWhereUniqueInput!): House
   deleteEvaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
   deleteUniversity(where: UniversityWhereUniqueInput!): University
   deleteTypeUser(where: TypeUserWhereUniqueInput!): TypeUser
@@ -3277,11 +3306,11 @@ type Mutation {
   deleteCharacteristics(where: CharacteristicsWhereUniqueInput!): Characteristics
   deleteCareer(where: CareerWhereUniqueInput!): Career
   deleteAssociation(where: AssociationWhereUniqueInput!): Association
-  upsertHouse(where: HouseWhereUniqueInput!, create: HouseCreateInput!, update: HouseUpdateInput!): House!
   upsertUserStudent(where: UserStudentWhereUniqueInput!, create: UserStudentCreateInput!, update: UserStudentUpdateInput!): UserStudent!
   upsertUserGrandpa(where: UserGrandpaWhereUniqueInput!, create: UserGrandpaCreateInput!, update: UserGrandpaUpdateInput!): UserGrandpa!
   upsertSource(where: SourceWhereUniqueInput!, create: SourceCreateInput!, update: SourceUpdateInput!): Source!
   upsertImagesDocument(where: ImagesDocumentWhereUniqueInput!, create: ImagesDocumentCreateInput!, update: ImagesDocumentUpdateInput!): ImagesDocument!
+  upsertHouse(where: HouseWhereUniqueInput!, create: HouseCreateInput!, update: HouseUpdateInput!): House!
   upsertEvaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!, create: EvaluationsGrandpaCreateInput!, update: EvaluationsGrandpaUpdateInput!): EvaluationsGrandpa!
   upsertUniversity(where: UniversityWhereUniqueInput!, create: UniversityCreateInput!, update: UniversityUpdateInput!): University!
   upsertTypeUser(where: TypeUserWhereUniqueInput!, create: TypeUserCreateInput!, update: TypeUserUpdateInput!): TypeUser!
@@ -3296,11 +3325,11 @@ type Mutation {
   upsertCharacteristics(where: CharacteristicsWhereUniqueInput!, create: CharacteristicsCreateInput!, update: CharacteristicsUpdateInput!): Characteristics!
   upsertCareer(where: CareerWhereUniqueInput!, create: CareerCreateInput!, update: CareerUpdateInput!): Career!
   upsertAssociation(where: AssociationWhereUniqueInput!, create: AssociationCreateInput!, update: AssociationUpdateInput!): Association!
-  updateManyHouses(data: HouseUpdateManyMutationInput!, where: HouseWhereInput): BatchPayload!
   updateManyUserStudents(data: UserStudentUpdateManyMutationInput!, where: UserStudentWhereInput): BatchPayload!
   updateManyUserGrandpas(data: UserGrandpaUpdateManyMutationInput!, where: UserGrandpaWhereInput): BatchPayload!
   updateManySources(data: SourceUpdateManyMutationInput!, where: SourceWhereInput): BatchPayload!
   updateManyImagesDocuments(data: ImagesDocumentUpdateManyMutationInput!, where: ImagesDocumentWhereInput): BatchPayload!
+  updateManyHouses(data: HouseUpdateManyMutationInput!, where: HouseWhereInput): BatchPayload!
   updateManyEvaluationsGrandpas(data: EvaluationsGrandpaUpdateManyMutationInput!, where: EvaluationsGrandpaWhereInput): BatchPayload!
   updateManyUniversities(data: UniversityUpdateManyMutationInput!, where: UniversityWhereInput): BatchPayload!
   updateManyTypeUsers(data: TypeUserUpdateManyMutationInput!, where: TypeUserWhereInput): BatchPayload!
@@ -3314,11 +3343,11 @@ type Mutation {
   updateManyCharacteristicses(data: CharacteristicsUpdateManyMutationInput!, where: CharacteristicsWhereInput): BatchPayload!
   updateManyCareers(data: CareerUpdateManyMutationInput!, where: CareerWhereInput): BatchPayload!
   updateManyAssociations(data: AssociationUpdateManyMutationInput!, where: AssociationWhereInput): BatchPayload!
-  deleteManyHouses(where: HouseWhereInput): BatchPayload!
   deleteManyUserStudents(where: UserStudentWhereInput): BatchPayload!
   deleteManyUserGrandpas(where: UserGrandpaWhereInput): BatchPayload!
   deleteManySources(where: SourceWhereInput): BatchPayload!
   deleteManyImagesDocuments(where: ImagesDocumentWhereInput): BatchPayload!
+  deleteManyHouses(where: HouseWhereInput): BatchPayload!
   deleteManyEvaluationsGrandpas(where: EvaluationsGrandpaWhereInput): BatchPayload!
   deleteManyUniversities(where: UniversityWhereInput): BatchPayload!
   deleteManyTypeUsers(where: TypeUserWhereInput): BatchPayload!
@@ -3590,11 +3619,11 @@ input ProvinceWhereUniqueInput {
 }
 
 type Query {
-  houses(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [House]!
   userStudents(where: UserStudentWhereInput, orderBy: UserStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStudent]!
   userGrandpas(where: UserGrandpaWhereInput, orderBy: UserGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserGrandpa]!
   sources(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Source]!
   imagesDocuments(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesDocument]!
+  houses(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [House]!
   evaluationsGrandpas(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa]!
   universities(where: UniversityWhereInput, orderBy: UniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [University]!
   typeUsers(where: TypeUserWhereInput, orderBy: TypeUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TypeUser]!
@@ -3609,11 +3638,11 @@ type Query {
   characteristicses(where: CharacteristicsWhereInput, orderBy: CharacteristicsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Characteristics]!
   careers(where: CareerWhereInput, orderBy: CareerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Career]!
   associations(where: AssociationWhereInput, orderBy: AssociationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Association]!
-  house(where: HouseWhereUniqueInput!): House
   userStudent(where: UserStudentWhereUniqueInput!): UserStudent
   userGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
   source(where: SourceWhereUniqueInput!): Source
   imagesDocument(where: ImagesDocumentWhereUniqueInput!): ImagesDocument
+  house(where: HouseWhereUniqueInput!): House
   evaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
   university(where: UniversityWhereUniqueInput!): University
   typeUser(where: TypeUserWhereUniqueInput!): TypeUser
@@ -3628,11 +3657,11 @@ type Query {
   characteristics(where: CharacteristicsWhereUniqueInput!): Characteristics
   career(where: CareerWhereUniqueInput!): Career
   association(where: AssociationWhereUniqueInput!): Association
-  housesConnection(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HouseConnection!
   userStudentsConnection(where: UserStudentWhereInput, orderBy: UserStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStudentConnection!
   userGrandpasConnection(where: UserGrandpaWhereInput, orderBy: UserGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserGrandpaConnection!
   sourcesConnection(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SourceConnection!
   imagesDocumentsConnection(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ImagesDocumentConnection!
+  housesConnection(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HouseConnection!
   evaluationsGrandpasConnection(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EvaluationsGrandpaConnection!
   universitiesConnection(where: UniversityWhereInput, orderBy: UniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UniversityConnection!
   typeUsersConnection(where: TypeUserWhereInput, orderBy: TypeUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TypeUserConnection!
@@ -3869,11 +3898,11 @@ enum StateProcess {
 }
 
 type Subscription {
-  house(where: HouseSubscriptionWhereInput): HouseSubscriptionPayload
   userStudent(where: UserStudentSubscriptionWhereInput): UserStudentSubscriptionPayload
   userGrandpa(where: UserGrandpaSubscriptionWhereInput): UserGrandpaSubscriptionPayload
   source(where: SourceSubscriptionWhereInput): SourceSubscriptionPayload
   imagesDocument(where: ImagesDocumentSubscriptionWhereInput): ImagesDocumentSubscriptionPayload
+  house(where: HouseSubscriptionWhereInput): HouseSubscriptionPayload
   evaluationsGrandpa(where: EvaluationsGrandpaSubscriptionWhereInput): EvaluationsGrandpaSubscriptionPayload
   university(where: UniversitySubscriptionWhereInput): UniversitySubscriptionPayload
   typeUser(where: TypeUserSubscriptionWhereInput): TypeUserSubscriptionPayload
@@ -4401,6 +4430,7 @@ type UserGrandpa implements Node {
   createDate: DateTime
   updateDate: DateTime
   adress: String
+  house: House!
 }
 
 """A connection to a list of items."""
@@ -4432,6 +4462,7 @@ input UserGrandpaCreateInput {
   originCountry: CountryCreateOneInput
   techResponsible: UserTechCreateOneInput
   coupleID: CoupleCreateOneInput
+  house: HouseCreateOneInput!
 }
 
 input UserGrandpaCreatetypeDocumentInput {
@@ -4533,6 +4564,7 @@ input UserGrandpaUpdateInput {
   originCountry: CountryUpdateOneInput
   techResponsible: UserTechUpdateOneInput
   coupleID: CoupleUpdateOneInput
+  house: HouseUpdateOneRequiredInput
 }
 
 input UserGrandpaUpdateManyMutationInput {
@@ -4794,6 +4826,7 @@ input UserGrandpaWhereInput {
   originCountry: CountryWhereInput
   techResponsible: UserTechWhereInput
   coupleID: CoupleWhereInput
+  house: HouseWhereInput
 }
 
 input UserGrandpaWhereUniqueInput {
@@ -5475,8 +5508,8 @@ type UserTech implements Node {
   userId: User!
   association: Association!
   title: [Title!]!
-  titleOthers: String!
-  phoneOffice: String!
+  titleOthers: String
+  phoneOffice: String
   createDate: DateTime
   updateDate: DateTime
 }
@@ -5493,8 +5526,8 @@ type UserTechConnection {
 
 input UserTechCreateInput {
   id: ID
-  titleOthers: String!
-  phoneOffice: String!
+  titleOthers: String
+  phoneOffice: String
   title: UserTechCreatetitleInput
   userId: UserCreateOneInput!
   association: AssociationCreateOneInput!
@@ -5534,8 +5567,8 @@ enum UserTechOrderByInput {
 type UserTechPreviousValues {
   id: ID!
   title: [Title!]!
-  titleOthers: String!
-  phoneOffice: String!
+  titleOthers: String
+  phoneOffice: String
   createDate: DateTime
   updateDate: DateTime
 }

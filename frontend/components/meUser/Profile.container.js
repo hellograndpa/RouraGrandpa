@@ -1,15 +1,17 @@
-import React, { Component } from "react";
-import User from "./UserMe.component";
-import ProfileEdit from "./ProfileEdit.component";
-import UserTech from "./userTech/UserTech.component";
+/** @format */
+
+import React, { Component } from 'react';
+import User from './UserMe.component';
+import ProfileEdit from './ProfileEdit.component';
+import UserTech from './userTech/UserTech.component';
 
 class Profile extends Component {
   state = {
-    edition: false
+    edition: false,
   };
   handleEdition = () => {
     this.setState({
-      edition: !this.state.edition
+      edition: !this.state.edition,
     });
   };
 
@@ -36,15 +38,15 @@ class Profile extends Component {
                 return null;
               }}
             </User>
+            <UserTech />
           </>
         )}
         {edition && (
-          <div>
+          <>
             <button onClick={this.handleEdition}> save profile </button>
             <ProfileEdit />
-          </div>
+          </>
         )}
-        <UserTech />
       </div>
     );
   }

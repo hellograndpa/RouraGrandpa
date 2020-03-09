@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { Mutation } from "react-apollo";
-import gql from "graphql-tag";
-import Error from "../ErrorMessage";
+/** @format */
 
-import User from "./UserMe.component";
-import TechUser from "./userTech/TechUser.component";
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
+import gql from 'graphql-tag';
+import Error from '../ErrorMessage';
+
+import User from './UserMe.component';
 
 const UPDATE_USER_MUTATION = gql`
   mutation UPDATE_PROFILE_MUTATION(
@@ -42,8 +43,8 @@ class ProfileEdit extends Component {
     const res = await updateUserMutation({
       variables: {
         id: meId,
-        ...this.state
-      }
+        ...this.state,
+      },
     });
   };
 
@@ -56,15 +57,13 @@ class ProfileEdit extends Component {
               <div>
                 <Mutation
                   mutation={UPDATE_USER_MUTATION}
-                  variables={this.state}
-                >
+                  variables={this.state}>
                   {(updateMe, { loading, error }) => (
                     <form
                       method="post"
                       onSubmit={e => {
                         this.updateMe(e, updateMe, me.id);
-                      }}
-                    >
+                      }}>
                       <Error error={error} />
                       <fieldset disabled={loading} aria-busy={loading}>
                         <h2>Sign Up for new user</h2>
@@ -113,7 +112,6 @@ class ProfileEdit extends Component {
                     </form>
                   )}
                 </Mutation>
-                <TechUser userId={me.userId} />
               </div>
             );
           }

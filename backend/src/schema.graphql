@@ -1,3 +1,5 @@
+# @format
+
 # import * from './generated/prisma.graphql'
 type Mutation {
   signup(
@@ -32,5 +34,5 @@ type Query {
   usersConnection(where: UserWhereInput): UserConnection!
   me: User
   user(where: UserWhereUniqueInput!): User
-  userTech(where: UserWhereUniqueInput!): UserTech
+  userTech(where: UserTechWhereUniqueUniqueInput!): UserTech
 }

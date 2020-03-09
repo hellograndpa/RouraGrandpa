@@ -1,6 +1,8 @@
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+/** @format */
+
+import React, { Component } from 'react';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 const USERTECH_QUERY = gql`
   query USERTECH_QUERY {
