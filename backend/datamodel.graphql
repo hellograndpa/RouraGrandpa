@@ -165,7 +165,7 @@ type Province {
 type Couple {
   id: ID! @id
   userIdStudent: User! @relation(name: "CupleUserStudent")
-  userIdGandpa: User! @relation(name: "CupleUserGrandpa")
+  userIdGrandpa: User! @relation(name: "CupleUserGrandpa")
 }
 
 type Source {

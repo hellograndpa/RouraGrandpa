@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Mon Mar 09 2020 15:57:00 GMT+0100 (Central European Standard Time)
+# timestamp: Mon Mar 09 2020 17:31:13 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociation {
   count: Int!
@@ -1028,7 +1028,7 @@ input CountryWhereUniqueInput {
 type Couple implements Node {
   id: ID!
   userIdStudent: User!
-  userIdGandPa: User!
+  userIdGrandpa: User!
 }
 
 """A connection to a list of items."""
@@ -1044,7 +1044,7 @@ type CoupleConnection {
 input CoupleCreateInput {
   id: ID
   userIdStudent: UserCreateOneInput!
-  userIdGandPa: UserCreateOneInput!
+  userIdGrandpa: UserCreateOneInput!
 }
 
 input CoupleCreateOneInput {
@@ -1111,12 +1111,12 @@ input CoupleSubscriptionWhereInput {
 
 input CoupleUpdateDataInput {
   userIdStudent: UserUpdateOneRequiredInput
-  userIdGandPa: UserUpdateOneRequiredInput
+  userIdGrandpa: UserUpdateOneRequiredInput
 }
 
 input CoupleUpdateInput {
   userIdStudent: UserUpdateOneRequiredInput
-  userIdGandPa: UserUpdateOneRequiredInput
+  userIdGrandpa: UserUpdateOneRequiredInput
 }
 
 input CoupleUpdateOneInput {
@@ -1183,7 +1183,7 @@ input CoupleWhereInput {
   """All values not ending with the given string."""
   id_not_ends_with: ID
   userIdStudent: UserWhereInput
-  userIdGandPa: UserWhereInput
+  userIdGrandpa: UserWhereInput
 }
 
 input CoupleWhereUniqueInput {
