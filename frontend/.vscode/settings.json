@@ -7,5 +7,16 @@
   },
   "editor.formatOnSave": true,
   "prettier.jsxBracketSameLine": true,
-  "prettier.trailingComma": "es5"
+  "prettier.trailingComma": "es5",
+  "prettier.tabWidth": 2,
+  "prettier.insertPragma": true,
+  "prettier.proseWrap": "always",
+  "editor.codeActionsOnSave": {
+    // For ESLint
+    "source.fixAll.eslint": true,
+    // For TSLint
+    "source.fixAll.tslint": true,
+    // For Stylelint
+    "source.fixAll.stylelint": true
+  }
 }
