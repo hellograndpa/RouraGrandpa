@@ -73,6 +73,7 @@ type UserStudent {
   userId: User
   typeDocument: [TypeDocument]! @scalarList(strategy: RELATION)
   numberDocument: String!
+  association: Association!
   techResponsible: UserTech!
   studing: String
   career: Career
@@ -138,18 +139,6 @@ type UserGrandpa {
   adress: String
 }
 
-type imagesDocument {
-  id: ID! @id
-  photo: String!
-  userId: User!
-}
-
-type imagesUniversity {
-  id: ID! @id
-  photo: String!
-  userId: User!
-}
-
 type TypeUser {
   id: ID! @id
   typeName: String! @unique
@@ -175,8 +164,8 @@ type Province {
 
 type Couple {
   id: ID! @id
-  idUserStudent: User @relation(name: "CupleUserStudent")
-  idUserGandPa: User @relation(name: "CupleUserGrandpa")
+  userIdStudent: User! @relation(name: "CupleUserStudent")
+  userIdGandpa: User! @relation(name: "CupleUserGrandpa")
 }
 
 type Source {
