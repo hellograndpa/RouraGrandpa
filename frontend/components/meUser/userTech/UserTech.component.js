@@ -19,7 +19,7 @@ const USERTECH_QUERY = gql`
   }
 `;
 
-const TechUser = props => (
+const UserTech = props => (
   <Query query={USERTECH_QUERY}>
     {({ data: { userTech }, error, loading }) => {
       if (loading) return <p>Loading...</p>;
@@ -40,4 +40,4 @@ const TechUser = props => (
   </Query>
 );
 
-export default TechUser;
+export default UserTech;

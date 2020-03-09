@@ -100,13 +100,13 @@ type UserStudent {
 type imagesDocument {
   id: ID! @id
   photo: String!
-  user: User!
+  userId: User!
 }
 
 type imagesUniversity {
   id: ID! @id
   photo: String!
-  user: User!
+  userId: User!
 }
 
 type UserTech {
@@ -165,7 +165,7 @@ type Province {
 type Couple {
   id: ID! @id
   userIdStudent: User! @relation(name: "UserStuden")
-  uiserIdGrandpa: User! @relation(name: "UserGrandpa")
+  userIdGrandpa: User! @relation(name: "UserGrandpa")
   description: String
 }
 

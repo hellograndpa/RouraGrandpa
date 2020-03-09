@@ -1,11 +1,12 @@
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import UserTech from './UserTech.component'
 
 
+const UserTechContainer = props =>(
 
-const UserTech = props =>(
-
+  <UserTech {props}/>
 
 )
 
-export default UserTech;
+export default UserTechContainer;

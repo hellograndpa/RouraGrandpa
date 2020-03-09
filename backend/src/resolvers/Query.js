@@ -19,6 +19,7 @@ const Query = {
     if (!ctx.request.userId) {
       return null;
     }
+    console.log(ctx.request.userId);
     return ctx.db.query.userTech(
       { where: { userId: ctx.request.userId } },
       info
