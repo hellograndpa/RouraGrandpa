@@ -1,11 +1,11 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Mon Mar 02 2020 21:46:42 GMT+0100 (GMT+01:00)
+# timestamp: Mon Mar 09 2020 15:39:37 GMT+0100 (Central European Standard Time)
 
-type AggregateAssociations {
+type AggregateAssociation {
   count: Int!
 }
 
-type AggregateCareersModel {
+type AggregateCareer {
   count: Int!
 }
 
@@ -13,7 +13,11 @@ type AggregateCharacteristics {
   count: Int!
 }
 
-type AggregateCountriesModel {
+type AggregateCountry {
+  count: Int!
+}
+
+type AggregateCouple {
   count: Int!
 }
 
@@ -29,11 +33,11 @@ type AggregateHouse {
   count: Int!
 }
 
-type AggregateimagesDocument {
+type AggregateImagesDocument {
   count: Int!
 }
 
-type AggregateimagesUniversity {
+type AggregateImagesUniversity {
   count: Int!
 }
 
@@ -41,11 +45,11 @@ type AggregateInterviews {
   count: Int!
 }
 
-type AggregateProvincesModel {
+type AggregateProvince {
   count: Int!
 }
 
-type AggregateSourcesModel {
+type AggregateSource {
   count: Int!
 }
 
@@ -53,7 +57,7 @@ type AggregateTypeUser {
   count: Int!
 }
 
-type AggregateUniversitiesModel {
+type AggregateUniversity {
   count: Int!
 }
 
@@ -73,125 +77,68 @@ type AggregateUserTech {
   count: Int!
 }
 
-type Associations implements Node {
+type Association implements Node {
   id: ID!
   name: String!
-  province: ProvincesModel!
-  city: String!
-  adress: String!
-  cp: String!
-  coordinates: Float!
-  phone: String!
-  email: String!
-  description: String!
-  logo: String!
-  images: [String!]!
-  createDate: DateTime
-  updateDate: DateTime
 }
 
 """A connection to a list of items."""
-type AssociationsConnection {
+type AssociationConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [AssociationsEdge]!
-  aggregate: AggregateAssociations!
+  edges: [AssociationEdge]!
+  aggregate: AggregateAssociation!
 }
 
-input AssociationsCreateimagesInput {
-  set: [String!]
-}
-
-input AssociationsCreateInput {
+input AssociationCreateInput {
   id: ID
   name: String!
-  city: String!
-  adress: String!
-  cp: String!
-  coordinates: Float!
-  phone: String!
-  email: String!
-  description: String!
-  logo: String!
-  images: AssociationsCreateimagesInput
-  province: ProvincesModelCreateOneInput!
 }
 
-input AssociationsCreateOneInput {
-  create: AssociationsCreateInput
-  connect: AssociationsWhereUniqueInput
+input AssociationCreateOneInput {
+  create: AssociationCreateInput
+  connect: AssociationWhereUniqueInput
 }
 
 """An edge in a connection."""
-type AssociationsEdge {
+type AssociationEdge {
   """The item at the end of the edge."""
-  node: Associations!
+  node: Association!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum AssociationsOrderByInput {
+enum AssociationOrderByInput {
   id_ASC
   id_DESC
   name_ASC
   name_DESC
-  city_ASC
-  city_DESC
-  adress_ASC
-  adress_DESC
-  cp_ASC
-  cp_DESC
-  coordinates_ASC
-  coordinates_DESC
-  phone_ASC
-  phone_DESC
-  email_ASC
-  email_DESC
-  description_ASC
-  description_DESC
-  logo_ASC
-  logo_DESC
-  createDate_ASC
-  createDate_DESC
-  updateDate_ASC
-  updateDate_DESC
 }
 
-type AssociationsPreviousValues {
+type AssociationPreviousValues {
   id: ID!
   name: String!
-  city: String!
-  adress: String!
-  cp: String!
-  coordinates: Float!
-  phone: String!
-  email: String!
-  description: String!
-  logo: String!
-  images: [String!]!
-  createDate: DateTime
-  updateDate: DateTime
 }
 
-type AssociationsSubscriptionPayload {
+type AssociationSubscriptionPayload {
   mutation: MutationType!
-  node: Associations
+  node: Association
   updatedFields: [String!]
-  previousValues: AssociationsPreviousValues
+  previousValues: AssociationPreviousValues
 }
 
-input AssociationsSubscriptionWhereInput {
+input AssociationSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [AssociationsSubscriptionWhereInput!]
+  AND: [AssociationSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [AssociationsSubscriptionWhereInput!]
+  OR: [AssociationSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [AssociationsSubscriptionWhereInput!]
+  NOT: [AssociationSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -212,75 +159,42 @@ input AssociationsSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: AssociationsWhereInput
+  node: AssociationWhereInput
 }
 
-input AssociationsUpdateDataInput {
+input AssociationUpdateDataInput {
   name: String
-  city: String
-  adress: String
-  cp: String
-  coordinates: Float
-  phone: String
-  email: String
-  description: String
-  logo: String
-  images: AssociationsUpdateimagesInput
-  province: ProvincesModelUpdateOneRequiredInput
 }
 
-input AssociationsUpdateimagesInput {
-  set: [String!]
-}
-
-input AssociationsUpdateInput {
+input AssociationUpdateInput {
   name: String
-  city: String
-  adress: String
-  cp: String
-  coordinates: Float
-  phone: String
-  email: String
-  description: String
-  logo: String
-  images: AssociationsUpdateimagesInput
-  province: ProvincesModelUpdateOneRequiredInput
 }
 
-input AssociationsUpdateManyMutationInput {
+input AssociationUpdateManyMutationInput {
   name: String
-  city: String
-  adress: String
-  cp: String
-  coordinates: Float
-  phone: String
-  email: String
-  description: String
-  logo: String
-  images: AssociationsUpdateimagesInput
 }
 
-input AssociationsUpdateOneRequiredInput {
-  create: AssociationsCreateInput
-  connect: AssociationsWhereUniqueInput
-  update: AssociationsUpdateDataInput
-  upsert: AssociationsUpsertNestedInput
+input AssociationUpdateOneRequiredInput {
+  create: AssociationCreateInput
+  connect: AssociationWhereUniqueInput
+  update: AssociationUpdateDataInput
+  upsert: AssociationUpsertNestedInput
 }
 
-input AssociationsUpsertNestedInput {
-  update: AssociationsUpdateDataInput!
-  create: AssociationsCreateInput!
+input AssociationUpsertNestedInput {
+  update: AssociationUpdateDataInput!
+  create: AssociationCreateInput!
 }
 
-input AssociationsWhereInput {
+input AssociationWhereInput {
   """Logical AND on all given filters."""
-  AND: [AssociationsWhereInput!]
+  AND: [AssociationWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [AssociationsWhereInput!]
+  OR: [AssociationWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [AssociationsWhereInput!]
+  NOT: [AssociationWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -361,356 +275,9 @@ input AssociationsWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
-  city: String
-
-  """All values that are not equal to given value."""
-  city_not: String
-
-  """All values that are contained in given list."""
-  city_in: [String!]
-
-  """All values that are not contained in given list."""
-  city_not_in: [String!]
-
-  """All values less than the given value."""
-  city_lt: String
-
-  """All values less than or equal the given value."""
-  city_lte: String
-
-  """All values greater than the given value."""
-  city_gt: String
-
-  """All values greater than or equal the given value."""
-  city_gte: String
-
-  """All values containing the given string."""
-  city_contains: String
-
-  """All values not containing the given string."""
-  city_not_contains: String
-
-  """All values starting with the given string."""
-  city_starts_with: String
-
-  """All values not starting with the given string."""
-  city_not_starts_with: String
-
-  """All values ending with the given string."""
-  city_ends_with: String
-
-  """All values not ending with the given string."""
-  city_not_ends_with: String
-  adress: String
-
-  """All values that are not equal to given value."""
-  adress_not: String
-
-  """All values that are contained in given list."""
-  adress_in: [String!]
-
-  """All values that are not contained in given list."""
-  adress_not_in: [String!]
-
-  """All values less than the given value."""
-  adress_lt: String
-
-  """All values less than or equal the given value."""
-  adress_lte: String
-
-  """All values greater than the given value."""
-  adress_gt: String
-
-  """All values greater than or equal the given value."""
-  adress_gte: String
-
-  """All values containing the given string."""
-  adress_contains: String
-
-  """All values not containing the given string."""
-  adress_not_contains: String
-
-  """All values starting with the given string."""
-  adress_starts_with: String
-
-  """All values not starting with the given string."""
-  adress_not_starts_with: String
-
-  """All values ending with the given string."""
-  adress_ends_with: String
-
-  """All values not ending with the given string."""
-  adress_not_ends_with: String
-  cp: String
-
-  """All values that are not equal to given value."""
-  cp_not: String
-
-  """All values that are contained in given list."""
-  cp_in: [String!]
-
-  """All values that are not contained in given list."""
-  cp_not_in: [String!]
-
-  """All values less than the given value."""
-  cp_lt: String
-
-  """All values less than or equal the given value."""
-  cp_lte: String
-
-  """All values greater than the given value."""
-  cp_gt: String
-
-  """All values greater than or equal the given value."""
-  cp_gte: String
-
-  """All values containing the given string."""
-  cp_contains: String
-
-  """All values not containing the given string."""
-  cp_not_contains: String
-
-  """All values starting with the given string."""
-  cp_starts_with: String
-
-  """All values not starting with the given string."""
-  cp_not_starts_with: String
-
-  """All values ending with the given string."""
-  cp_ends_with: String
-
-  """All values not ending with the given string."""
-  cp_not_ends_with: String
-  coordinates: Float
-
-  """All values that are not equal to given value."""
-  coordinates_not: Float
-
-  """All values that are contained in given list."""
-  coordinates_in: [Float!]
-
-  """All values that are not contained in given list."""
-  coordinates_not_in: [Float!]
-
-  """All values less than the given value."""
-  coordinates_lt: Float
-
-  """All values less than or equal the given value."""
-  coordinates_lte: Float
-
-  """All values greater than the given value."""
-  coordinates_gt: Float
-
-  """All values greater than or equal the given value."""
-  coordinates_gte: Float
-  phone: String
-
-  """All values that are not equal to given value."""
-  phone_not: String
-
-  """All values that are contained in given list."""
-  phone_in: [String!]
-
-  """All values that are not contained in given list."""
-  phone_not_in: [String!]
-
-  """All values less than the given value."""
-  phone_lt: String
-
-  """All values less than or equal the given value."""
-  phone_lte: String
-
-  """All values greater than the given value."""
-  phone_gt: String
-
-  """All values greater than or equal the given value."""
-  phone_gte: String
-
-  """All values containing the given string."""
-  phone_contains: String
-
-  """All values not containing the given string."""
-  phone_not_contains: String
-
-  """All values starting with the given string."""
-  phone_starts_with: String
-
-  """All values not starting with the given string."""
-  phone_not_starts_with: String
-
-  """All values ending with the given string."""
-  phone_ends_with: String
-
-  """All values not ending with the given string."""
-  phone_not_ends_with: String
-  email: String
-
-  """All values that are not equal to given value."""
-  email_not: String
-
-  """All values that are contained in given list."""
-  email_in: [String!]
-
-  """All values that are not contained in given list."""
-  email_not_in: [String!]
-
-  """All values less than the given value."""
-  email_lt: String
-
-  """All values less than or equal the given value."""
-  email_lte: String
-
-  """All values greater than the given value."""
-  email_gt: String
-
-  """All values greater than or equal the given value."""
-  email_gte: String
-
-  """All values containing the given string."""
-  email_contains: String
-
-  """All values not containing the given string."""
-  email_not_contains: String
-
-  """All values starting with the given string."""
-  email_starts_with: String
-
-  """All values not starting with the given string."""
-  email_not_starts_with: String
-
-  """All values ending with the given string."""
-  email_ends_with: String
-
-  """All values not ending with the given string."""
-  email_not_ends_with: String
-  description: String
-
-  """All values that are not equal to given value."""
-  description_not: String
-
-  """All values that are contained in given list."""
-  description_in: [String!]
-
-  """All values that are not contained in given list."""
-  description_not_in: [String!]
-
-  """All values less than the given value."""
-  description_lt: String
-
-  """All values less than or equal the given value."""
-  description_lte: String
-
-  """All values greater than the given value."""
-  description_gt: String
-
-  """All values greater than or equal the given value."""
-  description_gte: String
-
-  """All values containing the given string."""
-  description_contains: String
-
-  """All values not containing the given string."""
-  description_not_contains: String
-
-  """All values starting with the given string."""
-  description_starts_with: String
-
-  """All values not starting with the given string."""
-  description_not_starts_with: String
-
-  """All values ending with the given string."""
-  description_ends_with: String
-
-  """All values not ending with the given string."""
-  description_not_ends_with: String
-  logo: String
-
-  """All values that are not equal to given value."""
-  logo_not: String
-
-  """All values that are contained in given list."""
-  logo_in: [String!]
-
-  """All values that are not contained in given list."""
-  logo_not_in: [String!]
-
-  """All values less than the given value."""
-  logo_lt: String
-
-  """All values less than or equal the given value."""
-  logo_lte: String
-
-  """All values greater than the given value."""
-  logo_gt: String
-
-  """All values greater than or equal the given value."""
-  logo_gte: String
-
-  """All values containing the given string."""
-  logo_contains: String
-
-  """All values not containing the given string."""
-  logo_not_contains: String
-
-  """All values starting with the given string."""
-  logo_starts_with: String
-
-  """All values not starting with the given string."""
-  logo_not_starts_with: String
-
-  """All values ending with the given string."""
-  logo_ends_with: String
-
-  """All values not ending with the given string."""
-  logo_not_ends_with: String
-  createDate: DateTime
-
-  """All values that are not equal to given value."""
-  createDate_not: DateTime
-
-  """All values that are contained in given list."""
-  createDate_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  createDate_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  createDate_lt: DateTime
-
-  """All values less than or equal the given value."""
-  createDate_lte: DateTime
-
-  """All values greater than the given value."""
-  createDate_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  createDate_gte: DateTime
-  updateDate: DateTime
-
-  """All values that are not equal to given value."""
-  updateDate_not: DateTime
-
-  """All values that are contained in given list."""
-  updateDate_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  updateDate_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  updateDate_lt: DateTime
-
-  """All values less than or equal the given value."""
-  updateDate_lte: DateTime
-
-  """All values greater than the given value."""
-  updateDate_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  updateDate_gte: DateTime
-  province: ProvincesModelWhereInput
 }
 
-input AssociationsWhereUniqueInput {
+input AssociationWhereUniqueInput {
   id: ID
 }
 
@@ -719,70 +286,70 @@ type BatchPayload {
   count: Long!
 }
 
-type CareersModel implements Node {
+type Career implements Node {
   id: ID!
   carrerName: String!
-  university: UniversitiesModel!
+  university: University!
 }
 
 """A connection to a list of items."""
-type CareersModelConnection {
+type CareerConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [CareersModelEdge]!
-  aggregate: AggregateCareersModel!
+  edges: [CareerEdge]!
+  aggregate: AggregateCareer!
 }
 
-input CareersModelCreateInput {
+input CareerCreateInput {
   id: ID
   carrerName: String!
-  university: UniversitiesModelCreateOneInput!
+  university: UniversityCreateOneInput!
 }
 
-input CareersModelCreateOneInput {
-  create: CareersModelCreateInput
-  connect: CareersModelWhereUniqueInput
+input CareerCreateOneInput {
+  create: CareerCreateInput
+  connect: CareerWhereUniqueInput
 }
 
 """An edge in a connection."""
-type CareersModelEdge {
+type CareerEdge {
   """The item at the end of the edge."""
-  node: CareersModel!
+  node: Career!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum CareersModelOrderByInput {
+enum CareerOrderByInput {
   id_ASC
   id_DESC
   carrerName_ASC
   carrerName_DESC
 }
 
-type CareersModelPreviousValues {
+type CareerPreviousValues {
   id: ID!
   carrerName: String!
 }
 
-type CareersModelSubscriptionPayload {
+type CareerSubscriptionPayload {
   mutation: MutationType!
-  node: CareersModel
+  node: Career
   updatedFields: [String!]
-  previousValues: CareersModelPreviousValues
+  previousValues: CareerPreviousValues
 }
 
-input CareersModelSubscriptionWhereInput {
+input CareerSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [CareersModelSubscriptionWhereInput!]
+  AND: [CareerSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [CareersModelSubscriptionWhereInput!]
+  OR: [CareerSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [CareersModelSubscriptionWhereInput!]
+  NOT: [CareerSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -803,46 +370,46 @@ input CareersModelSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: CareersModelWhereInput
+  node: CareerWhereInput
 }
 
-input CareersModelUpdateDataInput {
+input CareerUpdateDataInput {
   carrerName: String
-  university: UniversitiesModelUpdateOneRequiredInput
+  university: UniversityUpdateOneRequiredInput
 }
 
-input CareersModelUpdateInput {
+input CareerUpdateInput {
   carrerName: String
-  university: UniversitiesModelUpdateOneRequiredInput
+  university: UniversityUpdateOneRequiredInput
 }
 
-input CareersModelUpdateManyMutationInput {
+input CareerUpdateManyMutationInput {
   carrerName: String
 }
 
-input CareersModelUpdateOneInput {
-  create: CareersModelCreateInput
-  connect: CareersModelWhereUniqueInput
+input CareerUpdateOneInput {
+  create: CareerCreateInput
+  connect: CareerWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: CareersModelUpdateDataInput
-  upsert: CareersModelUpsertNestedInput
+  update: CareerUpdateDataInput
+  upsert: CareerUpsertNestedInput
 }
 
-input CareersModelUpsertNestedInput {
-  update: CareersModelUpdateDataInput!
-  create: CareersModelCreateInput!
+input CareerUpsertNestedInput {
+  update: CareerUpdateDataInput!
+  create: CareerCreateInput!
 }
 
-input CareersModelWhereInput {
+input CareerWhereInput {
   """Logical AND on all given filters."""
-  AND: [CareersModelWhereInput!]
+  AND: [CareerWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [CareersModelWhereInput!]
+  OR: [CareerWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [CareersModelWhereInput!]
+  NOT: [CareerWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -923,10 +490,10 @@ input CareersModelWhereInput {
 
   """All values not ending with the given string."""
   carrerName_not_ends_with: String
-  university: UniversitiesModelWhereInput
+  university: UniversityWhereInput
 }
 
-input CareersModelWhereUniqueInput {
+input CareerWhereUniqueInput {
   id: ID
 }
 
@@ -1245,68 +812,68 @@ input CharacteristicsWhereUniqueInput {
   id: ID
 }
 
-type CountriesModel implements Node {
+type Country implements Node {
   id: ID!
   countryName: String!
 }
 
 """A connection to a list of items."""
-type CountriesModelConnection {
+type CountryConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [CountriesModelEdge]!
-  aggregate: AggregateCountriesModel!
+  edges: [CountryEdge]!
+  aggregate: AggregateCountry!
 }
 
-input CountriesModelCreateInput {
+input CountryCreateInput {
   id: ID
   countryName: String!
 }
 
-input CountriesModelCreateOneInput {
-  create: CountriesModelCreateInput
-  connect: CountriesModelWhereUniqueInput
+input CountryCreateOneInput {
+  create: CountryCreateInput
+  connect: CountryWhereUniqueInput
 }
 
 """An edge in a connection."""
-type CountriesModelEdge {
+type CountryEdge {
   """The item at the end of the edge."""
-  node: CountriesModel!
+  node: Country!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum CountriesModelOrderByInput {
+enum CountryOrderByInput {
   id_ASC
   id_DESC
   countryName_ASC
   countryName_DESC
 }
 
-type CountriesModelPreviousValues {
+type CountryPreviousValues {
   id: ID!
   countryName: String!
 }
 
-type CountriesModelSubscriptionPayload {
+type CountrySubscriptionPayload {
   mutation: MutationType!
-  node: CountriesModel
+  node: Country
   updatedFields: [String!]
-  previousValues: CountriesModelPreviousValues
+  previousValues: CountryPreviousValues
 }
 
-input CountriesModelSubscriptionWhereInput {
+input CountrySubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [CountriesModelSubscriptionWhereInput!]
+  AND: [CountrySubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [CountriesModelSubscriptionWhereInput!]
+  OR: [CountrySubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [CountriesModelSubscriptionWhereInput!]
+  NOT: [CountrySubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -1327,51 +894,51 @@ input CountriesModelSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: CountriesModelWhereInput
+  node: CountryWhereInput
 }
 
-input CountriesModelUpdateDataInput {
+input CountryUpdateDataInput {
   countryName: String
 }
 
-input CountriesModelUpdateInput {
+input CountryUpdateInput {
   countryName: String
 }
 
-input CountriesModelUpdateManyMutationInput {
+input CountryUpdateManyMutationInput {
   countryName: String
 }
 
-input CountriesModelUpdateOneInput {
-  create: CountriesModelCreateInput
-  connect: CountriesModelWhereUniqueInput
+input CountryUpdateOneInput {
+  create: CountryCreateInput
+  connect: CountryWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: CountriesModelUpdateDataInput
-  upsert: CountriesModelUpsertNestedInput
+  update: CountryUpdateDataInput
+  upsert: CountryUpsertNestedInput
 }
 
-input CountriesModelUpdateOneRequiredInput {
-  create: CountriesModelCreateInput
-  connect: CountriesModelWhereUniqueInput
-  update: CountriesModelUpdateDataInput
-  upsert: CountriesModelUpsertNestedInput
+input CountryUpdateOneRequiredInput {
+  create: CountryCreateInput
+  connect: CountryWhereUniqueInput
+  update: CountryUpdateDataInput
+  upsert: CountryUpsertNestedInput
 }
 
-input CountriesModelUpsertNestedInput {
-  update: CountriesModelUpdateDataInput!
-  create: CountriesModelCreateInput!
+input CountryUpsertNestedInput {
+  update: CountryUpdateDataInput!
+  create: CountryCreateInput!
 }
 
-input CountriesModelWhereInput {
+input CountryWhereInput {
   """Logical AND on all given filters."""
-  AND: [CountriesModelWhereInput!]
+  AND: [CountryWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [CountriesModelWhereInput!]
+  OR: [CountryWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [CountriesModelWhereInput!]
+  NOT: [CountryWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -1454,7 +1021,172 @@ input CountriesModelWhereInput {
   countryName_not_ends_with: String
 }
 
-input CountriesModelWhereUniqueInput {
+input CountryWhereUniqueInput {
+  id: ID
+}
+
+type Couple implements Node {
+  id: ID!
+  idUserStudent: User
+  idUserGandPa: User
+}
+
+"""A connection to a list of items."""
+type CoupleConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CoupleEdge]!
+  aggregate: AggregateCouple!
+}
+
+input CoupleCreateInput {
+  id: ID
+  idUserStudent: UserCreateOneInput
+  idUserGandPa: UserCreateOneInput
+}
+
+input CoupleCreateOneInput {
+  create: CoupleCreateInput
+  connect: CoupleWhereUniqueInput
+}
+
+"""An edge in a connection."""
+type CoupleEdge {
+  """The item at the end of the edge."""
+  node: Couple!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum CoupleOrderByInput {
+  id_ASC
+  id_DESC
+}
+
+type CouplePreviousValues {
+  id: ID!
+}
+
+type CoupleSubscriptionPayload {
+  mutation: MutationType!
+  node: Couple
+  updatedFields: [String!]
+  previousValues: CouplePreviousValues
+}
+
+input CoupleSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CoupleSubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CoupleSubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CoupleSubscriptionWhereInput!]
+
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: CoupleWhereInput
+}
+
+input CoupleUpdateDataInput {
+  idUserStudent: UserUpdateOneInput
+  idUserGandPa: UserUpdateOneInput
+}
+
+input CoupleUpdateInput {
+  idUserStudent: UserUpdateOneInput
+  idUserGandPa: UserUpdateOneInput
+}
+
+input CoupleUpdateOneInput {
+  create: CoupleCreateInput
+  connect: CoupleWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: CoupleUpdateDataInput
+  upsert: CoupleUpsertNestedInput
+}
+
+input CoupleUpsertNestedInput {
+  update: CoupleUpdateDataInput!
+  create: CoupleCreateInput!
+}
+
+input CoupleWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CoupleWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CoupleWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CoupleWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  idUserStudent: UserWhereInput
+  idUserGandPa: UserWhereInput
+}
+
+input CoupleWhereUniqueInput {
   id: ID
 }
 
@@ -2098,8 +1830,8 @@ enum Gender {
 
 type House implements Node {
   id: ID!
-  uiserId: User!
-  province: ProvincesModel!
+  userId: User!
+  province: Province!
   city: String!
   adress: String!
   cp: String!
@@ -2129,8 +1861,8 @@ input HouseCreateInput {
   coordinates: Float!
   m2: Int!
   bathrooms: Int!
-  uiserId: UserCreateOneInput!
-  province: ProvincesModelCreateOneInput!
+  userId: UserCreateOneInput!
+  province: ProvinceCreateOneInput!
   characteristics: CharacteristicsCreateManyInput
 }
 
@@ -2222,8 +1954,8 @@ input HouseUpdateInput {
   coordinates: Float
   m2: Int
   bathrooms: Int
-  uiserId: UserUpdateOneRequiredInput
-  province: ProvincesModelUpdateOneRequiredInput
+  userId: UserUpdateOneRequiredInput
+  province: ProvinceUpdateOneRequiredInput
   characteristics: CharacteristicsUpdateManyInput
 }
 
@@ -2515,8 +2247,8 @@ input HouseWhereInput {
 
   """All values greater than or equal the given value."""
   updateDate_gte: DateTime
-  uiserId: UserWhereInput
-  province: ProvincesModelWhereInput
+  userId: UserWhereInput
+  province: ProvinceWhereInput
   characteristics_every: CharacteristicsWhereInput
   characteristics_some: CharacteristicsWhereInput
   characteristics_none: CharacteristicsWhereInput
@@ -2526,63 +2258,63 @@ input HouseWhereUniqueInput {
   id: ID
 }
 
-type imagesDocument implements Node {
+type ImagesDocument implements Node {
   id: ID!
   photo: String!
-  user: User!
+  user: User
 }
 
 """A connection to a list of items."""
-type imagesDocumentConnection {
+type ImagesDocumentConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [imagesDocumentEdge]!
-  aggregate: AggregateimagesDocument!
+  edges: [ImagesDocumentEdge]!
+  aggregate: AggregateImagesDocument!
 }
 
-input imagesDocumentCreateInput {
+input ImagesDocumentCreateInput {
   id: ID
   photo: String!
-  user: UserCreateOneInput!
+  user: UserCreateOneInput
 }
 
-input imagesDocumentCreateManyInput {
-  create: [imagesDocumentCreateInput!]
-  connect: [imagesDocumentWhereUniqueInput!]
+input ImagesDocumentCreateManyInput {
+  create: [ImagesDocumentCreateInput!]
+  connect: [ImagesDocumentWhereUniqueInput!]
 }
 
 """An edge in a connection."""
-type imagesDocumentEdge {
+type ImagesDocumentEdge {
   """The item at the end of the edge."""
-  node: imagesDocument!
+  node: ImagesDocument!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum imagesDocumentOrderByInput {
+enum ImagesDocumentOrderByInput {
   id_ASC
   id_DESC
   photo_ASC
   photo_DESC
 }
 
-type imagesDocumentPreviousValues {
+type ImagesDocumentPreviousValues {
   id: ID!
   photo: String!
 }
 
-input imagesDocumentScalarWhereInput {
+input ImagesDocumentScalarWhereInput {
   """Logical AND on all given filters."""
-  AND: [imagesDocumentScalarWhereInput!]
+  AND: [ImagesDocumentScalarWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [imagesDocumentScalarWhereInput!]
+  OR: [ImagesDocumentScalarWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [imagesDocumentScalarWhereInput!]
+  NOT: [ImagesDocumentScalarWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -2665,22 +2397,22 @@ input imagesDocumentScalarWhereInput {
   photo_not_ends_with: String
 }
 
-type imagesDocumentSubscriptionPayload {
+type ImagesDocumentSubscriptionPayload {
   mutation: MutationType!
-  node: imagesDocument
+  node: ImagesDocument
   updatedFields: [String!]
-  previousValues: imagesDocumentPreviousValues
+  previousValues: ImagesDocumentPreviousValues
 }
 
-input imagesDocumentSubscriptionWhereInput {
+input ImagesDocumentSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [imagesDocumentSubscriptionWhereInput!]
+  AND: [ImagesDocumentSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [imagesDocumentSubscriptionWhereInput!]
+  OR: [ImagesDocumentSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [imagesDocumentSubscriptionWhereInput!]
+  NOT: [ImagesDocumentSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -2701,64 +2433,64 @@ input imagesDocumentSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: imagesDocumentWhereInput
+  node: ImagesDocumentWhereInput
 }
 
-input imagesDocumentUpdateDataInput {
+input ImagesDocumentUpdateDataInput {
   photo: String
-  user: UserUpdateOneRequiredInput
+  user: UserUpdateOneInput
 }
 
-input imagesDocumentUpdateInput {
+input ImagesDocumentUpdateInput {
   photo: String
-  user: UserUpdateOneRequiredInput
+  user: UserUpdateOneInput
 }
 
-input imagesDocumentUpdateManyDataInput {
-  photo: String
-}
-
-input imagesDocumentUpdateManyInput {
-  create: [imagesDocumentCreateInput!]
-  connect: [imagesDocumentWhereUniqueInput!]
-  set: [imagesDocumentWhereUniqueInput!]
-  disconnect: [imagesDocumentWhereUniqueInput!]
-  delete: [imagesDocumentWhereUniqueInput!]
-  update: [imagesDocumentUpdateWithWhereUniqueNestedInput!]
-  updateMany: [imagesDocumentUpdateManyWithWhereNestedInput!]
-  deleteMany: [imagesDocumentScalarWhereInput!]
-  upsert: [imagesDocumentUpsertWithWhereUniqueNestedInput!]
-}
-
-input imagesDocumentUpdateManyMutationInput {
+input ImagesDocumentUpdateManyDataInput {
   photo: String
 }
 
-input imagesDocumentUpdateManyWithWhereNestedInput {
-  where: imagesDocumentScalarWhereInput!
-  data: imagesDocumentUpdateManyDataInput!
+input ImagesDocumentUpdateManyInput {
+  create: [ImagesDocumentCreateInput!]
+  connect: [ImagesDocumentWhereUniqueInput!]
+  set: [ImagesDocumentWhereUniqueInput!]
+  disconnect: [ImagesDocumentWhereUniqueInput!]
+  delete: [ImagesDocumentWhereUniqueInput!]
+  update: [ImagesDocumentUpdateWithWhereUniqueNestedInput!]
+  updateMany: [ImagesDocumentUpdateManyWithWhereNestedInput!]
+  deleteMany: [ImagesDocumentScalarWhereInput!]
+  upsert: [ImagesDocumentUpsertWithWhereUniqueNestedInput!]
 }
 
-input imagesDocumentUpdateWithWhereUniqueNestedInput {
-  where: imagesDocumentWhereUniqueInput!
-  data: imagesDocumentUpdateDataInput!
+input ImagesDocumentUpdateManyMutationInput {
+  photo: String
 }
 
-input imagesDocumentUpsertWithWhereUniqueNestedInput {
-  where: imagesDocumentWhereUniqueInput!
-  update: imagesDocumentUpdateDataInput!
-  create: imagesDocumentCreateInput!
+input ImagesDocumentUpdateManyWithWhereNestedInput {
+  where: ImagesDocumentScalarWhereInput!
+  data: ImagesDocumentUpdateManyDataInput!
 }
 
-input imagesDocumentWhereInput {
+input ImagesDocumentUpdateWithWhereUniqueNestedInput {
+  where: ImagesDocumentWhereUniqueInput!
+  data: ImagesDocumentUpdateDataInput!
+}
+
+input ImagesDocumentUpsertWithWhereUniqueNestedInput {
+  where: ImagesDocumentWhereUniqueInput!
+  update: ImagesDocumentUpdateDataInput!
+  create: ImagesDocumentCreateInput!
+}
+
+input ImagesDocumentWhereInput {
   """Logical AND on all given filters."""
-  AND: [imagesDocumentWhereInput!]
+  AND: [ImagesDocumentWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [imagesDocumentWhereInput!]
+  OR: [ImagesDocumentWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [imagesDocumentWhereInput!]
+  NOT: [ImagesDocumentWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -2842,67 +2574,67 @@ input imagesDocumentWhereInput {
   user: UserWhereInput
 }
 
-input imagesDocumentWhereUniqueInput {
+input ImagesDocumentWhereUniqueInput {
   id: ID
 }
 
-type imagesUniversity implements Node {
+type ImagesUniversity implements Node {
   id: ID!
   photo: String!
-  user: User!
+  user: User
 }
 
 """A connection to a list of items."""
-type imagesUniversityConnection {
+type ImagesUniversityConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [imagesUniversityEdge]!
-  aggregate: AggregateimagesUniversity!
+  edges: [ImagesUniversityEdge]!
+  aggregate: AggregateImagesUniversity!
 }
 
-input imagesUniversityCreateInput {
+input ImagesUniversityCreateInput {
   id: ID
   photo: String!
-  user: UserCreateOneInput!
+  user: UserCreateOneInput
 }
 
-input imagesUniversityCreateManyInput {
-  create: [imagesUniversityCreateInput!]
-  connect: [imagesUniversityWhereUniqueInput!]
+input ImagesUniversityCreateManyInput {
+  create: [ImagesUniversityCreateInput!]
+  connect: [ImagesUniversityWhereUniqueInput!]
 }
 
 """An edge in a connection."""
-type imagesUniversityEdge {
+type ImagesUniversityEdge {
   """The item at the end of the edge."""
-  node: imagesUniversity!
+  node: ImagesUniversity!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum imagesUniversityOrderByInput {
+enum ImagesUniversityOrderByInput {
   id_ASC
   id_DESC
   photo_ASC
   photo_DESC
 }
 
-type imagesUniversityPreviousValues {
+type ImagesUniversityPreviousValues {
   id: ID!
   photo: String!
 }
 
-input imagesUniversityScalarWhereInput {
+input ImagesUniversityScalarWhereInput {
   """Logical AND on all given filters."""
-  AND: [imagesUniversityScalarWhereInput!]
+  AND: [ImagesUniversityScalarWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [imagesUniversityScalarWhereInput!]
+  OR: [ImagesUniversityScalarWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [imagesUniversityScalarWhereInput!]
+  NOT: [ImagesUniversityScalarWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -2985,22 +2717,22 @@ input imagesUniversityScalarWhereInput {
   photo_not_ends_with: String
 }
 
-type imagesUniversitySubscriptionPayload {
+type ImagesUniversitySubscriptionPayload {
   mutation: MutationType!
-  node: imagesUniversity
+  node: ImagesUniversity
   updatedFields: [String!]
-  previousValues: imagesUniversityPreviousValues
+  previousValues: ImagesUniversityPreviousValues
 }
 
-input imagesUniversitySubscriptionWhereInput {
+input ImagesUniversitySubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [imagesUniversitySubscriptionWhereInput!]
+  AND: [ImagesUniversitySubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [imagesUniversitySubscriptionWhereInput!]
+  OR: [ImagesUniversitySubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [imagesUniversitySubscriptionWhereInput!]
+  NOT: [ImagesUniversitySubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -3021,64 +2753,64 @@ input imagesUniversitySubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: imagesUniversityWhereInput
+  node: ImagesUniversityWhereInput
 }
 
-input imagesUniversityUpdateDataInput {
+input ImagesUniversityUpdateDataInput {
   photo: String
-  user: UserUpdateOneRequiredInput
+  user: UserUpdateOneInput
 }
 
-input imagesUniversityUpdateInput {
+input ImagesUniversityUpdateInput {
   photo: String
-  user: UserUpdateOneRequiredInput
+  user: UserUpdateOneInput
 }
 
-input imagesUniversityUpdateManyDataInput {
-  photo: String
-}
-
-input imagesUniversityUpdateManyInput {
-  create: [imagesUniversityCreateInput!]
-  connect: [imagesUniversityWhereUniqueInput!]
-  set: [imagesUniversityWhereUniqueInput!]
-  disconnect: [imagesUniversityWhereUniqueInput!]
-  delete: [imagesUniversityWhereUniqueInput!]
-  update: [imagesUniversityUpdateWithWhereUniqueNestedInput!]
-  updateMany: [imagesUniversityUpdateManyWithWhereNestedInput!]
-  deleteMany: [imagesUniversityScalarWhereInput!]
-  upsert: [imagesUniversityUpsertWithWhereUniqueNestedInput!]
-}
-
-input imagesUniversityUpdateManyMutationInput {
+input ImagesUniversityUpdateManyDataInput {
   photo: String
 }
 
-input imagesUniversityUpdateManyWithWhereNestedInput {
-  where: imagesUniversityScalarWhereInput!
-  data: imagesUniversityUpdateManyDataInput!
+input ImagesUniversityUpdateManyInput {
+  create: [ImagesUniversityCreateInput!]
+  connect: [ImagesUniversityWhereUniqueInput!]
+  set: [ImagesUniversityWhereUniqueInput!]
+  disconnect: [ImagesUniversityWhereUniqueInput!]
+  delete: [ImagesUniversityWhereUniqueInput!]
+  update: [ImagesUniversityUpdateWithWhereUniqueNestedInput!]
+  updateMany: [ImagesUniversityUpdateManyWithWhereNestedInput!]
+  deleteMany: [ImagesUniversityScalarWhereInput!]
+  upsert: [ImagesUniversityUpsertWithWhereUniqueNestedInput!]
 }
 
-input imagesUniversityUpdateWithWhereUniqueNestedInput {
-  where: imagesUniversityWhereUniqueInput!
-  data: imagesUniversityUpdateDataInput!
+input ImagesUniversityUpdateManyMutationInput {
+  photo: String
 }
 
-input imagesUniversityUpsertWithWhereUniqueNestedInput {
-  where: imagesUniversityWhereUniqueInput!
-  update: imagesUniversityUpdateDataInput!
-  create: imagesUniversityCreateInput!
+input ImagesUniversityUpdateManyWithWhereNestedInput {
+  where: ImagesUniversityScalarWhereInput!
+  data: ImagesUniversityUpdateManyDataInput!
 }
 
-input imagesUniversityWhereInput {
+input ImagesUniversityUpdateWithWhereUniqueNestedInput {
+  where: ImagesUniversityWhereUniqueInput!
+  data: ImagesUniversityUpdateDataInput!
+}
+
+input ImagesUniversityUpsertWithWhereUniqueNestedInput {
+  where: ImagesUniversityWhereUniqueInput!
+  update: ImagesUniversityUpdateDataInput!
+  create: ImagesUniversityCreateInput!
+}
+
+input ImagesUniversityWhereInput {
   """Logical AND on all given filters."""
-  AND: [imagesUniversityWhereInput!]
+  AND: [ImagesUniversityWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [imagesUniversityWhereInput!]
+  OR: [ImagesUniversityWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [imagesUniversityWhereInput!]
+  NOT: [ImagesUniversityWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -3162,7 +2894,7 @@ input imagesUniversityWhereInput {
   user: UserWhereInput
 }
 
-input imagesUniversityWhereUniqueInput {
+input ImagesUniversityWhereUniqueInput {
   id: ID
 }
 
@@ -3491,111 +3223,116 @@ type Mutation {
   createHouse(data: HouseCreateInput!): House!
   createUserEstudent(data: UserEstudentCreateInput!): UserEstudent!
   createUserGrandpa(data: UserGrandpaCreateInput!): UserGrandpa!
-  createSourcesModel(data: SourcesModelCreateInput!): SourcesModel!
-  createCareersModel(data: CareersModelCreateInput!): CareersModel!
+  createImagesUniversity(data: ImagesUniversityCreateInput!): ImagesUniversity!
   createUserTech(data: UserTechCreateInput!): UserTech!
   createEvaluationsGrandpa(data: EvaluationsGrandpaCreateInput!): EvaluationsGrandpa!
+  createCareer(data: CareerCreateInput!): Career!
+  createUniversity(data: UniversityCreateInput!): University!
   createInterviews(data: InterviewsCreateInput!): Interviews!
   createTypeUser(data: TypeUserCreateInput!): TypeUser!
-  createProvincesModel(data: ProvincesModelCreateInput!): ProvincesModel!
-  createUniversitiesModel(data: UniversitiesModelCreateInput!): UniversitiesModel!
-  createimagesDocument(data: imagesDocumentCreateInput!): imagesDocument!
-  createUser(data: UserCreateInput!): User!
+  createProvince(data: ProvinceCreateInput!): Province!
+  createSource(data: SourceCreateInput!): Source!
+  createCouple(data: CoupleCreateInput!): Couple!
+  createCountry(data: CountryCreateInput!): Country!
   createEvaluationsStudent(data: EvaluationsStudentCreateInput!): EvaluationsStudent!
-  createimagesUniversity(data: imagesUniversityCreateInput!): imagesUniversity!
-  createAssociations(data: AssociationsCreateInput!): Associations!
+  createImagesDocument(data: ImagesDocumentCreateInput!): ImagesDocument!
+  createUser(data: UserCreateInput!): User!
   createCharacteristics(data: CharacteristicsCreateInput!): Characteristics!
-  createCountriesModel(data: CountriesModelCreateInput!): CountriesModel!
+  createAssociation(data: AssociationCreateInput!): Association!
   updateHouse(data: HouseUpdateInput!, where: HouseWhereUniqueInput!): House
   updateUserEstudent(data: UserEstudentUpdateInput!, where: UserEstudentWhereUniqueInput!): UserEstudent
   updateUserGrandpa(data: UserGrandpaUpdateInput!, where: UserGrandpaWhereUniqueInput!): UserGrandpa
-  updateSourcesModel(data: SourcesModelUpdateInput!, where: SourcesModelWhereUniqueInput!): SourcesModel
-  updateCareersModel(data: CareersModelUpdateInput!, where: CareersModelWhereUniqueInput!): CareersModel
+  updateImagesUniversity(data: ImagesUniversityUpdateInput!, where: ImagesUniversityWhereUniqueInput!): ImagesUniversity
   updateUserTech(data: UserTechUpdateInput!, where: UserTechWhereUniqueInput!): UserTech
   updateEvaluationsGrandpa(data: EvaluationsGrandpaUpdateInput!, where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
+  updateCareer(data: CareerUpdateInput!, where: CareerWhereUniqueInput!): Career
+  updateUniversity(data: UniversityUpdateInput!, where: UniversityWhereUniqueInput!): University
   updateInterviews(data: InterviewsUpdateInput!, where: InterviewsWhereUniqueInput!): Interviews
   updateTypeUser(data: TypeUserUpdateInput!, where: TypeUserWhereUniqueInput!): TypeUser
-  updateProvincesModel(data: ProvincesModelUpdateInput!, where: ProvincesModelWhereUniqueInput!): ProvincesModel
-  updateUniversitiesModel(data: UniversitiesModelUpdateInput!, where: UniversitiesModelWhereUniqueInput!): UniversitiesModel
-  updateimagesDocument(data: imagesDocumentUpdateInput!, where: imagesDocumentWhereUniqueInput!): imagesDocument
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateProvince(data: ProvinceUpdateInput!, where: ProvinceWhereUniqueInput!): Province
+  updateSource(data: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source
+  updateCouple(data: CoupleUpdateInput!, where: CoupleWhereUniqueInput!): Couple
+  updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
   updateEvaluationsStudent(data: EvaluationsStudentUpdateInput!, where: EvaluationsStudentWhereUniqueInput!): EvaluationsStudent
-  updateimagesUniversity(data: imagesUniversityUpdateInput!, where: imagesUniversityWhereUniqueInput!): imagesUniversity
-  updateAssociations(data: AssociationsUpdateInput!, where: AssociationsWhereUniqueInput!): Associations
+  updateImagesDocument(data: ImagesDocumentUpdateInput!, where: ImagesDocumentWhereUniqueInput!): ImagesDocument
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateCharacteristics(data: CharacteristicsUpdateInput!, where: CharacteristicsWhereUniqueInput!): Characteristics
-  updateCountriesModel(data: CountriesModelUpdateInput!, where: CountriesModelWhereUniqueInput!): CountriesModel
+  updateAssociation(data: AssociationUpdateInput!, where: AssociationWhereUniqueInput!): Association
   deleteHouse(where: HouseWhereUniqueInput!): House
   deleteUserEstudent(where: UserEstudentWhereUniqueInput!): UserEstudent
   deleteUserGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
-  deleteSourcesModel(where: SourcesModelWhereUniqueInput!): SourcesModel
-  deleteCareersModel(where: CareersModelWhereUniqueInput!): CareersModel
+  deleteImagesUniversity(where: ImagesUniversityWhereUniqueInput!): ImagesUniversity
   deleteUserTech(where: UserTechWhereUniqueInput!): UserTech
   deleteEvaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
+  deleteCareer(where: CareerWhereUniqueInput!): Career
+  deleteUniversity(where: UniversityWhereUniqueInput!): University
   deleteInterviews(where: InterviewsWhereUniqueInput!): Interviews
   deleteTypeUser(where: TypeUserWhereUniqueInput!): TypeUser
-  deleteProvincesModel(where: ProvincesModelWhereUniqueInput!): ProvincesModel
-  deleteUniversitiesModel(where: UniversitiesModelWhereUniqueInput!): UniversitiesModel
-  deleteimagesDocument(where: imagesDocumentWhereUniqueInput!): imagesDocument
-  deleteUser(where: UserWhereUniqueInput!): User
+  deleteProvince(where: ProvinceWhereUniqueInput!): Province
+  deleteSource(where: SourceWhereUniqueInput!): Source
+  deleteCouple(where: CoupleWhereUniqueInput!): Couple
+  deleteCountry(where: CountryWhereUniqueInput!): Country
   deleteEvaluationsStudent(where: EvaluationsStudentWhereUniqueInput!): EvaluationsStudent
-  deleteimagesUniversity(where: imagesUniversityWhereUniqueInput!): imagesUniversity
-  deleteAssociations(where: AssociationsWhereUniqueInput!): Associations
+  deleteImagesDocument(where: ImagesDocumentWhereUniqueInput!): ImagesDocument
+  deleteUser(where: UserWhereUniqueInput!): User
   deleteCharacteristics(where: CharacteristicsWhereUniqueInput!): Characteristics
-  deleteCountriesModel(where: CountriesModelWhereUniqueInput!): CountriesModel
+  deleteAssociation(where: AssociationWhereUniqueInput!): Association
   upsertHouse(where: HouseWhereUniqueInput!, create: HouseCreateInput!, update: HouseUpdateInput!): House!
   upsertUserEstudent(where: UserEstudentWhereUniqueInput!, create: UserEstudentCreateInput!, update: UserEstudentUpdateInput!): UserEstudent!
   upsertUserGrandpa(where: UserGrandpaWhereUniqueInput!, create: UserGrandpaCreateInput!, update: UserGrandpaUpdateInput!): UserGrandpa!
-  upsertSourcesModel(where: SourcesModelWhereUniqueInput!, create: SourcesModelCreateInput!, update: SourcesModelUpdateInput!): SourcesModel!
-  upsertCareersModel(where: CareersModelWhereUniqueInput!, create: CareersModelCreateInput!, update: CareersModelUpdateInput!): CareersModel!
+  upsertImagesUniversity(where: ImagesUniversityWhereUniqueInput!, create: ImagesUniversityCreateInput!, update: ImagesUniversityUpdateInput!): ImagesUniversity!
   upsertUserTech(where: UserTechWhereUniqueInput!, create: UserTechCreateInput!, update: UserTechUpdateInput!): UserTech!
   upsertEvaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!, create: EvaluationsGrandpaCreateInput!, update: EvaluationsGrandpaUpdateInput!): EvaluationsGrandpa!
+  upsertCareer(where: CareerWhereUniqueInput!, create: CareerCreateInput!, update: CareerUpdateInput!): Career!
+  upsertUniversity(where: UniversityWhereUniqueInput!, create: UniversityCreateInput!, update: UniversityUpdateInput!): University!
   upsertInterviews(where: InterviewsWhereUniqueInput!, create: InterviewsCreateInput!, update: InterviewsUpdateInput!): Interviews!
   upsertTypeUser(where: TypeUserWhereUniqueInput!, create: TypeUserCreateInput!, update: TypeUserUpdateInput!): TypeUser!
-  upsertProvincesModel(where: ProvincesModelWhereUniqueInput!, create: ProvincesModelCreateInput!, update: ProvincesModelUpdateInput!): ProvincesModel!
-  upsertUniversitiesModel(where: UniversitiesModelWhereUniqueInput!, create: UniversitiesModelCreateInput!, update: UniversitiesModelUpdateInput!): UniversitiesModel!
-  upsertimagesDocument(where: imagesDocumentWhereUniqueInput!, create: imagesDocumentCreateInput!, update: imagesDocumentUpdateInput!): imagesDocument!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  upsertProvince(where: ProvinceWhereUniqueInput!, create: ProvinceCreateInput!, update: ProvinceUpdateInput!): Province!
+  upsertSource(where: SourceWhereUniqueInput!, create: SourceCreateInput!, update: SourceUpdateInput!): Source!
+  upsertCouple(where: CoupleWhereUniqueInput!, create: CoupleCreateInput!, update: CoupleUpdateInput!): Couple!
+  upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
   upsertEvaluationsStudent(where: EvaluationsStudentWhereUniqueInput!, create: EvaluationsStudentCreateInput!, update: EvaluationsStudentUpdateInput!): EvaluationsStudent!
-  upsertimagesUniversity(where: imagesUniversityWhereUniqueInput!, create: imagesUniversityCreateInput!, update: imagesUniversityUpdateInput!): imagesUniversity!
-  upsertAssociations(where: AssociationsWhereUniqueInput!, create: AssociationsCreateInput!, update: AssociationsUpdateInput!): Associations!
+  upsertImagesDocument(where: ImagesDocumentWhereUniqueInput!, create: ImagesDocumentCreateInput!, update: ImagesDocumentUpdateInput!): ImagesDocument!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertCharacteristics(where: CharacteristicsWhereUniqueInput!, create: CharacteristicsCreateInput!, update: CharacteristicsUpdateInput!): Characteristics!
-  upsertCountriesModel(where: CountriesModelWhereUniqueInput!, create: CountriesModelCreateInput!, update: CountriesModelUpdateInput!): CountriesModel!
+  upsertAssociation(where: AssociationWhereUniqueInput!, create: AssociationCreateInput!, update: AssociationUpdateInput!): Association!
   updateManyHouses(data: HouseUpdateManyMutationInput!, where: HouseWhereInput): BatchPayload!
   updateManyUserEstudents(data: UserEstudentUpdateManyMutationInput!, where: UserEstudentWhereInput): BatchPayload!
   updateManyUserGrandpas(data: UserGrandpaUpdateManyMutationInput!, where: UserGrandpaWhereInput): BatchPayload!
-  updateManySourcesModels(data: SourcesModelUpdateManyMutationInput!, where: SourcesModelWhereInput): BatchPayload!
-  updateManyCareersModels(data: CareersModelUpdateManyMutationInput!, where: CareersModelWhereInput): BatchPayload!
+  updateManyImagesUniversities(data: ImagesUniversityUpdateManyMutationInput!, where: ImagesUniversityWhereInput): BatchPayload!
   updateManyUserTeches(data: UserTechUpdateManyMutationInput!, where: UserTechWhereInput): BatchPayload!
   updateManyEvaluationsGrandpas(data: EvaluationsGrandpaUpdateManyMutationInput!, where: EvaluationsGrandpaWhereInput): BatchPayload!
+  updateManyCareers(data: CareerUpdateManyMutationInput!, where: CareerWhereInput): BatchPayload!
+  updateManyUniversities(data: UniversityUpdateManyMutationInput!, where: UniversityWhereInput): BatchPayload!
   updateManyInterviewses(data: InterviewsUpdateManyMutationInput!, where: InterviewsWhereInput): BatchPayload!
   updateManyTypeUsers(data: TypeUserUpdateManyMutationInput!, where: TypeUserWhereInput): BatchPayload!
-  updateManyProvincesModels(data: ProvincesModelUpdateManyMutationInput!, where: ProvincesModelWhereInput): BatchPayload!
-  updateManyUniversitiesModels(data: UniversitiesModelUpdateManyMutationInput!, where: UniversitiesModelWhereInput): BatchPayload!
-  updateManyImagesDocuments(data: imagesDocumentUpdateManyMutationInput!, where: imagesDocumentWhereInput): BatchPayload!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyProvinces(data: ProvinceUpdateManyMutationInput!, where: ProvinceWhereInput): BatchPayload!
+  updateManySources(data: SourceUpdateManyMutationInput!, where: SourceWhereInput): BatchPayload!
+  updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
   updateManyEvaluationsStudents(data: EvaluationsStudentUpdateManyMutationInput!, where: EvaluationsStudentWhereInput): BatchPayload!
-  updateManyImagesUniversities(data: imagesUniversityUpdateManyMutationInput!, where: imagesUniversityWhereInput): BatchPayload!
-  updateManyAssociationses(data: AssociationsUpdateManyMutationInput!, where: AssociationsWhereInput): BatchPayload!
+  updateManyImagesDocuments(data: ImagesDocumentUpdateManyMutationInput!, where: ImagesDocumentWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyCharacteristicses(data: CharacteristicsUpdateManyMutationInput!, where: CharacteristicsWhereInput): BatchPayload!
-  updateManyCountriesModels(data: CountriesModelUpdateManyMutationInput!, where: CountriesModelWhereInput): BatchPayload!
+  updateManyAssociations(data: AssociationUpdateManyMutationInput!, where: AssociationWhereInput): BatchPayload!
   deleteManyHouses(where: HouseWhereInput): BatchPayload!
   deleteManyUserEstudents(where: UserEstudentWhereInput): BatchPayload!
   deleteManyUserGrandpas(where: UserGrandpaWhereInput): BatchPayload!
-  deleteManySourcesModels(where: SourcesModelWhereInput): BatchPayload!
-  deleteManyCareersModels(where: CareersModelWhereInput): BatchPayload!
+  deleteManyImagesUniversities(where: ImagesUniversityWhereInput): BatchPayload!
   deleteManyUserTeches(where: UserTechWhereInput): BatchPayload!
   deleteManyEvaluationsGrandpas(where: EvaluationsGrandpaWhereInput): BatchPayload!
+  deleteManyCareers(where: CareerWhereInput): BatchPayload!
+  deleteManyUniversities(where: UniversityWhereInput): BatchPayload!
   deleteManyInterviewses(where: InterviewsWhereInput): BatchPayload!
   deleteManyTypeUsers(where: TypeUserWhereInput): BatchPayload!
-  deleteManyProvincesModels(where: ProvincesModelWhereInput): BatchPayload!
-  deleteManyUniversitiesModels(where: UniversitiesModelWhereInput): BatchPayload!
-  deleteManyImagesDocuments(where: imagesDocumentWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
+  deleteManyProvinces(where: ProvinceWhereInput): BatchPayload!
+  deleteManySources(where: SourceWhereInput): BatchPayload!
+  deleteManyCouples(where: CoupleWhereInput): BatchPayload!
+  deleteManyCountries(where: CountryWhereInput): BatchPayload!
   deleteManyEvaluationsStudents(where: EvaluationsStudentWhereInput): BatchPayload!
-  deleteManyImagesUniversities(where: imagesUniversityWhereInput): BatchPayload!
-  deleteManyAssociationses(where: AssociationsWhereInput): BatchPayload!
+  deleteManyImagesDocuments(where: ImagesDocumentWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyCharacteristicses(where: CharacteristicsWhereInput): BatchPayload!
-  deleteManyCountriesModels(where: CountriesModelWhereInput): BatchPayload!
+  deleteManyAssociations(where: AssociationWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -3634,70 +3371,70 @@ enum Permissions {
   GRANDPA
 }
 
-type ProvincesModel implements Node {
+type Province implements Node {
   id: ID!
-  provinceName: String!
-  country: CountriesModel!
+  name: String!
+  country: Country
 }
 
 """A connection to a list of items."""
-type ProvincesModelConnection {
+type ProvinceConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [ProvincesModelEdge]!
-  aggregate: AggregateProvincesModel!
+  edges: [ProvinceEdge]!
+  aggregate: AggregateProvince!
 }
 
-input ProvincesModelCreateInput {
+input ProvinceCreateInput {
   id: ID
-  provinceName: String!
-  country: CountriesModelCreateOneInput!
+  name: String!
+  country: CountryCreateOneInput
 }
 
-input ProvincesModelCreateOneInput {
-  create: ProvincesModelCreateInput
-  connect: ProvincesModelWhereUniqueInput
+input ProvinceCreateOneInput {
+  create: ProvinceCreateInput
+  connect: ProvinceWhereUniqueInput
 }
 
 """An edge in a connection."""
-type ProvincesModelEdge {
+type ProvinceEdge {
   """The item at the end of the edge."""
-  node: ProvincesModel!
+  node: Province!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum ProvincesModelOrderByInput {
+enum ProvinceOrderByInput {
   id_ASC
   id_DESC
-  provinceName_ASC
-  provinceName_DESC
+  name_ASC
+  name_DESC
 }
 
-type ProvincesModelPreviousValues {
+type ProvincePreviousValues {
   id: ID!
-  provinceName: String!
+  name: String!
 }
 
-type ProvincesModelSubscriptionPayload {
+type ProvinceSubscriptionPayload {
   mutation: MutationType!
-  node: ProvincesModel
+  node: Province
   updatedFields: [String!]
-  previousValues: ProvincesModelPreviousValues
+  previousValues: ProvincePreviousValues
 }
 
-input ProvincesModelSubscriptionWhereInput {
+input ProvinceSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [ProvincesModelSubscriptionWhereInput!]
+  AND: [ProvinceSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [ProvincesModelSubscriptionWhereInput!]
+  OR: [ProvinceSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [ProvincesModelSubscriptionWhereInput!]
+  NOT: [ProvinceSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -3718,53 +3455,53 @@ input ProvincesModelSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: ProvincesModelWhereInput
+  node: ProvinceWhereInput
 }
 
-input ProvincesModelUpdateDataInput {
-  provinceName: String
-  country: CountriesModelUpdateOneRequiredInput
+input ProvinceUpdateDataInput {
+  name: String
+  country: CountryUpdateOneInput
 }
 
-input ProvincesModelUpdateInput {
-  provinceName: String
-  country: CountriesModelUpdateOneRequiredInput
+input ProvinceUpdateInput {
+  name: String
+  country: CountryUpdateOneInput
 }
 
-input ProvincesModelUpdateManyMutationInput {
-  provinceName: String
+input ProvinceUpdateManyMutationInput {
+  name: String
 }
 
-input ProvincesModelUpdateOneInput {
-  create: ProvincesModelCreateInput
-  connect: ProvincesModelWhereUniqueInput
+input ProvinceUpdateOneInput {
+  create: ProvinceCreateInput
+  connect: ProvinceWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: ProvincesModelUpdateDataInput
-  upsert: ProvincesModelUpsertNestedInput
+  update: ProvinceUpdateDataInput
+  upsert: ProvinceUpsertNestedInput
 }
 
-input ProvincesModelUpdateOneRequiredInput {
-  create: ProvincesModelCreateInput
-  connect: ProvincesModelWhereUniqueInput
-  update: ProvincesModelUpdateDataInput
-  upsert: ProvincesModelUpsertNestedInput
+input ProvinceUpdateOneRequiredInput {
+  create: ProvinceCreateInput
+  connect: ProvinceWhereUniqueInput
+  update: ProvinceUpdateDataInput
+  upsert: ProvinceUpsertNestedInput
 }
 
-input ProvincesModelUpsertNestedInput {
-  update: ProvincesModelUpdateDataInput!
-  create: ProvincesModelCreateInput!
+input ProvinceUpsertNestedInput {
+  update: ProvinceUpdateDataInput!
+  create: ProvinceCreateInput!
 }
 
-input ProvincesModelWhereInput {
+input ProvinceWhereInput {
   """Logical AND on all given filters."""
-  AND: [ProvincesModelWhereInput!]
+  AND: [ProvinceWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [ProvincesModelWhereInput!]
+  OR: [ProvinceWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [ProvincesModelWhereInput!]
+  NOT: [ProvinceWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -3805,50 +3542,50 @@ input ProvincesModelWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  provinceName: String
+  name: String
 
   """All values that are not equal to given value."""
-  provinceName_not: String
+  name_not: String
 
   """All values that are contained in given list."""
-  provinceName_in: [String!]
+  name_in: [String!]
 
   """All values that are not contained in given list."""
-  provinceName_not_in: [String!]
+  name_not_in: [String!]
 
   """All values less than the given value."""
-  provinceName_lt: String
+  name_lt: String
 
   """All values less than or equal the given value."""
-  provinceName_lte: String
+  name_lte: String
 
   """All values greater than the given value."""
-  provinceName_gt: String
+  name_gt: String
 
   """All values greater than or equal the given value."""
-  provinceName_gte: String
+  name_gte: String
 
   """All values containing the given string."""
-  provinceName_contains: String
+  name_contains: String
 
   """All values not containing the given string."""
-  provinceName_not_contains: String
+  name_not_contains: String
 
   """All values starting with the given string."""
-  provinceName_starts_with: String
+  name_starts_with: String
 
   """All values not starting with the given string."""
-  provinceName_not_starts_with: String
+  name_not_starts_with: String
 
   """All values ending with the given string."""
-  provinceName_ends_with: String
+  name_ends_with: String
 
   """All values not ending with the given string."""
-  provinceName_not_ends_with: String
-  country: CountriesModelWhereInput
+  name_not_ends_with: String
+  country: CountryWhereInput
 }
 
-input ProvincesModelWhereUniqueInput {
+input ProvinceWhereUniqueInput {
   id: ID
 }
 
@@ -3856,57 +3593,60 @@ type Query {
   houses(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [House]!
   userEstudents(where: UserEstudentWhereInput, orderBy: UserEstudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserEstudent]!
   userGrandpas(where: UserGrandpaWhereInput, orderBy: UserGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserGrandpa]!
-  sourcesModels(where: SourcesModelWhereInput, orderBy: SourcesModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SourcesModel]!
-  careersModels(where: CareersModelWhereInput, orderBy: CareersModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CareersModel]!
+  imagesUniversities(where: ImagesUniversityWhereInput, orderBy: ImagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesUniversity]!
   userTeches(where: UserTechWhereInput, orderBy: UserTechOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserTech]!
   evaluationsGrandpas(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa]!
+  careers(where: CareerWhereInput, orderBy: CareerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Career]!
+  universities(where: UniversityWhereInput, orderBy: UniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [University]!
   interviewses(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews]!
   typeUsers(where: TypeUserWhereInput, orderBy: TypeUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TypeUser]!
-  provincesModels(where: ProvincesModelWhereInput, orderBy: ProvincesModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ProvincesModel]!
-  universitiesModels(where: UniversitiesModelWhereInput, orderBy: UniversitiesModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UniversitiesModel]!
-  imagesDocuments(where: imagesDocumentWhereInput, orderBy: imagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [imagesDocument]!
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  provinces(where: ProvinceWhereInput, orderBy: ProvinceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Province]!
+  sources(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Source]!
+  couples(where: CoupleWhereInput, orderBy: CoupleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Couple]!
+  countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
   evaluationsStudents(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsStudent]!
-  imagesUniversities(where: imagesUniversityWhereInput, orderBy: imagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [imagesUniversity]!
-  associationses(where: AssociationsWhereInput, orderBy: AssociationsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Associations]!
+  imagesDocuments(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesDocument]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   characteristicses(where: CharacteristicsWhereInput, orderBy: CharacteristicsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Characteristics]!
-  countriesModels(where: CountriesModelWhereInput, orderBy: CountriesModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [CountriesModel]!
+  associations(where: AssociationWhereInput, orderBy: AssociationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Association]!
   house(where: HouseWhereUniqueInput!): House
   userEstudent(where: UserEstudentWhereUniqueInput!): UserEstudent
   userGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
-  sourcesModel(where: SourcesModelWhereUniqueInput!): SourcesModel
-  careersModel(where: CareersModelWhereUniqueInput!): CareersModel
+  imagesUniversity(where: ImagesUniversityWhereUniqueInput!): ImagesUniversity
   userTech(where: UserTechWhereUniqueInput!): UserTech
   evaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
+  career(where: CareerWhereUniqueInput!): Career
+  university(where: UniversityWhereUniqueInput!): University
   interviews(where: InterviewsWhereUniqueInput!): Interviews
   typeUser(where: TypeUserWhereUniqueInput!): TypeUser
-  provincesModel(where: ProvincesModelWhereUniqueInput!): ProvincesModel
-  universitiesModel(where: UniversitiesModelWhereUniqueInput!): UniversitiesModel
-  imagesDocument(where: imagesDocumentWhereUniqueInput!): imagesDocument
-  user(where: UserWhereUniqueInput!): User
+  province(where: ProvinceWhereUniqueInput!): Province
+  source(where: SourceWhereUniqueInput!): Source
+  couple(where: CoupleWhereUniqueInput!): Couple
+  country(where: CountryWhereUniqueInput!): Country
   evaluationsStudent(where: EvaluationsStudentWhereUniqueInput!): EvaluationsStudent
-  imagesUniversity(where: imagesUniversityWhereUniqueInput!): imagesUniversity
-  associations(where: AssociationsWhereUniqueInput!): Associations
+  imagesDocument(where: ImagesDocumentWhereUniqueInput!): ImagesDocument
+  user(where: UserWhereUniqueInput!): User
   characteristics(where: CharacteristicsWhereUniqueInput!): Characteristics
-  countriesModel(where: CountriesModelWhereUniqueInput!): CountriesModel
+  association(where: AssociationWhereUniqueInput!): Association
   housesConnection(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HouseConnection!
   userEstudentsConnection(where: UserEstudentWhereInput, orderBy: UserEstudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserEstudentConnection!
   userGrandpasConnection(where: UserGrandpaWhereInput, orderBy: UserGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserGrandpaConnection!
-  sourcesModelsConnection(where: SourcesModelWhereInput, orderBy: SourcesModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SourcesModelConnection!
-  careersModelsConnection(where: CareersModelWhereInput, orderBy: CareersModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CareersModelConnection!
+  imagesUniversitiesConnection(where: ImagesUniversityWhereInput, orderBy: ImagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ImagesUniversityConnection!
   userTechesConnection(where: UserTechWhereInput, orderBy: UserTechOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserTechConnection!
   evaluationsGrandpasConnection(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EvaluationsGrandpaConnection!
+  careersConnection(where: CareerWhereInput, orderBy: CareerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CareerConnection!
+  universitiesConnection(where: UniversityWhereInput, orderBy: UniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UniversityConnection!
   interviewsesConnection(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InterviewsConnection!
   typeUsersConnection(where: TypeUserWhereInput, orderBy: TypeUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TypeUserConnection!
-  provincesModelsConnection(where: ProvincesModelWhereInput, orderBy: ProvincesModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProvincesModelConnection!
-  universitiesModelsConnection(where: UniversitiesModelWhereInput, orderBy: UniversitiesModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UniversitiesModelConnection!
-  imagesDocumentsConnection(where: imagesDocumentWhereInput, orderBy: imagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): imagesDocumentConnection!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  provincesConnection(where: ProvinceWhereInput, orderBy: ProvinceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProvinceConnection!
+  sourcesConnection(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SourceConnection!
+  couplesConnection(where: CoupleWhereInput, orderBy: CoupleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CoupleConnection!
+  countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
   evaluationsStudentsConnection(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EvaluationsStudentConnection!
-  imagesUniversitiesConnection(where: imagesUniversityWhereInput, orderBy: imagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): imagesUniversityConnection!
-  associationsesConnection(where: AssociationsWhereInput, orderBy: AssociationsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AssociationsConnection!
+  imagesDocumentsConnection(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ImagesDocumentConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   characteristicsesConnection(where: CharacteristicsWhereInput, orderBy: CharacteristicsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CharacteristicsConnection!
-  countriesModelsConnection(where: CountriesModelWhereInput, orderBy: CountriesModelOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountriesModelConnection!
+  associationsConnection(where: AssociationWhereInput, orderBy: AssociationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AssociationConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -3915,68 +3655,68 @@ type Query {
   ): Node
 }
 
-type SourcesModel implements Node {
+type Source implements Node {
   id: ID!
   sourceName: String!
 }
 
 """A connection to a list of items."""
-type SourcesModelConnection {
+type SourceConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [SourcesModelEdge]!
-  aggregate: AggregateSourcesModel!
+  edges: [SourceEdge]!
+  aggregate: AggregateSource!
 }
 
-input SourcesModelCreateInput {
+input SourceCreateInput {
   id: ID
   sourceName: String!
 }
 
-input SourcesModelCreateOneInput {
-  create: SourcesModelCreateInput
-  connect: SourcesModelWhereUniqueInput
+input SourceCreateOneInput {
+  create: SourceCreateInput
+  connect: SourceWhereUniqueInput
 }
 
 """An edge in a connection."""
-type SourcesModelEdge {
+type SourceEdge {
   """The item at the end of the edge."""
-  node: SourcesModel!
+  node: Source!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum SourcesModelOrderByInput {
+enum SourceOrderByInput {
   id_ASC
   id_DESC
   sourceName_ASC
   sourceName_DESC
 }
 
-type SourcesModelPreviousValues {
+type SourcePreviousValues {
   id: ID!
   sourceName: String!
 }
 
-type SourcesModelSubscriptionPayload {
+type SourceSubscriptionPayload {
   mutation: MutationType!
-  node: SourcesModel
+  node: Source
   updatedFields: [String!]
-  previousValues: SourcesModelPreviousValues
+  previousValues: SourcePreviousValues
 }
 
-input SourcesModelSubscriptionWhereInput {
+input SourceSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [SourcesModelSubscriptionWhereInput!]
+  AND: [SourceSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [SourcesModelSubscriptionWhereInput!]
+  OR: [SourceSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [SourcesModelSubscriptionWhereInput!]
+  NOT: [SourceSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -3997,44 +3737,44 @@ input SourcesModelSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: SourcesModelWhereInput
+  node: SourceWhereInput
 }
 
-input SourcesModelUpdateDataInput {
+input SourceUpdateDataInput {
   sourceName: String
 }
 
-input SourcesModelUpdateInput {
+input SourceUpdateInput {
   sourceName: String
 }
 
-input SourcesModelUpdateManyMutationInput {
+input SourceUpdateManyMutationInput {
   sourceName: String
 }
 
-input SourcesModelUpdateOneInput {
-  create: SourcesModelCreateInput
-  connect: SourcesModelWhereUniqueInput
+input SourceUpdateOneInput {
+  create: SourceCreateInput
+  connect: SourceWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: SourcesModelUpdateDataInput
-  upsert: SourcesModelUpsertNestedInput
+  update: SourceUpdateDataInput
+  upsert: SourceUpsertNestedInput
 }
 
-input SourcesModelUpsertNestedInput {
-  update: SourcesModelUpdateDataInput!
-  create: SourcesModelCreateInput!
+input SourceUpsertNestedInput {
+  update: SourceUpdateDataInput!
+  create: SourceCreateInput!
 }
 
-input SourcesModelWhereInput {
+input SourceWhereInput {
   """Logical AND on all given filters."""
-  AND: [SourcesModelWhereInput!]
+  AND: [SourceWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [SourcesModelWhereInput!]
+  OR: [SourceWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [SourcesModelWhereInput!]
+  NOT: [SourceWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -4117,7 +3857,7 @@ input SourcesModelWhereInput {
   sourceName_not_ends_with: String
 }
 
-input SourcesModelWhereUniqueInput {
+input SourceWhereUniqueInput {
   id: ID
 }
 
@@ -4132,21 +3872,22 @@ type Subscription {
   house(where: HouseSubscriptionWhereInput): HouseSubscriptionPayload
   userEstudent(where: UserEstudentSubscriptionWhereInput): UserEstudentSubscriptionPayload
   userGrandpa(where: UserGrandpaSubscriptionWhereInput): UserGrandpaSubscriptionPayload
-  sourcesModel(where: SourcesModelSubscriptionWhereInput): SourcesModelSubscriptionPayload
-  careersModel(where: CareersModelSubscriptionWhereInput): CareersModelSubscriptionPayload
+  imagesUniversity(where: ImagesUniversitySubscriptionWhereInput): ImagesUniversitySubscriptionPayload
   userTech(where: UserTechSubscriptionWhereInput): UserTechSubscriptionPayload
   evaluationsGrandpa(where: EvaluationsGrandpaSubscriptionWhereInput): EvaluationsGrandpaSubscriptionPayload
+  career(where: CareerSubscriptionWhereInput): CareerSubscriptionPayload
+  university(where: UniversitySubscriptionWhereInput): UniversitySubscriptionPayload
   interviews(where: InterviewsSubscriptionWhereInput): InterviewsSubscriptionPayload
   typeUser(where: TypeUserSubscriptionWhereInput): TypeUserSubscriptionPayload
-  provincesModel(where: ProvincesModelSubscriptionWhereInput): ProvincesModelSubscriptionPayload
-  universitiesModel(where: UniversitiesModelSubscriptionWhereInput): UniversitiesModelSubscriptionPayload
-  imagesDocument(where: imagesDocumentSubscriptionWhereInput): imagesDocumentSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+  province(where: ProvinceSubscriptionWhereInput): ProvinceSubscriptionPayload
+  source(where: SourceSubscriptionWhereInput): SourceSubscriptionPayload
+  couple(where: CoupleSubscriptionWhereInput): CoupleSubscriptionPayload
+  country(where: CountrySubscriptionWhereInput): CountrySubscriptionPayload
   evaluationsStudent(where: EvaluationsStudentSubscriptionWhereInput): EvaluationsStudentSubscriptionPayload
-  imagesUniversity(where: imagesUniversitySubscriptionWhereInput): imagesUniversitySubscriptionPayload
-  associations(where: AssociationsSubscriptionWhereInput): AssociationsSubscriptionPayload
+  imagesDocument(where: ImagesDocumentSubscriptionWhereInput): ImagesDocumentSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   characteristics(where: CharacteristicsSubscriptionWhereInput): CharacteristicsSubscriptionPayload
-  countriesModel(where: CountriesModelSubscriptionWhereInput): CountriesModelSubscriptionPayload
+  association(where: AssociationSubscriptionWhereInput): AssociationSubscriptionPayload
 }
 
 enum Title {
@@ -4369,70 +4110,70 @@ input TypeUserWhereUniqueInput {
   typeName: String
 }
 
-type UniversitiesModel implements Node {
+type University implements Node {
   id: ID!
   universityName: String!
-  province: ProvincesModel
+  province: Province
 }
 
 """A connection to a list of items."""
-type UniversitiesModelConnection {
+type UniversityConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [UniversitiesModelEdge]!
-  aggregate: AggregateUniversitiesModel!
+  edges: [UniversityEdge]!
+  aggregate: AggregateUniversity!
 }
 
-input UniversitiesModelCreateInput {
+input UniversityCreateInput {
   id: ID
   universityName: String!
-  province: ProvincesModelCreateOneInput
+  province: ProvinceCreateOneInput
 }
 
-input UniversitiesModelCreateOneInput {
-  create: UniversitiesModelCreateInput
-  connect: UniversitiesModelWhereUniqueInput
+input UniversityCreateOneInput {
+  create: UniversityCreateInput
+  connect: UniversityWhereUniqueInput
 }
 
 """An edge in a connection."""
-type UniversitiesModelEdge {
+type UniversityEdge {
   """The item at the end of the edge."""
-  node: UniversitiesModel!
+  node: University!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum UniversitiesModelOrderByInput {
+enum UniversityOrderByInput {
   id_ASC
   id_DESC
   universityName_ASC
   universityName_DESC
 }
 
-type UniversitiesModelPreviousValues {
+type UniversityPreviousValues {
   id: ID!
   universityName: String!
 }
 
-type UniversitiesModelSubscriptionPayload {
+type UniversitySubscriptionPayload {
   mutation: MutationType!
-  node: UniversitiesModel
+  node: University
   updatedFields: [String!]
-  previousValues: UniversitiesModelPreviousValues
+  previousValues: UniversityPreviousValues
 }
 
-input UniversitiesModelSubscriptionWhereInput {
+input UniversitySubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [UniversitiesModelSubscriptionWhereInput!]
+  AND: [UniversitySubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [UniversitiesModelSubscriptionWhereInput!]
+  OR: [UniversitySubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [UniversitiesModelSubscriptionWhereInput!]
+  NOT: [UniversitySubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -4453,53 +4194,53 @@ input UniversitiesModelSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: UniversitiesModelWhereInput
+  node: UniversityWhereInput
 }
 
-input UniversitiesModelUpdateDataInput {
+input UniversityUpdateDataInput {
   universityName: String
-  province: ProvincesModelUpdateOneInput
+  province: ProvinceUpdateOneInput
 }
 
-input UniversitiesModelUpdateInput {
+input UniversityUpdateInput {
   universityName: String
-  province: ProvincesModelUpdateOneInput
+  province: ProvinceUpdateOneInput
 }
 
-input UniversitiesModelUpdateManyMutationInput {
+input UniversityUpdateManyMutationInput {
   universityName: String
 }
 
-input UniversitiesModelUpdateOneInput {
-  create: UniversitiesModelCreateInput
-  connect: UniversitiesModelWhereUniqueInput
+input UniversityUpdateOneInput {
+  create: UniversityCreateInput
+  connect: UniversityWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: UniversitiesModelUpdateDataInput
-  upsert: UniversitiesModelUpsertNestedInput
+  update: UniversityUpdateDataInput
+  upsert: UniversityUpsertNestedInput
 }
 
-input UniversitiesModelUpdateOneRequiredInput {
-  create: UniversitiesModelCreateInput
-  connect: UniversitiesModelWhereUniqueInput
-  update: UniversitiesModelUpdateDataInput
-  upsert: UniversitiesModelUpsertNestedInput
+input UniversityUpdateOneRequiredInput {
+  create: UniversityCreateInput
+  connect: UniversityWhereUniqueInput
+  update: UniversityUpdateDataInput
+  upsert: UniversityUpsertNestedInput
 }
 
-input UniversitiesModelUpsertNestedInput {
-  update: UniversitiesModelUpdateDataInput!
-  create: UniversitiesModelCreateInput!
+input UniversityUpsertNestedInput {
+  update: UniversityUpdateDataInput!
+  create: UniversityCreateInput!
 }
 
-input UniversitiesModelWhereInput {
+input UniversityWhereInput {
   """Logical AND on all given filters."""
-  AND: [UniversitiesModelWhereInput!]
+  AND: [UniversityWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [UniversitiesModelWhereInput!]
+  OR: [UniversityWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [UniversitiesModelWhereInput!]
+  NOT: [UniversityWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -4580,10 +4321,10 @@ input UniversitiesModelWhereInput {
 
   """All values not ending with the given string."""
   universityName_not_ends_with: String
-  province: ProvincesModelWhereInput
+  province: ProvinceWhereInput
 }
 
-input UniversitiesModelWhereUniqueInput {
+input UniversityWhereUniqueInput {
   id: ID
 }
 
@@ -4645,18 +4386,18 @@ type UserEdge {
 
 type UserEstudent implements Node {
   id: ID!
-  uiserId: User!
+  userId: User
   typeDocument: [TypeDocument!]!
   numberDocument: String!
   techResponsible: UserTech!
   studing: String
-  career: CareersModel
-  university: UniversitiesModel
+  career: Career
+  university: University
   classSchedule: String
-  sourceExternal: SourcesModel
+  sourceExternal: Source
   gender: [Gender!]!
   birthData: DateTime!
-  originCountry: CountriesModel!
+  originCountry: Country!
   weekendFree: String!
   evaluarion(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsStudent!]
   interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
@@ -4664,9 +4405,10 @@ type UserEstudent implements Node {
   adress: String!
   createDate: DateTime
   updateDate: DateTime
-  imageDocument(where: imagesDocumentWhereInput, orderBy: imagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [imagesDocument!]
+  imageDocument(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesDocument!]
   imageProfile: String!
-  imageUniversity(where: imagesUniversityWhereInput, orderBy: imagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [imagesUniversity!]
+  imageUniversity(where: ImagesUniversityWhereInput, orderBy: ImagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesUniversity!]
+  coupleID: Couple
 }
 
 """A connection to a list of items."""
@@ -4695,16 +4437,17 @@ input UserEstudentCreateInput {
   typeDocument: UserEstudentCreatetypeDocumentInput
   gender: UserEstudentCreategenderInput
   state: UserEstudentCreatestateInput
-  uiserId: UserCreateOneInput!
+  userId: UserCreateOneInput
   techResponsible: UserTechCreateOneInput!
-  career: CareersModelCreateOneInput
-  university: UniversitiesModelCreateOneInput
-  sourceExternal: SourcesModelCreateOneInput
-  originCountry: CountriesModelCreateOneInput!
+  career: CareerCreateOneInput
+  university: UniversityCreateOneInput
+  sourceExternal: SourceCreateOneInput
+  originCountry: CountryCreateOneInput!
   evaluarion: EvaluationsStudentCreateManyInput
   interview: InterviewsCreateManyInput
-  imageDocument: imagesDocumentCreateManyInput
-  imageUniversity: imagesUniversityCreateManyInput
+  imageDocument: ImagesDocumentCreateManyInput
+  imageUniversity: ImagesUniversityCreateManyInput
+  coupleID: CoupleCreateOneInput
 }
 
 input UserEstudentCreatestateInput {
@@ -4817,16 +4560,17 @@ input UserEstudentUpdateInput {
   typeDocument: UserEstudentUpdatetypeDocumentInput
   gender: UserEstudentUpdategenderInput
   state: UserEstudentUpdatestateInput
-  uiserId: UserUpdateOneRequiredInput
+  userId: UserUpdateOneInput
   techResponsible: UserTechUpdateOneRequiredInput
-  career: CareersModelUpdateOneInput
-  university: UniversitiesModelUpdateOneInput
-  sourceExternal: SourcesModelUpdateOneInput
-  originCountry: CountriesModelUpdateOneRequiredInput
+  career: CareerUpdateOneInput
+  university: UniversityUpdateOneInput
+  sourceExternal: SourceUpdateOneInput
+  originCountry: CountryUpdateOneRequiredInput
   evaluarion: EvaluationsStudentUpdateManyInput
   interview: InterviewsUpdateManyInput
-  imageDocument: imagesDocumentUpdateManyInput
-  imageUniversity: imagesUniversityUpdateManyInput
+  imageDocument: ImagesDocumentUpdateManyInput
+  imageUniversity: ImagesUniversityUpdateManyInput
+  coupleID: CoupleUpdateOneInput
 }
 
 input UserEstudentUpdateManyMutationInput {
@@ -5205,24 +4949,25 @@ input UserEstudentWhereInput {
 
   """All values not ending with the given string."""
   imageProfile_not_ends_with: String
-  uiserId: UserWhereInput
+  userId: UserWhereInput
   techResponsible: UserTechWhereInput
-  career: CareersModelWhereInput
-  university: UniversitiesModelWhereInput
-  sourceExternal: SourcesModelWhereInput
-  originCountry: CountriesModelWhereInput
+  career: CareerWhereInput
+  university: UniversityWhereInput
+  sourceExternal: SourceWhereInput
+  originCountry: CountryWhereInput
   evaluarion_every: EvaluationsStudentWhereInput
   evaluarion_some: EvaluationsStudentWhereInput
   evaluarion_none: EvaluationsStudentWhereInput
   interview_every: InterviewsWhereInput
   interview_some: InterviewsWhereInput
   interview_none: InterviewsWhereInput
-  imageDocument_every: imagesDocumentWhereInput
-  imageDocument_some: imagesDocumentWhereInput
-  imageDocument_none: imagesDocumentWhereInput
-  imageUniversity_every: imagesUniversityWhereInput
-  imageUniversity_some: imagesUniversityWhereInput
-  imageUniversity_none: imagesUniversityWhereInput
+  imageDocument_every: ImagesDocumentWhereInput
+  imageDocument_some: ImagesDocumentWhereInput
+  imageDocument_none: ImagesDocumentWhereInput
+  imageUniversity_every: ImagesUniversityWhereInput
+  imageUniversity_some: ImagesUniversityWhereInput
+  imageUniversity_none: ImagesUniversityWhereInput
+  coupleID: CoupleWhereInput
 }
 
 input UserEstudentWhereUniqueInput {
@@ -5231,17 +4976,18 @@ input UserEstudentWhereUniqueInput {
 
 type UserGrandpa implements Node {
   id: ID!
-  uiserId: User!
-  association: Associations!
+  userId: User!
+  association: Association!
   evaluation(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa!]
   interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
   gender: [Gender!]!
   birthData: DateTime!
-  originCountry: CountriesModel
+  originCountry: Country
   techResponsible: UserTech
   typeDocument: [TypeDocument!]!
   numberDocument: String!
   imageProfile: String
+  coupleID: Couple
   createDate: DateTime
   updateDate: DateTime
   adress: String
@@ -5269,12 +5015,13 @@ input UserGrandpaCreateInput {
   adress: String
   gender: UserGrandpaCreategenderInput
   typeDocument: UserGrandpaCreatetypeDocumentInput
-  uiserId: UserCreateOneInput!
-  association: AssociationsCreateOneInput!
+  userId: UserCreateOneInput!
+  association: AssociationCreateOneInput!
   evaluation: EvaluationsGrandpaCreateManyInput
   interview: InterviewsCreateManyInput
-  originCountry: CountriesModelCreateOneInput
+  originCountry: CountryCreateOneInput
   techResponsible: UserTechCreateOneInput
+  coupleID: CoupleCreateOneInput
 }
 
 input UserGrandpaCreatetypeDocumentInput {
@@ -5369,12 +5116,13 @@ input UserGrandpaUpdateInput {
   adress: String
   gender: UserGrandpaUpdategenderInput
   typeDocument: UserGrandpaUpdatetypeDocumentInput
-  uiserId: UserUpdateOneRequiredInput
-  association: AssociationsUpdateOneRequiredInput
+  userId: UserUpdateOneRequiredInput
+  association: AssociationUpdateOneRequiredInput
   evaluation: EvaluationsGrandpaUpdateManyInput
   interview: InterviewsUpdateManyInput
-  originCountry: CountriesModelUpdateOneInput
+  originCountry: CountryUpdateOneInput
   techResponsible: UserTechUpdateOneInput
+  coupleID: CoupleUpdateOneInput
 }
 
 input UserGrandpaUpdateManyMutationInput {
@@ -5625,16 +5373,17 @@ input UserGrandpaWhereInput {
 
   """All values not ending with the given string."""
   adress_not_ends_with: String
-  uiserId: UserWhereInput
-  association: AssociationsWhereInput
+  userId: UserWhereInput
+  association: AssociationWhereInput
   evaluation_every: EvaluationsGrandpaWhereInput
   evaluation_some: EvaluationsGrandpaWhereInput
   evaluation_none: EvaluationsGrandpaWhereInput
   interview_every: InterviewsWhereInput
   interview_some: InterviewsWhereInput
   interview_none: InterviewsWhereInput
-  originCountry: CountriesModelWhereInput
+  originCountry: CountryWhereInput
   techResponsible: UserTechWhereInput
+  coupleID: CoupleWhereInput
 }
 
 input UserGrandpaWhereUniqueInput {
@@ -5719,8 +5468,8 @@ input UserSubscriptionWhereInput {
 
 type UserTech implements Node {
   id: ID!
-  uiserId: User!
-  association: Associations!
+  userId: User!
+  association: Association!
   title: [Title!]!
   titleOthers: String!
   phoneOffice: String!
@@ -5743,8 +5492,8 @@ input UserTechCreateInput {
   titleOthers: String!
   phoneOffice: String!
   title: UserTechCreatetitleInput
-  uiserId: UserCreateOneInput!
-  association: AssociationsCreateOneInput!
+  userId: UserCreateOneInput!
+  association: AssociationCreateOneInput!
 }
 
 input UserTechCreateOneInput {
@@ -5830,16 +5579,16 @@ input UserTechUpdateDataInput {
   titleOthers: String
   phoneOffice: String
   title: UserTechUpdatetitleInput
-  uiserId: UserUpdateOneRequiredInput
-  association: AssociationsUpdateOneRequiredInput
+  userId: UserUpdateOneRequiredInput
+  association: AssociationUpdateOneRequiredInput
 }
 
 input UserTechUpdateInput {
   titleOthers: String
   phoneOffice: String
   title: UserTechUpdatetitleInput
-  uiserId: UserUpdateOneRequiredInput
-  association: AssociationsUpdateOneRequiredInput
+  userId: UserUpdateOneRequiredInput
+  association: AssociationUpdateOneRequiredInput
 }
 
 input UserTechUpdateManyMutationInput {
@@ -6046,8 +5795,8 @@ input UserTechWhereInput {
 
   """All values greater than or equal the given value."""
   updateDate_gte: DateTime
-  uiserId: UserWhereInput
-  association: AssociationsWhereInput
+  userId: UserWhereInput
+  association: AssociationWhereInput
 }
 
 input UserTechWhereUniqueInput {
@@ -6087,6 +5836,15 @@ input UserUpdateManyMutationInput {
   resetToken: String
   resetTokenExpiry: Float
   permissions: UserUpdatepermissionsInput
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserUpdateDataInput
+  upsert: UserUpsertNestedInput
 }
 
 input UserUpdateOneRequiredInput {

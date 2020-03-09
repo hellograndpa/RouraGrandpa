@@ -49,39 +49,39 @@ type User {
 }
 
 type House {
-  id:	ID! @id
-  uiserId:	User!
-  province:	ProvincesModel!
-  city:	String!
-  adress:	String!
-  cp:	String!
-  coordinates:	Float!
-  characteristics:	[Characteristics!]
-  m2:	Int!
-  bathrooms:	Int!
+  id: ID! @id
+  userId: User!
+  province: Province!
+  city: String!
+  adress: String!
+  cp: String!
+  coordinates: Float!
+  characteristics: [Characteristics!]
+  m2: Int!
+  bathrooms: Int!
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
 }
 
 type Characteristics {
-  id:	ID! @id
-  name:	String!
+  id: ID! @id
+  name: String!
 }
 
 type UserEstudent {
   id: ID! @id
-  uiserId: User!
+  userId: User
   typeDocument: [TypeDocument]! @scalarList(strategy: RELATION)
   numberDocument: String!
   techResponsible: UserTech!
   studing: String
-  career: CareersModel
-  university: UniversitiesModel
+  career: Career
+  university: University
   classSchedule: String
-  sourceExternal: SourcesModel
+  sourceExternal: Source
   gender: [Gender] @scalarList(strategy: RELATION)
   birthData: DateTime!
-  originCountry: CountriesModel!
+  originCountry: Country!
   weekendFree: String!
   evaluarion: [EvaluationsStudent!]
   interview: [Interviews!]
@@ -89,29 +89,29 @@ type UserEstudent {
   adress: String!
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
-  imageDocument: [imagesDocument]
+  imageDocument: [ImagesDocument]
   imageProfile: String!
-  imageUniversity: [imagesUniversity]
+  imageUniversity: [ImagesUniversity]
   coupleID: Couple
   # permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
-type imagesDocument {
+type ImagesDocument {
   id: ID! @id
   photo: String!
-  user: User!
+  user: User
 }
 
-type imagesUniversity {
+type ImagesUniversity {
   id: ID! @id
   photo: String!
-  user: User!
+  user: User
 }
 
 type UserTech {
   id: ID! @id
-  uiserId: User!
-  association: Associations!
+  userId: User!
+  association: Association!
   title: [Title] @scalarList(strategy: RELATION)
   titleOthers: String!
   phoneOffice: String!
@@ -121,13 +121,13 @@ type UserTech {
 
 type UserGrandpa {
   id: ID! @id
-  uiserId: User!
-  association: Associations! 
+  userId: User!
+  association: Association!
   evaluation: [EvaluationsGrandpa]
   interview: [Interviews]
   gender: [Gender] @scalarList(strategy: RELATION)
   birthData: DateTime!
-  originCountry: CountriesModel
+  originCountry: Country
   techResponsible: UserTech
   typeDocument: [TypeDocument]! @scalarList(strategy: RELATION)
   numberDocument: String!
@@ -143,55 +143,55 @@ type TypeUser {
   typeName: String! @unique
 }
 
-type CareersModel {
+type Career {
   id: ID! @id
   carrerName: String!
-  university: UniversitiesModel!
+  university: University!
 }
 
-type UniversitiesModel {
+type University {
   id: ID! @id
   universityName: String!
-  province: ProvincesModel
+  province: Province
 }
 
-type ProvincesModel {
+type Province {
   id: ID! @id
-  provinceName: String!
-  country: CountriesModel!
+  name: String!
+  country: Country
 }
 
-type Couple{
+type Couple {
   id: ID! @id
-  idUserStudent: User
-  idUserGandPa: User
+  idUserStudent: User @relation(name: "CupleUserStudent")
+  idUserGandPa: User @relation(name: "CupleUserGrandpa")
 }
 
-type SourcesModel {
+type Source {
   id: ID! @id
   sourceName: String!
 }
 
-type CountriesModel {
+type Country {
   id: ID! @id
   countryName: String!
 }
 
 type Association {
-  id:	ID! @id
-  name:	String!
-  province:	ProvincesModel!
-  city:	String!
-  adress:	String!
-  cp:	String!
-  coordinates: Float!
-  phone: String!
-  email: String!
-  description: String!
-  logo: String!
-  images:	[String] @scalarList(strategy: RELATION)
-  createDate: DateTime @createdAt
-  updateDate: DateTime @updatedAt
+  id: ID! @id
+  name: String!
+  # province: ProvincesModel!
+  # city: String!
+  # adress: String!
+  # cp: String!
+  # coordinates: Float!
+  # phone: String!
+  # email: String!
+  # description: String!
+  # logo: String!
+  # images: [String] @scalarList(strategy: RELATION)
+  # createDate: DateTime @createdAt
+  # updateDate: DateTime @updatedAt
 }
 
 type EvaluationsGrandpa {
