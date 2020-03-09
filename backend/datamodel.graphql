@@ -97,18 +97,6 @@ type UserStudent {
   # permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
-type imagesDocument {
-  id: ID! @id
-  photo: String!
-  userId: User!
-}
-
-type imagesUniversity {
-  id: ID! @id
-  photo: String!
-  userId: User!
-}
-
 type UserTech {
   id: ID! @id
   userId: User!
@@ -137,6 +125,18 @@ type UserGrandpa {
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
   adress: String
+}
+
+type imagesDocument {
+  id: ID! @id
+  photo: String!
+  userId: User!
+}
+
+type imagesUniversity {
+  id: ID! @id
+  photo: String!
+  userId: User!
 }
 
 type TypeUser {
