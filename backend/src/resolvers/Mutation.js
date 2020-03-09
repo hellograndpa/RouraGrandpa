@@ -11,6 +11,10 @@ const mutations = {
     const userType = await ctx.db.query.typeUser({
       where: { typeName: args.typeUser },
     });
+    // check if the userType isn't empty
+    if (!userType) {
+      throw new Error('You need to select a users type');
+    }
     // create de user in the DB
     const user = await ctx.db.mutation.createUser(
       {
@@ -27,6 +31,10 @@ const mutations = {
       },
       info
     );
+
+    //TODO select usertype
+    //TODO create new datas before create el
+
     // create the JWT token for them
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     //  we set the jwt as a cookie on the response
