@@ -21,6 +21,7 @@ type Mutation {
   createUserStudent(userId: ID!): UserStudent!
   createUserTech(userId: ID!): UserTech!
   createUserGrandpa(userId: ID!): UserGrandpa!
+  createAssociation(name: String): Association!
 }
 
 type Query {
@@ -35,4 +36,6 @@ type Query {
   me: User
   user(where: UserWhereUniqueInput!): User
   userTeches(where: UserWhereInput): [UserTech]!
+  userTech(where: UserWhereUniqueInput!): UserTech
+  associations:[Association]!
 }

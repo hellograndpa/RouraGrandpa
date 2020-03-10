@@ -184,18 +184,18 @@ type Country {
 type Association {
   id: ID! @id
   name: String!
-  # province: ProvincesModel!
-  # city: String!
-  # adress: String!
-  # cp: String!
-  # coordinates: Float!
-  # phone: String!
-  # email: String!
-  # description: String!
-  # logo: String!
-  # images: [String] @scalarList(strategy: RELATION)
-  # createDate: DateTime @createdAt
-  # updateDate: DateTime @updatedAt
+  province: Province!
+  city: String!
+  adress: String!
+  cp: String!
+  coordinates: Float!
+  phone: String!
+  email: String!
+  description: String!
+  logo: String!
+  images: [String] @scalarList(strategy: RELATION)
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
 }
 
 type EvaluationsGrandpa {
