@@ -8,6 +8,10 @@ const USERTECH_QUERY = gql`
   query USERTECH_QUERY {
     userTeches {
       id
+      userId {
+        id
+        name
+      }
       association {
         name
       }
@@ -19,15 +23,18 @@ const USERTECH_QUERY = gql`
 `;
 
 const UserTech = props => (
-  <Query query={USERTECH_QUERY}>
+  <Query query={USERTECH_QUERY} fetchPolicy="network-only">
     {({ data: { userTeches }, error, loading }) => {
       const tech = userTeches[0];
+
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error: {error.message}</p>;
       if (!userTeches) return <p>You need actualization data</p>;
       if (userTeches) {
         return (
           <div>
+            <p>id: {tech.id}</p>
+            <p>user: {tech.userId.name}</p>
             <p>association: {tech.association.name}</p>
             <p>title: {tech.title}</p>
             <p>titleOthers: {tech.titleOthers}</p>
