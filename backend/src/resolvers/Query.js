@@ -2,6 +2,7 @@ const { forwardTo } = require('prisma-binding');
 
 const Query = {
   typeUsers: forwardTo('db'),
+  associations: forwardTo('db'),
   users: forwardTo('db'),
   usersConnection: forwardTo('db'),
 

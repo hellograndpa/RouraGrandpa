@@ -102,7 +102,18 @@ const mutations = {
     });
     // return the user create
     return user;
-  }
+  },
+
+  async createAssociation(parent, args, ctx, info){
+    const association  = await ctx.db.mutation.createAssociation(
+      {
+        data: {
+          ...args
+          }
+      },
+      info);
+    return association;  
+  },
 };
 
 module.exports = mutations;
