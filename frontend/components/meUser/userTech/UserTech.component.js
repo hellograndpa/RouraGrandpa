@@ -6,13 +6,10 @@ import gql from 'graphql-tag';
 
 const USERTECH_QUERY = gql`
   query USERTECH_QUERY {
-    userTech {
+    userTeches {
       id
-      userId {
-        id
-      }
       association {
-        id
+        name
       }
       title
       titleOthers
@@ -23,18 +20,18 @@ const USERTECH_QUERY = gql`
 
 const UserTech = props => (
   <Query query={USERTECH_QUERY}>
-    {({ data: { userTech }, error, loading }) => {
+    {({ data: { userTeches }, error, loading }) => {
+      const tech = userTeches[0];
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error: {error.message}</p>;
-      if (!userTech) return <p>You need actualization data</p>;
-      if (userTech) {
+      if (!userTeches) return <p>You need actualization data</p>;
+      if (userTeches) {
         return (
           <div>
-            <p>Id: {userTech.id}</p>
-            <p>association: {userTech.association}</p>
-            <p>title: {userTech.title}</p>
-            <p>titleOthers: {userTech.titleOthers}</p>
-            <p>phoneOffice: {userTech.phoneOffice}</p>
+            <p>association: {tech.association.name}</p>
+            <p>title: {tech.title}</p>
+            <p>titleOthers: {tech.titleOthers}</p>
+            <p>phoneOffice: {tech.phoneOffice}</p>
           </div>
         );
       }

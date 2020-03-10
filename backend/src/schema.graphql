@@ -34,5 +34,5 @@ type Query {
   usersConnection(where: UserWhereInput): UserConnection!
   me: User
   user(where: UserWhereUniqueInput!): User
-  userTech(where: UserTechWhereUniqueUniqueInput!): UserTech
+  userTeches(where: UserWhereInput): [UserTech]!
 }

@@ -113,7 +113,7 @@ type ImagesUniversity {
 
 type UserTech {
   id: ID! @id
-  userId: User! @unique
+  userId: User @unique
   association: Association!
   title: [Title] @scalarList(strategy: RELATION) @default(value: PSICOLOGO)
   titleOthers: String

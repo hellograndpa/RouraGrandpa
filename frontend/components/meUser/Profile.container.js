@@ -38,7 +38,6 @@ class Profile extends Component {
                 return null;
               }}
             </User>
-            <UserTech />
           </>
         )}
         {edition && (

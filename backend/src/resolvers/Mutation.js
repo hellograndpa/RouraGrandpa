@@ -11,7 +11,7 @@ const mutations = {
     const password = await bcrypt.hash(args.password, 10);
     // query look for de id of typeUser
     const userType = await ctx.db.query.typeUser({
-      where: { typeName: args.typeUser },
+      where: { typeName: args.typeUser }
     });
     // check if the userType isn't empty
     if (!userType) {
@@ -24,12 +24,12 @@ const mutations = {
           ...args,
           typeUser: {
             connect: {
-              id: userType.id,
-            },
+              id: userType.id
+            }
           },
           password,
-          permissions: { set: ['USER'] },
-        },
+          permissions: { set: ['USER'] }
+        }
       },
       info
     );
@@ -42,7 +42,7 @@ const mutations = {
     //  we set the jwt as a cookie on the response
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
     // return the user create
     return user;
@@ -65,7 +65,7 @@ const mutations = {
     // 4.- Set the cookie with token
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
 
     // 5.- Return user
@@ -89,8 +89,8 @@ const mutations = {
       {
         data: updates,
         where: {
-          id: args.id,
-        },
+          id: args.id
+        }
       },
       info
     );
@@ -100,11 +100,11 @@ const mutations = {
     //  we set the jwt as a cookie on the response
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
     // return the user create
     return user;
-  },
+  }
 };
 
 module.exports = mutations;

@@ -16,17 +16,19 @@ const Query = {
     return ctx.db.query.user({ where: { id: ctx.request.userId } }, info);
   },
 
-  userTech(parent, args, ctx, info) {
+  async userTeches(parent, args, ctx, info) {
     //check if there is a current user ID
-    if (!ctx.request.userId) {
-      return null;
+    const { userId } = ctx.request;
+    if (!userId) {
+      throw new Error('you must be signed in!');
     }
-    console.log(ctx.request.userId);
-    return ctx.db.query.userTech(
-      { where: { userId: ctx.request.userId } },
+    const allTeches = await ctx.db.query.userTeches(
+      { where: { userId: { id: userId } } },
       info
     );
-  },
+    console.log('allTeches', allTeches);
+    return allTeches;
+  }
 };
 
 module.exports = Query;

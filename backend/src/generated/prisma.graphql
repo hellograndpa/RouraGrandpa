@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Mon Mar 09 2020 23:48:00 GMT+0100 (Central European Standard Time)
+# timestamp: Tue Mar 10 2020 10:12:44 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociation {
   count: Int!
@@ -5505,7 +5505,7 @@ input UserSubscriptionWhereInput {
 
 type UserTech implements Node {
   id: ID!
-  userId: User!
+  userId: User
   association: Association!
   title: [Title!]!
   titleOthers: String
@@ -5529,7 +5529,7 @@ input UserTechCreateInput {
   titleOthers: String
   phoneOffice: String
   title: UserTechCreatetitleInput
-  userId: UserCreateOneInput!
+  userId: UserCreateOneInput
   association: AssociationCreateOneInput!
 }
 
@@ -5616,7 +5616,7 @@ input UserTechUpdateDataInput {
   titleOthers: String
   phoneOffice: String
   title: UserTechUpdatetitleInput
-  userId: UserUpdateOneRequiredInput
+  userId: UserUpdateOneInput
   association: AssociationUpdateOneRequiredInput
 }
 
@@ -5624,7 +5624,7 @@ input UserTechUpdateInput {
   titleOthers: String
   phoneOffice: String
   title: UserTechUpdatetitleInput
-  userId: UserUpdateOneRequiredInput
+  userId: UserUpdateOneInput
   association: AssociationUpdateOneRequiredInput
 }
 
