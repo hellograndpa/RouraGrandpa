@@ -26,11 +26,10 @@ const UserTech = props => (
   <Query query={USERTECH_QUERY} fetchPolicy="network-only">
     {({ data: { userTeches }, error, loading }) => {
       const tech = userTeches[0];
-
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error: {error.message}</p>;
-      if (!userTeches) return <p>You need actualization data</p>;
-      if (userTeches) {
+      if (!tech) return <p>You need edit your profile data</p>;
+      if (tech) {
         return (
           <div>
             <p>id: {tech.id}</p>
