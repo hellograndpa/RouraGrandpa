@@ -29,8 +29,8 @@ const UserTech = props => (
 
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error: {error.message}</p>;
-      if (!userTeches) return <p>You need actualization data</p>;
-      if (userTeches) {
+      if (!tech) return <p>You need actualization data</p>;
+      if (tech) {
         return (
           <div>
             <p>id: {tech.id}</p>
