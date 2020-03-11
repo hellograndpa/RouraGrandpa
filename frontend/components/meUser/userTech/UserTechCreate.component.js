@@ -3,13 +3,21 @@
 import React, { Component } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import Router from 'next/router';
 import Error from '../../ErrorMessage';
 
-const permissions = [USER, ADMIN, TECH, STUDENT, ADMINASSOCIATION, GRANDPA];
+const posibleTitle = [
+  'PSICOLOGO',
+  'TARBAJADOR_SOCIAL',
+  'ADMINISTRATIVO',
+  'GESTOR',
+  'OTROS',
+];
 
 const ALL_ASSOCIATIONS_QUERY = gql`
   query ALL_ASSOCIATIONS_QUERY {
     associations {
+      id
       name
     }
   }
@@ -48,7 +56,6 @@ class UserTechCreate extends Component {
   state = {
     userId: '',
     association: '',
-
     titleOthers: '',
     phoneOffice: '',
   };
@@ -68,6 +75,9 @@ class UserTechCreate extends Component {
                 e.preventDefault();
                 this.setState({ ...this.state, userId });
                 await createUserTech();
+                Router.push({
+                  pathname: '/profile',
+                });
               }}>
               <fieldset disabled={loading} aria-busy={loading}>
                 <h3>COMPLETA TUS DATOS</h3>
@@ -84,7 +94,7 @@ class UserTechCreate extends Component {
                       {({ data, error, loading }) => {
                         if (loading) return <option>loading...</option>;
                         return data.associations.map(i => (
-                          <option key={i.id} value={i.name}>
+                          <option key={i.id} value={i.id}>
                             {i.name}
                           </option>
                         ));
@@ -100,14 +110,14 @@ class UserTechCreate extends Component {
                     value={this.state.title}
                     onChange={this.saveToState}>
                     <option>Selecciona un Título</option>
-                    {permissions.map(i => {
+                    {/* {permissions.map(i => {
                       <option value={i}>{i}}</option>;
-                    })}
-                    {/* <option value="PSICOLOGO">PSICOLOGO</option>
-                      <option value="TARBAJADOR_SOCIAL">TARBAJADOR SOCIAL</option>
-                      <option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
-                      <option value="GESTOR">GESTOR</option>
-                      <option value="OTROS">OTROS</option> */}
+                    })} */}
+                    <option value="PSICOLOGO">PSICOLOGO</option>
+                    <option value="TARBAJADOR_SOCIAL">TARBAJADOR SOCIAL</option>
+                    <option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
+                    <option value="GESTOR">GESTOR</option>
+                    <option value="OTROS">OTROS</option>
                   </select>
                 </label>
                 <label htmlFor="titleOthers">

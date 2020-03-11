@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Wed Mar 11 2020 16:07:35 GMT+0100 (Central European Standard Time)
+# timestamp: Wed Mar 11 2020 20:55:09 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociation {
   count: Int!
@@ -5944,7 +5944,7 @@ type UserTech implements Node {
   id: ID!
   userId: User
   association: Association!
-  title: [Title!]!
+  title: Title
   titleOthers: String
   phoneOffice: String
   createDate: DateTime
@@ -5963,9 +5963,9 @@ type UserTechConnection {
 
 input UserTechCreateInput {
   id: ID
+  title: Title
   titleOthers: String
   phoneOffice: String
-  title: UserTechCreatetitleInput
   userId: UserCreateOneInput
   association: AssociationCreateOneInput!
 }
@@ -5973,10 +5973,6 @@ input UserTechCreateInput {
 input UserTechCreateOneInput {
   create: UserTechCreateInput
   connect: UserTechWhereUniqueInput
-}
-
-input UserTechCreatetitleInput {
-  set: [Title!]
 }
 
 """An edge in a connection."""
@@ -5991,6 +5987,8 @@ type UserTechEdge {
 enum UserTechOrderByInput {
   id_ASC
   id_DESC
+  title_ASC
+  title_DESC
   titleOthers_ASC
   titleOthers_DESC
   phoneOffice_ASC
@@ -6003,7 +6001,7 @@ enum UserTechOrderByInput {
 
 type UserTechPreviousValues {
   id: ID!
-  title: [Title!]!
+  title: Title
   titleOthers: String
   phoneOffice: String
   createDate: DateTime
@@ -6050,25 +6048,25 @@ input UserTechSubscriptionWhereInput {
 }
 
 input UserTechUpdateDataInput {
+  title: Title
   titleOthers: String
   phoneOffice: String
-  title: UserTechUpdatetitleInput
   userId: UserUpdateOneInput
   association: AssociationUpdateOneRequiredInput
 }
 
 input UserTechUpdateInput {
+  title: Title
   titleOthers: String
   phoneOffice: String
-  title: UserTechUpdatetitleInput
   userId: UserUpdateOneInput
   association: AssociationUpdateOneRequiredInput
 }
 
 input UserTechUpdateManyMutationInput {
+  title: Title
   titleOthers: String
   phoneOffice: String
-  title: UserTechUpdatetitleInput
 }
 
 input UserTechUpdateOneInput {
@@ -6085,10 +6083,6 @@ input UserTechUpdateOneRequiredInput {
   connect: UserTechWhereUniqueInput
   update: UserTechUpdateDataInput
   upsert: UserTechUpsertNestedInput
-}
-
-input UserTechUpdatetitleInput {
-  set: [Title!]
 }
 
 input UserTechUpsertNestedInput {
@@ -6145,6 +6139,16 @@ input UserTechWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  title: Title
+
+  """All values that are not equal to given value."""
+  title_not: Title
+
+  """All values that are contained in given list."""
+  title_in: [Title!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [Title!]
   titleOthers: String
 
   """All values that are not equal to given value."""

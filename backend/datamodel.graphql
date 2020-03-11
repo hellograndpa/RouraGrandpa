@@ -115,7 +115,7 @@ type UserTech {
   id: ID! @id
   userId: User @unique
   association: Association!
-  title: [Title] @scalarList(strategy: RELATION) @default(value: PSICOLOGO)
+  title: Title @default(value: PSICOLOGO)
   titleOthers: String
   phoneOffice: String
   createDate: DateTime @createdAt
