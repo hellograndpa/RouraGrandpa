@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Tue Mar 10 2020 10:12:44 GMT+0100 (Central European Standard Time)
+# timestamp: Wed Mar 11 2020 16:07:35 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociation {
   count: Int!
@@ -79,7 +79,19 @@ type AggregateUserTech {
 
 type Association implements Node {
   id: ID!
-  name: String!
+  name: String
+  province: Province
+  city: String
+  adress: String
+  cp: String
+  coordinates: Float
+  phone: String
+  email: String
+  description: String
+  logo: String
+  images: [String!]!
+  createDate: DateTime
+  updateDate: DateTime
 }
 
 """A connection to a list of items."""
@@ -92,9 +104,23 @@ type AssociationConnection {
   aggregate: AggregateAssociation!
 }
 
+input AssociationCreateimagesInput {
+  set: [String!]
+}
+
 input AssociationCreateInput {
   id: ID
-  name: String!
+  name: String
+  city: String
+  adress: String
+  cp: String
+  coordinates: Float
+  phone: String
+  email: String
+  description: String
+  logo: String
+  images: AssociationCreateimagesInput
+  province: ProvinceCreateOneInput
 }
 
 input AssociationCreateOneInput {
@@ -116,11 +142,42 @@ enum AssociationOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  city_ASC
+  city_DESC
+  adress_ASC
+  adress_DESC
+  cp_ASC
+  cp_DESC
+  coordinates_ASC
+  coordinates_DESC
+  phone_ASC
+  phone_DESC
+  email_ASC
+  email_DESC
+  description_ASC
+  description_DESC
+  logo_ASC
+  logo_DESC
+  createDate_ASC
+  createDate_DESC
+  updateDate_ASC
+  updateDate_DESC
 }
 
 type AssociationPreviousValues {
   id: ID!
-  name: String!
+  name: String
+  city: String
+  adress: String
+  cp: String
+  coordinates: Float
+  phone: String
+  email: String
+  description: String
+  logo: String
+  images: [String!]!
+  createDate: DateTime
+  updateDate: DateTime
 }
 
 type AssociationSubscriptionPayload {
@@ -164,14 +221,47 @@ input AssociationSubscriptionWhereInput {
 
 input AssociationUpdateDataInput {
   name: String
+  city: String
+  adress: String
+  cp: String
+  coordinates: Float
+  phone: String
+  email: String
+  description: String
+  logo: String
+  images: AssociationUpdateimagesInput
+  province: ProvinceUpdateOneInput
+}
+
+input AssociationUpdateimagesInput {
+  set: [String!]
 }
 
 input AssociationUpdateInput {
   name: String
+  city: String
+  adress: String
+  cp: String
+  coordinates: Float
+  phone: String
+  email: String
+  description: String
+  logo: String
+  images: AssociationUpdateimagesInput
+  province: ProvinceUpdateOneInput
 }
 
 input AssociationUpdateManyMutationInput {
   name: String
+  city: String
+  adress: String
+  cp: String
+  coordinates: Float
+  phone: String
+  email: String
+  description: String
+  logo: String
+  images: AssociationUpdateimagesInput
 }
 
 input AssociationUpdateOneRequiredInput {
@@ -275,6 +365,353 @@ input AssociationWhereInput {
 
   """All values not ending with the given string."""
   name_not_ends_with: String
+  city: String
+
+  """All values that are not equal to given value."""
+  city_not: String
+
+  """All values that are contained in given list."""
+  city_in: [String!]
+
+  """All values that are not contained in given list."""
+  city_not_in: [String!]
+
+  """All values less than the given value."""
+  city_lt: String
+
+  """All values less than or equal the given value."""
+  city_lte: String
+
+  """All values greater than the given value."""
+  city_gt: String
+
+  """All values greater than or equal the given value."""
+  city_gte: String
+
+  """All values containing the given string."""
+  city_contains: String
+
+  """All values not containing the given string."""
+  city_not_contains: String
+
+  """All values starting with the given string."""
+  city_starts_with: String
+
+  """All values not starting with the given string."""
+  city_not_starts_with: String
+
+  """All values ending with the given string."""
+  city_ends_with: String
+
+  """All values not ending with the given string."""
+  city_not_ends_with: String
+  adress: String
+
+  """All values that are not equal to given value."""
+  adress_not: String
+
+  """All values that are contained in given list."""
+  adress_in: [String!]
+
+  """All values that are not contained in given list."""
+  adress_not_in: [String!]
+
+  """All values less than the given value."""
+  adress_lt: String
+
+  """All values less than or equal the given value."""
+  adress_lte: String
+
+  """All values greater than the given value."""
+  adress_gt: String
+
+  """All values greater than or equal the given value."""
+  adress_gte: String
+
+  """All values containing the given string."""
+  adress_contains: String
+
+  """All values not containing the given string."""
+  adress_not_contains: String
+
+  """All values starting with the given string."""
+  adress_starts_with: String
+
+  """All values not starting with the given string."""
+  adress_not_starts_with: String
+
+  """All values ending with the given string."""
+  adress_ends_with: String
+
+  """All values not ending with the given string."""
+  adress_not_ends_with: String
+  cp: String
+
+  """All values that are not equal to given value."""
+  cp_not: String
+
+  """All values that are contained in given list."""
+  cp_in: [String!]
+
+  """All values that are not contained in given list."""
+  cp_not_in: [String!]
+
+  """All values less than the given value."""
+  cp_lt: String
+
+  """All values less than or equal the given value."""
+  cp_lte: String
+
+  """All values greater than the given value."""
+  cp_gt: String
+
+  """All values greater than or equal the given value."""
+  cp_gte: String
+
+  """All values containing the given string."""
+  cp_contains: String
+
+  """All values not containing the given string."""
+  cp_not_contains: String
+
+  """All values starting with the given string."""
+  cp_starts_with: String
+
+  """All values not starting with the given string."""
+  cp_not_starts_with: String
+
+  """All values ending with the given string."""
+  cp_ends_with: String
+
+  """All values not ending with the given string."""
+  cp_not_ends_with: String
+  coordinates: Float
+
+  """All values that are not equal to given value."""
+  coordinates_not: Float
+
+  """All values that are contained in given list."""
+  coordinates_in: [Float!]
+
+  """All values that are not contained in given list."""
+  coordinates_not_in: [Float!]
+
+  """All values less than the given value."""
+  coordinates_lt: Float
+
+  """All values less than or equal the given value."""
+  coordinates_lte: Float
+
+  """All values greater than the given value."""
+  coordinates_gt: Float
+
+  """All values greater than or equal the given value."""
+  coordinates_gte: Float
+  phone: String
+
+  """All values that are not equal to given value."""
+  phone_not: String
+
+  """All values that are contained in given list."""
+  phone_in: [String!]
+
+  """All values that are not contained in given list."""
+  phone_not_in: [String!]
+
+  """All values less than the given value."""
+  phone_lt: String
+
+  """All values less than or equal the given value."""
+  phone_lte: String
+
+  """All values greater than the given value."""
+  phone_gt: String
+
+  """All values greater than or equal the given value."""
+  phone_gte: String
+
+  """All values containing the given string."""
+  phone_contains: String
+
+  """All values not containing the given string."""
+  phone_not_contains: String
+
+  """All values starting with the given string."""
+  phone_starts_with: String
+
+  """All values not starting with the given string."""
+  phone_not_starts_with: String
+
+  """All values ending with the given string."""
+  phone_ends_with: String
+
+  """All values not ending with the given string."""
+  phone_not_ends_with: String
+  email: String
+
+  """All values that are not equal to given value."""
+  email_not: String
+
+  """All values that are contained in given list."""
+  email_in: [String!]
+
+  """All values that are not contained in given list."""
+  email_not_in: [String!]
+
+  """All values less than the given value."""
+  email_lt: String
+
+  """All values less than or equal the given value."""
+  email_lte: String
+
+  """All values greater than the given value."""
+  email_gt: String
+
+  """All values greater than or equal the given value."""
+  email_gte: String
+
+  """All values containing the given string."""
+  email_contains: String
+
+  """All values not containing the given string."""
+  email_not_contains: String
+
+  """All values starting with the given string."""
+  email_starts_with: String
+
+  """All values not starting with the given string."""
+  email_not_starts_with: String
+
+  """All values ending with the given string."""
+  email_ends_with: String
+
+  """All values not ending with the given string."""
+  email_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
+  logo: String
+
+  """All values that are not equal to given value."""
+  logo_not: String
+
+  """All values that are contained in given list."""
+  logo_in: [String!]
+
+  """All values that are not contained in given list."""
+  logo_not_in: [String!]
+
+  """All values less than the given value."""
+  logo_lt: String
+
+  """All values less than or equal the given value."""
+  logo_lte: String
+
+  """All values greater than the given value."""
+  logo_gt: String
+
+  """All values greater than or equal the given value."""
+  logo_gte: String
+
+  """All values containing the given string."""
+  logo_contains: String
+
+  """All values not containing the given string."""
+  logo_not_contains: String
+
+  """All values starting with the given string."""
+  logo_starts_with: String
+
+  """All values not starting with the given string."""
+  logo_not_starts_with: String
+
+  """All values ending with the given string."""
+  logo_ends_with: String
+
+  """All values not ending with the given string."""
+  logo_not_ends_with: String
+  createDate: DateTime
+
+  """All values that are not equal to given value."""
+  createDate_not: DateTime
+
+  """All values that are contained in given list."""
+  createDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createDate_lte: DateTime
+
+  """All values greater than the given value."""
+  createDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createDate_gte: DateTime
+  updateDate: DateTime
+
+  """All values that are not equal to given value."""
+  updateDate_not: DateTime
+
+  """All values that are contained in given list."""
+  updateDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updateDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updateDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updateDate_lte: DateTime
+
+  """All values greater than the given value."""
+  updateDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updateDate_gte: DateTime
+  province: ProvinceWhereInput
 }
 
 input AssociationWhereUniqueInput {

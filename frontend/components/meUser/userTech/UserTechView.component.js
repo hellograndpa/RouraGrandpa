@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
+import UserTechCreate from './UserTechCreate.component';
 
 const USERTECH_QUERY = gql`
   query USERTECH_QUERY {
@@ -22,15 +23,20 @@ const USERTECH_QUERY = gql`
   }
 `;
 
-const UserTech = props => (
+const UserTechView = props => (
   <Query query={USERTECH_QUERY} fetchPolicy="network-only">
     {({ data: { userTeches }, error, loading }) => {
       const tech = userTeches[0];
-
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error: {error.message}</p>;
-      if (!tech) return <p>You need actualization data</p>;
-      if (tech) {
+      if (!tech) {
+        return (
+          <div>
+            <p>Por favor, amplía tus datos </p>
+            <UserTechCreate me={props.me} />
+          </div>
+        );
+      } else {
         return (
           <div>
             <p>id: {tech.id}</p>
@@ -46,4 +52,5 @@ const UserTech = props => (
   </Query>
 );
 
-export default UserTech;
+export default UserTechView;
+export { USERTECH_QUERY };

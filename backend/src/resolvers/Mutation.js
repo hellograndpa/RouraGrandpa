@@ -1,7 +1,7 @@
 /** @format */
 
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const mutations = {
   async signup(parent, args, ctx, info) {
@@ -15,7 +15,7 @@ const mutations = {
     });
     // check if the userType isn't empty
     if (!userType) {
-      throw new Error('You need to select a users type');
+      throw new Error("You need to select a users type");
     }
     // create de user in the DB
     const user = await ctx.db.mutation.createUser(
@@ -28,7 +28,7 @@ const mutations = {
             }
           },
           password,
-          permissions: { set: ['USER'] }
+          permissions: { set: ["USER"] }
         }
       },
       info
@@ -40,7 +40,7 @@ const mutations = {
     // create the JWT token for them
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     //  we set the jwt as a cookie on the response
-    ctx.response.cookie('token', token, {
+    ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
@@ -58,12 +58,12 @@ const mutations = {
     // 2.- check de password is ok
     const valid = await bcrypt.compare(password, user.password);
     if (!valid) {
-      throw new Error('Invalid Password');
+      throw new Error("Invalid Password");
     }
     // 3.- JWT token
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     // 4.- Set the cookie with token
-    ctx.response.cookie('token', token, {
+    ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
@@ -85,7 +85,7 @@ const mutations = {
       throw new Error("You don't have permission to do that!");
     }
     //5.-  run the update method
-    return ctx.db.mutation.updateUser(
+    const user = await ctx.db.mutation.updateUser(
       {
         data: updates,
         where: {
@@ -98,12 +98,30 @@ const mutations = {
     // create the JWT token for them
     const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
     //  we set the jwt as a cookie on the response
-    ctx.response.cookie('token', token, {
+    ctx.response.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
     // return the user create
     return user;
+  },
+
+  async createUserTech(parent, args, ctx, info) {
+    const userId = ctx.request.userId;
+    if (!userId) {
+      throw new Error("you must be signed in!");
+    }
+
+    const userTech = await ctx.db.mutation.createUserTech(
+      {
+        data: {
+          ...args,
+          userId
+        }
+      },
+      info
+    );
+    return userTech;
   }
 };
 

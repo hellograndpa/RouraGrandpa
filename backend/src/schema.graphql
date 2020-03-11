@@ -19,12 +19,19 @@ type Mutation {
     email: String
   ): User!
   createUserStudent(userId: ID!): UserStudent!
-  createUserTech(userId: ID!): UserTech!
+  createUserTech(
+    userId: ID!
+    association: String
+    title: String
+    titleOthers: String
+    phoneOffice: String
+  ): UserTech!
   createUserGrandpa(userId: ID!): UserGrandpa!
 }
 
 type Query {
   typeUsers: [TypeUser]!
+  associations: [Association]
   users(
     where: UserWhereInput
     orderBy: UserOrderByInput
