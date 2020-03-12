@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import User from './UserMe.component';
 import ProfileEdit from './ProfileEdit.component';
-import UserTech from './userTech/UserTechView.component';
 import UserDataViewContainer from './UserExtraDataView.container';
 class Profile extends Component {
   state = {
@@ -47,7 +46,10 @@ class Profile extends Component {
         )}
         {edition && (
           <>
-            <button onClick={this.handleEdition}> save profile </button>
+            <button onClick={this.handleEdition}>
+              {' '}
+              Cerrar edición de perfil{' '}
+            </button>
             <ProfileEdit />
           </>
         )}
