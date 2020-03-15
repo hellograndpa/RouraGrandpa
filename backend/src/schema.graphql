@@ -18,7 +18,7 @@ type Mutation {
     phone: String
     email: String
   ): User!
-  createUserStudent(userId: ID!): UserStudent!
+
   createUserTech(
     userId: ID!
     association: String
@@ -26,6 +26,15 @@ type Mutation {
     titleOthers: String
     phoneOffice: String
   ): UserTech!
+  updateUserTech(
+    id: ID!
+    userId: ID!
+    association: String
+    title: String
+    titleOthers: String
+    phoneOffice: String
+  ): UserTech!
+  createUserStudent(userId: ID!): UserStudent!
   createUserGrandpa(userId: ID!): UserGrandpa!
 }
 
@@ -42,4 +51,5 @@ type Query {
   me: User
   user(where: UserWhereUniqueInput!): User
   userTeches(where: UserWhereInput): [UserTech]!
+  userTech(where: UserTechWhereUniqueInput!): UserTech
 }

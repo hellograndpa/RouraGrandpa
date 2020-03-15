@@ -137,6 +137,46 @@ const mutations = {
     );
     return userTech;
   },
+  async updateUserTech(parent, args, ctx, info) {
+    const update = { ...args };
+    delete update.id;
+
+    // 2.5 check if you have a user in the plataform
+    const userId = await ctx.request.userId;
+    if (!userId) {
+      throw new Error('you must be signed in!');
+    }
+    //3.- check is you are the owner of the data
+    if (userId !== args.userId) {
+      throw new Error('this is not your user');
+    }
+    // 4.- get the sociation id
+    const { association } = args;
+    const updateUserTech = await ctx.db.mutation.updateUserTech(
+      {
+        data: {
+          title: update.title,
+          titleOthers: update.titleOthers,
+          phoneOffice: update.phoneOffice,
+          userId: {
+            connect: {
+              id: userId,
+            },
+          },
+          association: {
+            connect: {
+              id: association,
+            },
+          },
+        },
+        where: {
+          id: args.id,
+        },
+      },
+      info
+    );
+    return updateUserTech;
+  },
 };
 
 module.exports = mutations;

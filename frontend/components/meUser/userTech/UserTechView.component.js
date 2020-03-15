@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import UserTechCreate from './UserTechCreate.component';
+import UserTechEdit from './userTechEdit.component';
 
 const USERTECH_QUERY = gql`
   query USERTECH_QUERY {
@@ -34,6 +35,7 @@ class UserTechView extends Component {
   };
   render() {
     const { edition } = this.state;
+    const { me } = this.props;
     return (
       <div>
         <Query query={USERTECH_QUERY} fetchPolicy="network-only">
@@ -45,7 +47,7 @@ class UserTechView extends Component {
               return (
                 <div>
                   <p>Por favor, amplía tus datos </p>
-                  <UserTechCreate me={props.me} />
+                  <UserTechCreate me={me} />
                 </div>
               );
             } else {
@@ -53,7 +55,9 @@ class UserTechView extends Component {
                 <div>
                   {!edition && (
                     <>
-                      <button onClick={this.handleEdition}>Edit profile</button>
+                      <button onClick={this.handleEdition}>
+                        Edita la ampliación de datos
+                      </button>
                       <p>id: {tech.id}</p>
                       <p>user: {tech.userId.name}</p>
                       <p>association: {tech.association.name}</p>
@@ -67,7 +71,7 @@ class UserTechView extends Component {
                       <button onClick={this.handleEdition}>
                         Cerrar edición de tech
                       </button>
-                      <UserTechEdit />
+                      <UserTechEdit tech={tech} me={me} />
                     </>
                   )}
                 </div>

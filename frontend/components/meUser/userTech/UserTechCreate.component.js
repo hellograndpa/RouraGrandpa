@@ -110,9 +110,6 @@ class UserTechCreate extends Component {
                     value={this.state.title}
                     onChange={this.saveToState}>
                     <option>Selecciona un Título</option>
-                    {/* {permissions.map(i => {
-                      <option value={i}>{i}}</option>;
-                    })} */}
                     <option value="PSICOLOGO">PSICOLOGO</option>
                     <option value="TARBAJADOR_SOCIAL">TARBAJADOR SOCIAL</option>
                     <option value="ADMINISTRATIVO">ADMINISTRATIVO</option>
@@ -151,3 +148,4 @@ class UserTechCreate extends Component {
 }
 
 export default UserTechCreate;
+export { ALL_ASSOCIATIONS_QUERY };
