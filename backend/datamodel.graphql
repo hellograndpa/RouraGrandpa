@@ -72,28 +72,28 @@ type Characteristics {
 
 type UserStudent {
   id: ID! @id
-  userId: User
-  typeDocument: [TypeDocument]! @scalarList(strategy: RELATION)
-  numberDocument: String!
-  association: Association!
-  techResponsible: UserTech!
+  userId: User!
+  typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
+  numberDocument: String
+  association: Association
+  techResponsible: UserTech
   studing: String
   career: Career
   university: University
   classSchedule: String
   sourceExternal: Source
   gender: [Gender] @scalarList(strategy: RELATION)
-  birthData: DateTime!
-  originCountry: Country!
-  weekendFree: String!
-  evaluarion: [EvaluationsStudent!]
-  interview: [Interviews!]
+  birthData: DateTime
+  originCountry: Country
+  weekendFree: String
+  evaluation: [EvaluationsStudent]
+  interview: [Interviews]
   state: [StateProcess] @scalarList(strategy: RELATION)
   adress: String
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
   imageDocument: [ImagesDocument]
-  imageProfile: String!
+  imageProfile: String
   imageUniversity: [ImagesUniversity]
   coupleID: Couple
   # permissions: [Permissions] @scalarList(strategy: RELATION)

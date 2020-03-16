@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Wed Mar 11 2020 20:55:09 GMT+0100 (Central European Standard Time)
+# timestamp: Sun Mar 15 2020 23:47:19 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociation {
   count: Int!
@@ -262,6 +262,15 @@ input AssociationUpdateManyMutationInput {
   description: String
   logo: String
   images: AssociationUpdateimagesInput
+}
+
+input AssociationUpdateOneInput {
+  create: AssociationCreateInput
+  connect: AssociationWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: AssociationUpdateDataInput
+  upsert: AssociationUpsertNestedInput
 }
 
 input AssociationUpdateOneRequiredInput {
@@ -1351,13 +1360,6 @@ input CountryUpdateOneInput {
   connect: CountryWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: CountryUpdateDataInput
-  upsert: CountryUpsertNestedInput
-}
-
-input CountryUpdateOneRequiredInput {
-  create: CountryCreateInput
-  connect: CountryWhereUniqueInput
   update: CountryUpdateDataInput
   upsert: CountryUpsertNestedInput
 }
@@ -5309,28 +5311,28 @@ type UserPreviousValues {
 
 type UserStudent implements Node {
   id: ID!
-  userId: User
+  userId: User!
   typeDocument: [TypeDocument!]!
-  numberDocument: String!
-  association: Association!
-  techResponsible: UserTech!
+  numberDocument: String
+  association: Association
+  techResponsible: UserTech
   studing: String
   career: Career
   university: University
   classSchedule: String
   sourceExternal: Source
   gender: [Gender!]!
-  birthData: DateTime!
-  originCountry: Country!
-  weekendFree: String!
-  evaluarion(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsStudent!]
+  birthData: DateTime
+  originCountry: Country
+  weekendFree: String
+  evaluation(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsStudent!]
   interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
   state: [StateProcess!]!
   adress: String
   createDate: DateTime
   updateDate: DateTime
   imageDocument(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesDocument!]
-  imageProfile: String!
+  imageProfile: String
   imageUniversity(where: ImagesUniversityWhereInput, orderBy: ImagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesUniversity!]
   coupleID: Couple
 }
@@ -5351,24 +5353,24 @@ input UserStudentCreategenderInput {
 
 input UserStudentCreateInput {
   id: ID
-  numberDocument: String!
+  numberDocument: String
   studing: String
   classSchedule: String
-  birthData: DateTime!
-  weekendFree: String!
+  birthData: DateTime
+  weekendFree: String
   adress: String
-  imageProfile: String!
+  imageProfile: String
   typeDocument: UserStudentCreatetypeDocumentInput
   gender: UserStudentCreategenderInput
   state: UserStudentCreatestateInput
-  userId: UserCreateOneInput
-  association: AssociationCreateOneInput!
-  techResponsible: UserTechCreateOneInput!
+  userId: UserCreateOneInput!
+  association: AssociationCreateOneInput
+  techResponsible: UserTechCreateOneInput
   career: CareerCreateOneInput
   university: UniversityCreateOneInput
   sourceExternal: SourceCreateOneInput
-  originCountry: CountryCreateOneInput!
-  evaluarion: EvaluationsStudentCreateManyInput
+  originCountry: CountryCreateOneInput
+  evaluation: EvaluationsStudentCreateManyInput
   interview: InterviewsCreateManyInput
   imageDocument: ImagesDocumentCreateManyInput
   imageUniversity: ImagesUniversityCreateManyInput
@@ -5418,17 +5420,17 @@ enum UserStudentOrderByInput {
 type UserStudentPreviousValues {
   id: ID!
   typeDocument: [TypeDocument!]!
-  numberDocument: String!
+  numberDocument: String
   studing: String
   classSchedule: String
   gender: [Gender!]!
-  birthData: DateTime!
-  weekendFree: String!
+  birthData: DateTime
+  weekendFree: String
   state: [StateProcess!]!
   adress: String
   createDate: DateTime
   updateDate: DateTime
-  imageProfile: String!
+  imageProfile: String
 }
 
 type UserStudentSubscriptionPayload {
@@ -5485,14 +5487,14 @@ input UserStudentUpdateInput {
   typeDocument: UserStudentUpdatetypeDocumentInput
   gender: UserStudentUpdategenderInput
   state: UserStudentUpdatestateInput
-  userId: UserUpdateOneInput
-  association: AssociationUpdateOneRequiredInput
-  techResponsible: UserTechUpdateOneRequiredInput
+  userId: UserUpdateOneRequiredInput
+  association: AssociationUpdateOneInput
+  techResponsible: UserTechUpdateOneInput
   career: CareerUpdateOneInput
   university: UniversityUpdateOneInput
   sourceExternal: SourceUpdateOneInput
-  originCountry: CountryUpdateOneRequiredInput
-  evaluarion: EvaluationsStudentUpdateManyInput
+  originCountry: CountryUpdateOneInput
+  evaluation: EvaluationsStudentUpdateManyInput
   interview: InterviewsUpdateManyInput
   imageDocument: ImagesDocumentUpdateManyInput
   imageUniversity: ImagesUniversityUpdateManyInput
@@ -5882,9 +5884,9 @@ input UserStudentWhereInput {
   university: UniversityWhereInput
   sourceExternal: SourceWhereInput
   originCountry: CountryWhereInput
-  evaluarion_every: EvaluationsStudentWhereInput
-  evaluarion_some: EvaluationsStudentWhereInput
-  evaluarion_none: EvaluationsStudentWhereInput
+  evaluation_every: EvaluationsStudentWhereInput
+  evaluation_some: EvaluationsStudentWhereInput
+  evaluation_none: EvaluationsStudentWhereInput
   interview_every: InterviewsWhereInput
   interview_some: InterviewsWhereInput
   interview_none: InterviewsWhereInput
@@ -6074,13 +6076,6 @@ input UserTechUpdateOneInput {
   connect: UserTechWhereUniqueInput
   disconnect: Boolean
   delete: Boolean
-  update: UserTechUpdateDataInput
-  upsert: UserTechUpsertNestedInput
-}
-
-input UserTechUpdateOneRequiredInput {
-  create: UserTechCreateInput
-  connect: UserTechWhereUniqueInput
   update: UserTechUpdateDataInput
   upsert: UserTechUpsertNestedInput
 }
