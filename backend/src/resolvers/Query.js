@@ -29,18 +29,18 @@ const Query = {
     );
     return allTeches;
   },
-  async userStudent(parent, args, ctx, info) {
+  async userStudents(parent, args, ctx, info) {
     //check if there is a current user ID
     const { userId } = ctx.request;
     if (!userId) {
       throw new Error('you must be signed in!');
     }
-    const allStudents = await ctx.db.query.usertStudents(
+    const allStudents = await ctx.db.query.userStudents(
       { where: { userId: { id: userId } } },
       info
     );
     return allStudents;
-  },
+  }
 };
 
 module.exports = Query;

@@ -3,26 +3,23 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import UserTechCreate from './UserStudentCreate.component';
-import UserTechEdit from './userStudentEdit.component';
+import UserStudentCreate from './UserStudentCreate.component';
+import UserStudentEdit from './userStudentEdit.component';
 
 const USERSTUDENT_QUERY = gql`
   query USERSTUDENT_QUERY {
-    userStudent {
+    userStudents {
       id
       userId {
         id
-        name
       }
       association {
         id
-        name
       }
       typeDocument
       numberDocument
       techResponsible {
         id
-        name
       }
       studing
       career {
@@ -51,16 +48,20 @@ const USERSTUDENT_QUERY = gql`
       adress
       createDate
       updateDate
-      imageDocument
+      imageDocument {
+        id
+      }
       imageProfile
-      imageUniversity
+      imageUniversity {
+        id
+      }
       coupleID {
         id
       }
     }
   }
 `;
-class UserTechView extends Component {
+class UserStudentView extends Component {
   state = {
     edition: false,
   };
@@ -76,8 +77,8 @@ class UserTechView extends Component {
     return (
       <div>
         <Query query={USERSTUDENT_QUERY} fetchPolicy="network-only">
-          {({ data: { userStudent }, error, loading }) => {
-            const student = userStudent[0];
+          {({ data: { userStudents }, error, loading }) => {
+            const student = userStudents[0];
             if (loading) return <p>Loading...</p>;
             if (error) return <p>Error: {error.message}</p>;
             if (!student) {
@@ -96,6 +97,31 @@ class UserTechView extends Component {
                         Edita la ampliación de datos
                       </button>
                       <p>id: {student.id}</p>
+                      <p>userId: {student.userId.id}</p>
+                      <p>association: {student.association.id}</p>
+                      <p>typeDocument: {student.typeDocument}</p>
+                      <p>numberDocument: {student.numberDocument}</p>
+                      <p>techResponsible: {student.techResponsible.id}</p>
+                      <p>studing: {student.studing}</p>
+                      <p>career: {student.career.id}</p>
+                      <p>university: {student.university.id}</p>
+                      <p>classSchedule: {student.classSchedule}</p>
+                      {student.sourceExternal && (
+                        <p>sourceExternal: {student.sourceExternal.id}</p>
+                      )}
+                      <p>gender: {student.gender}</p>
+                      <p>birthData: {student.birthData}</p>
+                      <p>originCountry: {student.originCountry.id}</p>
+                      <p>weekendFree: {student.weekendFree}</p>
+                      <p>evaluation: {student.evaluation.id}</p>
+                      <p>interview: {student.interview.id}</p>
+                      <p>state: {student.state.id}</p>
+                      <p>adress: {student.adress}</p>
+                      <p>createDate: {student.createDate}</p>
+                      <p>updateDate: {student.updateDate}</p>
+                      <p>imageDocument: {student.imageDocument.id}</p>
+                      <p>imageUniversity: {student.imageUniversity.id}</p>
+                      <p>coupleID: {student.coupleID}</p>
                     </>
                   )}
                   {edition && (
@@ -116,5 +142,5 @@ class UserTechView extends Component {
   }
 }
 
-export default UserTechView;
+export default UserStudentView;
 export { USERSTUDENT_QUERY };

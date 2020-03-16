@@ -52,7 +52,7 @@ type User {
 
 type House {
   id: ID! @id
-  userId: User!
+  userId: User! @unique
   province: Province!
   city: String!
   adress: String!
