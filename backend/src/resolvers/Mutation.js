@@ -11,7 +11,7 @@ const mutations = {
     const password = await bcrypt.hash(args.password, 10);
     // query look for de id of typeUser
     const userType = await ctx.db.query.typeUser({
-      where: { typeName: args.typeUser }
+      where: { typeName: args.typeUser },
     });
     // check if the userType isn't empty
     if (!userType) {
@@ -24,12 +24,12 @@ const mutations = {
           ...args,
           typeUser: {
             connect: {
-              id: userType.id
-            }
+              id: userType.id,
+            },
           },
           password,
-          permissions: { set: ['USER'] }
-        }
+          permissions: { set: ['USER'] },
+        },
       },
       info
     );
@@ -42,7 +42,7 @@ const mutations = {
     //  we set the jwt as a cookie on the response
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
     });
     // return the user create
     return user;
@@ -65,7 +65,7 @@ const mutations = {
     // 4.- Set the cookie with token
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
     });
 
     // 5.- Return user
@@ -85,12 +85,12 @@ const mutations = {
       throw new Error("You don't have permission to do that!");
     }
     //5.-  run the update method
-    return ctx.db.mutation.updateUser(
+    const user = await ctx.db.mutation.updateUser(
       {
         data: updates,
         where: {
-          id: args.id
-        }
+          id: args.id,
+        },
       },
       info
     );
@@ -100,21 +100,82 @@ const mutations = {
     //  we set the jwt as a cookie on the response
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
     });
     // return the user create
     return user;
   },
 
-  async createAssociation(parent, args, ctx, info){
-    const association  = await ctx.db.mutation.createAssociation(
+  async createUserTech(parent, args, ctx, info) {
+    const userId = await ctx.request.userId;
+    const { association } = args;
+
+    if (!userId) {
+      throw new Error('you must be signed in!');
+    }
+    if (userId !== args.userId) {
+      throw new Error('this is not your user');
+    }
+
+    const userTech = await ctx.db.mutation.createUserTech(
       {
         data: {
-          ...args
-          }
+          ...args,
+          userId: {
+            connect: {
+              id: userId,
+            },
+          },
+          association: {
+            connect: {
+              id: association,
+            },
+          },
+        },
       },
-      info);
-    return association;  
+      info
+    );
+    return userTech;
+  },
+  async updateUserTech(parent, args, ctx, info) {
+    const update = { ...args };
+    delete update.id;
+
+    // 2.5 check if you have a user in the plataform
+    const userId = await ctx.request.userId;
+    if (!userId) {
+      throw new Error('you must be signed in!');
+    }
+    //3.- check is you are the owner of the data
+    if (userId !== args.userId) {
+      throw new Error('this is not your user');
+    }
+    // 4.- get the sociation id
+    const { association } = args;
+    const updateUserTech = await ctx.db.mutation.updateUserTech(
+      {
+        data: {
+          title: update.title,
+          titleOthers: update.titleOthers,
+          phoneOffice: update.phoneOffice,
+          userId: {
+            connect: {
+              id: userId,
+            },
+          },
+          association: {
+            connect: {
+              id: association,
+            },
+          },
+        },
+        where: {
+          id: args.id,
+        },
+      },
+      info
+    );
+    return updateUserTech;
   },
 };
 

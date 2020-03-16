@@ -3,8 +3,7 @@
 import React, { Component } from 'react';
 import User from './UserMe.component';
 import ProfileEdit from './ProfileEdit.component';
-import UserTech from './userTech/UserTech.component';
-
+import UserDataViewContainer from './UserExtraDataView.container';
 class Profile extends Component {
   state = {
     edition: false,
@@ -27,12 +26,17 @@ class Profile extends Component {
                 if (me)
                   return (
                     <div>
-                      <p>Id: {me.id}</p>
-                      <p>Name: {me.name}</p>
-                      <p>Last Name: {me.lastname}</p>
-                      <p>Type User: {me.typeUser.typeName}</p>
-                      <p>Phone: {me.phone}</p>
-                      <p>Email: {me.email}</p>
+                      <div>
+                        <p>Id: {me.id}</p>
+                        <p>Name: {me.name}</p>
+                        <p>Last Name: {me.lastname}</p>
+                        <p>Type User: {me.typeUser.typeName}</p>
+                        <p>Phone: {me.phone}</p>
+                        <p>Email: {me.email}</p>
+                      </div>
+                      <div>
+                        <UserDataViewContainer me={me} />
+                      </div>
                     </div>
                   );
                 return null;
@@ -42,7 +46,10 @@ class Profile extends Component {
         )}
         {edition && (
           <>
-            <button onClick={this.handleEdition}> save profile </button>
+            <button onClick={this.handleEdition}>
+              {' '}
+              Cerrar edición de perfil{' '}
+            </button>
             <ProfileEdit />
           </>
         )}

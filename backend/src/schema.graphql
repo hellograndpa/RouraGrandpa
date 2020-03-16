@@ -18,14 +18,30 @@ type Mutation {
     phone: String
     email: String
   ): User!
+
+  createUserTech(
+    userId: ID!
+    association: String
+    title: String
+    titleOthers: String
+    phoneOffice: String
+  ): UserTech!
+  updateUserTech(
+    id: ID!
+    userId: ID!
+    association: String
+    title: String
+    titleOthers: String
+    phoneOffice: String
+  ): UserTech!
   createUserStudent(userId: ID!): UserStudent!
-  createUserTech(userId: ID!): UserTech!
   createUserGrandpa(userId: ID!): UserGrandpa!
   createAssociation(name: String): Association!
 }
 
 type Query {
   typeUsers: [TypeUser]!
+  associations: [Association]
   users(
     where: UserWhereInput
     orderBy: UserOrderByInput
@@ -36,6 +52,7 @@ type Query {
   me: User
   user(where: UserWhereUniqueInput!): User
   userTeches(where: UserWhereInput): [UserTech]!
-  userTech(where: UserWhereUniqueInput!): UserTech
-  associations:[Association]!
+  userTech(where: UserTechWhereUniqueInput!): UserTech
+  userStudents(where: UserWhereInput): [UserStudent]!
+  userStudent(where: UserTechWhereUniqueInput!): UserStudent
 }

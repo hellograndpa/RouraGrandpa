@@ -52,7 +52,7 @@ type User {
 
 type House {
   id: ID! @id
-  userId: User!
+  userId: User! @unique
   province: Province!
   city: String!
   adress: String!
@@ -72,28 +72,28 @@ type Characteristics {
 
 type UserStudent {
   id: ID! @id
-  userId: User
-  typeDocument: [TypeDocument]! @scalarList(strategy: RELATION)
-  numberDocument: String!
-  association: Association!
-  techResponsible: UserTech!
+  userId: User!
+  typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
+  numberDocument: String
+  association: Association
+  techResponsible: UserTech
   studing: String
   career: Career
   university: University
   classSchedule: String
   sourceExternal: Source
   gender: [Gender] @scalarList(strategy: RELATION)
-  birthData: DateTime!
-  originCountry: Country!
-  weekendFree: String!
-  evaluarion: [EvaluationsStudent!]
-  interview: [Interviews!]
+  birthData: DateTime
+  originCountry: Country
+  weekendFree: String
+  evaluation: [EvaluationsStudent]
+  interview: [Interviews]
   state: [StateProcess] @scalarList(strategy: RELATION)
   adress: String
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
   imageDocument: [ImagesDocument]
-  imageProfile: String!
+  imageProfile: String
   imageUniversity: [ImagesUniversity]
   coupleID: Couple
   # permissions: [Permissions] @scalarList(strategy: RELATION)
@@ -115,7 +115,7 @@ type UserTech {
   id: ID! @id
   userId: User @unique
   association: Association!
-  title: [Title] @scalarList(strategy: RELATION) @default(value: PSICOLOGO)
+  title: Title @default(value: PSICOLOGO)
   titleOthers: String
   phoneOffice: String
   createDate: DateTime @createdAt
@@ -183,16 +183,16 @@ type Country {
 
 type Association {
   id: ID! @id
-  name: String!
-  province: Province!
-  city: String!
-  adress: String!
-  cp: String!
-  coordinates: Float!
-  phone: String!
-  email: String!
-  description: String!
-  logo: String!
+  name: String
+  province: Province
+  city: String
+  adress: String
+  cp: String
+  coordinates: Float
+  phone: String
+  email: String
+  description: String
+  logo: String
   images: [String] @scalarList(strategy: RELATION)
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Error from '../../ErrorMessage';
-import { ALL_ASSOCIATIONS_QUERY } from './UserTechCreate.component';
+import { ALL_ASSOCIATIONS_QUERY } from './UserStudentCreate.component';
 
 const UPDATE_USERTECH_MUTATION = gql`
   mutation UPDATE_USERTECH_MUTATION(

@@ -7,6 +7,7 @@ const Query = {
   associations: forwardTo('db'),
   users: forwardTo('db'),
   usersConnection: forwardTo('db'),
+  associations: forwardTo('db'),
 
   // with this query we know who is the person and we can ask for the type
   me(parent, args, ctx, info) {
@@ -27,8 +28,19 @@ const Query = {
       { where: { userId: { id: userId } } },
       info
     );
-    console.log('allTeches', allTeches);
     return allTeches;
+  },
+  async userStudents(parent, args, ctx, info) {
+    //check if there is a current user ID
+    const { userId } = ctx.request;
+    if (!userId) {
+      throw new Error('you must be signed in!');
+    }
+    const allStudents = await ctx.db.query.userStudents(
+      { where: { userId: { id: userId } } },
+      info
+    );
+    return allStudents;
   }
 };
 
