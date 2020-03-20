@@ -11,7 +11,7 @@ const mutations = {
     const password = await bcrypt.hash(args.password, 10);
     // query look for de id of typeUser
     const userType = await ctx.db.query.typeUser({
-      where: { typeName: args.typeUser },
+      where: { typeName: args.typeUser }
     });
     // check if the userType isn't empty
     if (!userType) {
@@ -24,12 +24,12 @@ const mutations = {
           ...args,
           typeUser: {
             connect: {
-              id: userType.id,
-            },
+              id: userType.id
+            }
           },
           password,
-          permissions: { set: ['USER'] },
-        },
+          permissions: { set: ['USER'] }
+        }
       },
       info
     );
@@ -42,7 +42,7 @@ const mutations = {
     //  we set the jwt as a cookie on the response
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
     // return the user create
     return user;
@@ -65,7 +65,7 @@ const mutations = {
     // 4.- Set the cookie with token
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
 
     // 5.- Return user
@@ -89,8 +89,8 @@ const mutations = {
       {
         data: updates,
         where: {
-          id: args.id,
-        },
+          id: args.id
+        }
       },
       info
     );
@@ -100,7 +100,7 @@ const mutations = {
     //  we set the jwt as a cookie on the response
     ctx.response.cookie('token', token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
+      maxAge: 1000 * 60 * 60 * 24 * 365 // 1 year
     });
     // return the user create
     return user;
@@ -123,15 +123,15 @@ const mutations = {
           ...args,
           userId: {
             connect: {
-              id: userId,
-            },
+              id: userId
+            }
           },
           association: {
             connect: {
-              id: association,
-            },
-          },
-        },
+              id: association
+            }
+          }
+        }
       },
       info
     );
@@ -160,23 +160,151 @@ const mutations = {
           phoneOffice: update.phoneOffice,
           userId: {
             connect: {
-              id: userId,
-            },
+              id: userId
+            }
           },
           association: {
             connect: {
-              id: association,
-            },
-          },
+              id: association
+            }
+          }
         },
         where: {
-          id: args.id,
-        },
+          id: args.id
+        }
       },
       info
     );
     return updateUserTech;
   },
+  async updateUserStudent(parent, args, ctx, info) {
+    const update = { ...args };
+    delete update.id;
+
+    // 2.5 check if you have a user in the plataform
+    const userId = await ctx.request.userId;
+    if (!userId) {
+      throw new Error('you must be signed in!');
+    }
+    //3.- check is you are the owner of the data
+    if (userId !== args.userId) {
+      throw new Error('this is not your user');
+    }
+
+    // 4.- get the sociation id
+    const {
+      association,
+      typeDocument,
+      techResponsible,
+      studing,
+      numberDocument,
+      classSchedule,
+      gender,
+      birthData,
+      university,
+      sourceExternal,
+      originCountry,
+      evaluation,
+      interview,
+      imageDocument,
+      imageUniversity,
+      coupleID,
+      weekendFree,
+      imageProfile,
+      state,
+      adress
+    } = args;
+    const updateUserStudent = await ctx.db.mutation.updateUserStudent(
+      {
+        data: {
+          userId: {
+            connect: {
+              id: userId
+            }
+          },
+          association: {
+            connect: {
+              id: association
+            }
+          },
+          typeDocument,
+          numberDocument,
+          studing,
+          classSchedule,
+          gender,
+          birthData,
+          weekendFree,
+          adress
+        },
+        where: {
+          id: args.id
+        }
+      },
+      info
+    );
+    return updateUserStudent;
+  },
+  async createUserStudent(parent, args, ctx, info) {
+    const userId = await ctx.request.userId;
+    console.log('aaa' + userId);
+    console.log('bbb' + args.userId);
+    console.log('ccc' + args.association);
+    if (!userId) {
+      throw new Error('you must be signed in!');
+    }
+    if (userId !== args.userId) {
+      throw new Error('this is not your user');
+    }
+    // 4.- get the sociation id
+    const {
+      association,
+      typeDocument,
+      techResponsible,
+      studing,
+      numberDocument,
+      classSchedule,
+      gender,
+      birthData,
+      university,
+      sourceExternal,
+      originCountry,
+      evaluation,
+      interview,
+      imageDocument,
+      imageUniversity,
+      coupleID,
+      weekendFree,
+      imageProfile,
+      state,
+      adress
+    } = args;
+    const createUserStudent = await ctx.db.mutation.createUserStudent(
+      {
+        data: {
+          userId: {
+            connect: {
+              id: userId
+            }
+          },
+          association: {
+            connect: {
+              id: association
+            }
+          },
+          typeDocument,
+          numberDocument,
+          studing,
+          classSchedule,
+          gender,
+          birthData,
+          weekendFree,
+          adress
+        }
+      },
+      info
+    );
+    return createUserStudent;
+  }
 };
 
 module.exports = mutations;

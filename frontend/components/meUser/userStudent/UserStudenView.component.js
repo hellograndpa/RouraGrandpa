@@ -101,26 +101,62 @@ class UserStudentView extends Component {
                       <p>association: {student.association.id}</p>
                       <p>typeDocument: {student.typeDocument}</p>
                       <p>numberDocument: {student.numberDocument}</p>
-                      <p>techResponsible: {student.techResponsible.id}</p>
+                      {student.techResponsible ? (
+                        <p>techResponsible: {student.techResponsible.id}</p>
+                      ) : (
+                        <p>Tech Responsible NO</p>
+                      )}
                       <p>studing: {student.studing}</p>
-                      <p>career: {student.career.id}</p>
-                      <p>university: {student.university.id}</p>
+                      {student.career ? (
+                        <p>career: {student.career.id}</p>
+                      ) : (
+                        <p>Tech Responsible NO</p>
+                      )}
+                      {student.university ? (
+                        <p>University: {student.university.id}</p>
+                      ) : (
+                        <p>University NO</p>
+                      )}
                       <p>classSchedule: {student.classSchedule}</p>
                       {student.sourceExternal && (
                         <p>sourceExternal: {student.sourceExternal.id}</p>
                       )}
                       <p>gender: {student.gender}</p>
                       <p>birthData: {student.birthData}</p>
-                      <p>originCountry: {student.originCountry.id}</p>
+                      {student.originCountry ? (
+                        <p>Origin Country: {student.originCountry.id}</p>
+                      ) : (
+                        <p>Origin Country NO</p>
+                      )}
                       <p>weekendFree: {student.weekendFree}</p>
-                      <p>evaluation: {student.evaluation.id}</p>
-                      <p>interview: {student.interview.id}</p>
-                      <p>state: {student.state.id}</p>
+                      {student.evaluation ? (
+                        <p>evaluation: {student.evaluation.id}</p>
+                      ) : (
+                        <p>Evaluation NO</p>
+                      )}
+                      {student.interview ? (
+                        <p>interview: {student.interview.id}</p>
+                      ) : (
+                        <p>Interview NO</p>
+                      )}
+                      {student.state ? (
+                        <p>interview: {student.state.id}</p>
+                      ) : (
+                        <p>Interview NO</p>
+                      )}
                       <p>adress: {student.adress}</p>
                       <p>createDate: {student.createDate}</p>
                       <p>updateDate: {student.updateDate}</p>
-                      <p>imageDocument: {student.imageDocument.id}</p>
-                      <p>imageUniversity: {student.imageUniversity.id}</p>
+                      {student.imageDocument ? (
+                        <p>Image Documents: {student.imageDocument.id}</p>
+                      ) : (
+                        <p>image Document NO</p>
+                      )}
+                      {student.imageUniversity ? (
+                        <p>Image Documents: {student.imageUniversity.id}</p>
+                      ) : (
+                        <p>Image University NO</p>
+                      )}
                       <p>coupleID: {student.coupleID}</p>
                     </>
                   )}
