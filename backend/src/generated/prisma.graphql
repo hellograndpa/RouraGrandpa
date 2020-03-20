@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Sun Mar 15 2020 23:47:19 GMT+0100 (Central European Standard Time)
+# timestamp: Wed Mar 18 2020 11:24:07 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociation {
   count: Int!
@@ -5312,7 +5312,7 @@ type UserPreviousValues {
 type UserStudent implements Node {
   id: ID!
   userId: User!
-  typeDocument: [TypeDocument!]!
+  typeDocument: TypeDocument
   numberDocument: String
   association: Association
   techResponsible: UserTech
@@ -5321,13 +5321,13 @@ type UserStudent implements Node {
   university: University
   classSchedule: String
   sourceExternal: Source
-  gender: [Gender!]!
+  gender: Gender
   birthData: DateTime
   originCountry: Country
   weekendFree: String
   evaluation(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsStudent!]
   interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
-  state: [StateProcess!]!
+  state: StateProcess
   adress: String
   createDate: DateTime
   updateDate: DateTime
@@ -5347,22 +5347,18 @@ type UserStudentConnection {
   aggregate: AggregateUserStudent!
 }
 
-input UserStudentCreategenderInput {
-  set: [Gender!]
-}
-
 input UserStudentCreateInput {
   id: ID
+  typeDocument: TypeDocument
   numberDocument: String
   studing: String
   classSchedule: String
+  gender: Gender
   birthData: DateTime
   weekendFree: String
+  state: StateProcess
   adress: String
   imageProfile: String
-  typeDocument: UserStudentCreatetypeDocumentInput
-  gender: UserStudentCreategenderInput
-  state: UserStudentCreatestateInput
   userId: UserCreateOneInput!
   association: AssociationCreateOneInput
   techResponsible: UserTechCreateOneInput
@@ -5377,14 +5373,6 @@ input UserStudentCreateInput {
   coupleID: CoupleCreateOneInput
 }
 
-input UserStudentCreatestateInput {
-  set: [StateProcess!]
-}
-
-input UserStudentCreatetypeDocumentInput {
-  set: [TypeDocument!]
-}
-
 """An edge in a connection."""
 type UserStudentEdge {
   """The item at the end of the edge."""
@@ -5397,16 +5385,22 @@ type UserStudentEdge {
 enum UserStudentOrderByInput {
   id_ASC
   id_DESC
+  typeDocument_ASC
+  typeDocument_DESC
   numberDocument_ASC
   numberDocument_DESC
   studing_ASC
   studing_DESC
   classSchedule_ASC
   classSchedule_DESC
+  gender_ASC
+  gender_DESC
   birthData_ASC
   birthData_DESC
   weekendFree_ASC
   weekendFree_DESC
+  state_ASC
+  state_DESC
   adress_ASC
   adress_DESC
   createDate_ASC
@@ -5419,14 +5413,14 @@ enum UserStudentOrderByInput {
 
 type UserStudentPreviousValues {
   id: ID!
-  typeDocument: [TypeDocument!]!
+  typeDocument: TypeDocument
   numberDocument: String
   studing: String
   classSchedule: String
-  gender: [Gender!]!
+  gender: Gender
   birthData: DateTime
   weekendFree: String
-  state: [StateProcess!]!
+  state: StateProcess
   adress: String
   createDate: DateTime
   updateDate: DateTime
@@ -5472,21 +5466,17 @@ input UserStudentSubscriptionWhereInput {
   node: UserStudentWhereInput
 }
 
-input UserStudentUpdategenderInput {
-  set: [Gender!]
-}
-
 input UserStudentUpdateInput {
+  typeDocument: TypeDocument
   numberDocument: String
   studing: String
   classSchedule: String
+  gender: Gender
   birthData: DateTime
   weekendFree: String
+  state: StateProcess
   adress: String
   imageProfile: String
-  typeDocument: UserStudentUpdatetypeDocumentInput
-  gender: UserStudentUpdategenderInput
-  state: UserStudentUpdatestateInput
   userId: UserUpdateOneRequiredInput
   association: AssociationUpdateOneInput
   techResponsible: UserTechUpdateOneInput
@@ -5502,24 +5492,16 @@ input UserStudentUpdateInput {
 }
 
 input UserStudentUpdateManyMutationInput {
+  typeDocument: TypeDocument
   numberDocument: String
   studing: String
   classSchedule: String
+  gender: Gender
   birthData: DateTime
   weekendFree: String
+  state: StateProcess
   adress: String
   imageProfile: String
-  typeDocument: UserStudentUpdatetypeDocumentInput
-  gender: UserStudentUpdategenderInput
-  state: UserStudentUpdatestateInput
-}
-
-input UserStudentUpdatestateInput {
-  set: [StateProcess!]
-}
-
-input UserStudentUpdatetypeDocumentInput {
-  set: [TypeDocument!]
 }
 
 input UserStudentWhereInput {
@@ -5571,6 +5553,16 @@ input UserStudentWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  typeDocument: TypeDocument
+
+  """All values that are not equal to given value."""
+  typeDocument_not: TypeDocument
+
+  """All values that are contained in given list."""
+  typeDocument_in: [TypeDocument!]
+
+  """All values that are not contained in given list."""
+  typeDocument_not_in: [TypeDocument!]
   numberDocument: String
 
   """All values that are not equal to given value."""
@@ -5691,6 +5683,16 @@ input UserStudentWhereInput {
 
   """All values not ending with the given string."""
   classSchedule_not_ends_with: String
+  gender: Gender
+
+  """All values that are not equal to given value."""
+  gender_not: Gender
+
+  """All values that are contained in given list."""
+  gender_in: [Gender!]
+
+  """All values that are not contained in given list."""
+  gender_not_in: [Gender!]
   birthData: DateTime
 
   """All values that are not equal to given value."""
@@ -5753,6 +5755,16 @@ input UserStudentWhereInput {
 
   """All values not ending with the given string."""
   weekendFree_not_ends_with: String
+  state: StateProcess
+
+  """All values that are not equal to given value."""
+  state_not: StateProcess
+
+  """All values that are contained in given list."""
+  state_in: [StateProcess!]
+
+  """All values that are not contained in given list."""
+  state_not_in: [StateProcess!]
   adress: String
 
   """All values that are not equal to given value."""

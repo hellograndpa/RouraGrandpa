@@ -73,7 +73,7 @@ type Characteristics {
 type UserStudent {
   id: ID! @id
   userId: User!
-  typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
+  typeDocument: TypeDocument
   numberDocument: String
   association: Association
   techResponsible: UserTech
@@ -82,13 +82,13 @@ type UserStudent {
   university: University
   classSchedule: String
   sourceExternal: Source
-  gender: [Gender] @scalarList(strategy: RELATION)
+  gender: Gender
   birthData: DateTime
   originCountry: Country
   weekendFree: String
   evaluation: [EvaluationsStudent]
   interview: [Interviews]
-  state: [StateProcess] @scalarList(strategy: RELATION)
+  state: StateProcess
   adress: String
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt

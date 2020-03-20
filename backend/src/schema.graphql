@@ -34,7 +34,55 @@ type Mutation {
     titleOthers: String
     phoneOffice: String
   ): UserTech!
-  createUserStudent(userId: ID!): UserStudent!
+  updateUserStudent(
+    id: ID!
+    userId: ID
+    association: ID
+    typeDocument: String
+    numberDocument: String
+    techResponsible: ID
+    studing: String
+    career: ID
+    university: ID
+    classSchedule: String
+    sourceExternal: ID
+    gender: String
+    birthData: DateTime
+    originCountry: ID
+    weekendFree: String
+    evaluation: [ID]
+    interview: [ID]
+    state: String
+    adress: String
+    imageDocument: [String]
+    imageProfile: String
+    imageUniversity: [String]
+    coupleID: ID
+  ): UserStudent!
+  createUserStudent(
+    userId: ID!
+    association: ID
+    typeDocument: String
+    numberDocument: String
+    techResponsible: ID
+    studing: String
+    career: ID
+    university: ID
+    classSchedule: String
+    sourceExternal: ID
+    gender: String
+    birthData: DateTime
+    originCountry: ID
+    weekendFree: String
+    evaluation: [ID]
+    interview: [ID]
+    state: String
+    adress: String
+    imageDocument: [String]
+    imageProfile: String
+    imageUniversity: [String]
+    coupleID: ID
+  ): UserStudent!
   createUserGrandpa(userId: ID!): UserGrandpa!
   createAssociation(name: String): Association!
 }
