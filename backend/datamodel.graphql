@@ -50,6 +50,71 @@ type User {
   permissions: [Permissions] @scalarList(strategy: RELATION)
 }
 
+type UserStudent {
+  id: ID! @id
+  userId: User!
+  typeDocument: TypeDocument
+  numberDocument: String
+  association: Association
+  techResponsible: UserTech
+  studing: String
+  career: Career
+  university: University
+  classSchedule: String
+  sourceExternal: Source!
+  gender: Gender
+  birthData: DateTime
+  originCountry: Country
+  weekendFree: String
+  evaluation: [EvaluationsStudent]
+  interview: [Interviews]
+  state: StateProcess
+  adress: String
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
+  imageDocument: [ImagesDocument]
+  imageProfile: String
+  imageUniversity: [ImagesUniversity]
+  coupleID: Couple @relation(link: INLINE)
+  # permissions: [Permissions] @scalarList(strategy: RELATION)
+}
+
+type UserTech {
+  id: ID! @id
+  userId: User @unique
+  association: Association!
+  title: Title @default(value: PSICOLOGO)
+  titleOthers: String
+  phoneOffice: String
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
+}
+
+type UserGrandpa {
+  id: ID! @id
+  name: String!
+  lastName: String!
+  secondLastName: String
+  gender: [Gender] @scalarList(strategy: RELATION)
+  birthData: DateTime!
+  country: Country
+  adress: String
+  association: Association
+  province: Province
+  evaluation: [EvaluationsGrandpa]
+  interview: [Interviews]
+  house: House
+  techResponsible: UserTech
+  typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
+  numberDocument: String
+  imageProfile: String
+  contactPerson: String
+  phone: String
+  coupleID: Couple @relation(link: INLINE)
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
+}
+
 type House {
   id: ID! @id
   userId: User! @unique
@@ -70,35 +135,6 @@ type Characteristics {
   name: String!
 }
 
-type UserStudent {
-  id: ID! @id
-  userId: User!
-  typeDocument: TypeDocument
-  numberDocument: String
-  association: Association
-  techResponsible: UserTech
-  studing: String
-  career: Career
-  university: University
-  classSchedule: String
-  sourceExternal: Source
-  gender: Gender
-  birthData: DateTime
-  originCountry: Country
-  weekendFree: String
-  evaluation: [EvaluationsStudent]
-  interview: [Interviews]
-  state: StateProcess
-  adress: String
-  createDate: DateTime @createdAt
-  updateDate: DateTime @updatedAt
-  imageDocument: [ImagesDocument]
-  imageProfile: String
-  imageUniversity: [ImagesUniversity]
-  coupleID: Couple
-  # permissions: [Permissions] @scalarList(strategy: RELATION)
-}
-
 type ImagesDocument {
   id: ID! @id
   photo: String!
@@ -109,37 +145,6 @@ type ImagesUniversity {
   id: ID! @id
   photo: String!
   user: User
-}
-
-type UserTech {
-  id: ID! @id
-  userId: User @unique
-  association: Association!
-  title: Title @default(value: PSICOLOGO)
-  titleOthers: String
-  phoneOffice: String
-  createDate: DateTime @createdAt
-  updateDate: DateTime @updatedAt
-}
-
-type UserGrandpa {
-  id: ID! @id
-  userId: User!
-  association: Association!
-  evaluation: [EvaluationsGrandpa]
-  interview: [Interviews]
-  gender: [Gender] @scalarList(strategy: RELATION)
-  birthData: DateTime!
-  originCountry: Country
-  techResponsible: UserTech
-  typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
-  numberDocument: String
-  imageProfile: String
-  coupleID: Couple
-  createDate: DateTime @createdAt
-  updateDate: DateTime @updatedAt
-  adress: String
-  house: House!
 }
 
 type TypeUser {
@@ -167,8 +172,8 @@ type Province {
 
 type Couple {
   id: ID! @id
-  userIdStudent: User! @relation(name: "CupleUserStudent")
-  userIdGrandpa: User! @relation(name: "CupleUserGrandpa")
+  userIdStudent: User
+  userIdGrandpa: UserGrandpa
 }
 
 type Source {
