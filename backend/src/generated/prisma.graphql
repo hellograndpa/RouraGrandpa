@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Thu Mar 26 2020 19:05:04 GMT+0100 (Central European Standard Time)
+# timestamp: Fri Mar 27 2020 19:19:02 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociation {
   count: Int!
@@ -4885,8 +4885,8 @@ type UserGrandpa implements Node {
   name: String!
   lastName: String!
   secondLastName: String
-  gender: [Gender!]!
-  birthData: DateTime!
+  gender: Gender
+  birthData: DateTime
   country: Country
   adress: String
   association: Association
@@ -4895,7 +4895,7 @@ type UserGrandpa implements Node {
   interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
   house: House
   techResponsible: UserTech
-  typeDocument: [TypeDocument!]!
+  typeDocument: TypeDocument
   numberDocument: String
   imageProfile: String
   contactPerson: String
@@ -4915,23 +4915,19 @@ type UserGrandpaConnection {
   aggregate: AggregateUserGrandpa!
 }
 
-input UserGrandpaCreategenderInput {
-  set: [Gender!]
-}
-
 input UserGrandpaCreateInput {
   id: ID
   name: String!
   lastName: String!
   secondLastName: String
-  birthData: DateTime!
+  gender: Gender
+  birthData: DateTime
   adress: String
+  typeDocument: TypeDocument
   numberDocument: String
   imageProfile: String
   contactPerson: String
   phone: String
-  gender: UserGrandpaCreategenderInput
-  typeDocument: UserGrandpaCreatetypeDocumentInput
   country: CountryCreateOneInput
   association: AssociationCreateOneInput
   province: ProvinceCreateOneInput
@@ -4947,23 +4943,19 @@ input UserGrandpaCreateOneWithoutCoupleIDInput {
   connect: UserGrandpaWhereUniqueInput
 }
 
-input UserGrandpaCreatetypeDocumentInput {
-  set: [TypeDocument!]
-}
-
 input UserGrandpaCreateWithoutCoupleIDInput {
   id: ID
   name: String!
   lastName: String!
   secondLastName: String
-  birthData: DateTime!
+  gender: Gender
+  birthData: DateTime
   adress: String
+  typeDocument: TypeDocument
   numberDocument: String
   imageProfile: String
   contactPerson: String
   phone: String
-  gender: UserGrandpaCreategenderInput
-  typeDocument: UserGrandpaCreatetypeDocumentInput
   country: CountryCreateOneInput
   association: AssociationCreateOneInput
   province: ProvinceCreateOneInput
@@ -4991,10 +4983,14 @@ enum UserGrandpaOrderByInput {
   lastName_DESC
   secondLastName_ASC
   secondLastName_DESC
+  gender_ASC
+  gender_DESC
   birthData_ASC
   birthData_DESC
   adress_ASC
   adress_DESC
+  typeDocument_ASC
+  typeDocument_DESC
   numberDocument_ASC
   numberDocument_DESC
   imageProfile_ASC
@@ -5014,10 +5010,10 @@ type UserGrandpaPreviousValues {
   name: String!
   lastName: String!
   secondLastName: String
-  gender: [Gender!]!
-  birthData: DateTime!
+  gender: Gender
+  birthData: DateTime
   adress: String
-  typeDocument: [TypeDocument!]!
+  typeDocument: TypeDocument
   numberDocument: String
   imageProfile: String
   contactPerson: String
@@ -5065,22 +5061,18 @@ input UserGrandpaSubscriptionWhereInput {
   node: UserGrandpaWhereInput
 }
 
-input UserGrandpaUpdategenderInput {
-  set: [Gender!]
-}
-
 input UserGrandpaUpdateInput {
   name: String
   lastName: String
   secondLastName: String
+  gender: Gender
   birthData: DateTime
   adress: String
+  typeDocument: TypeDocument
   numberDocument: String
   imageProfile: String
   contactPerson: String
   phone: String
-  gender: UserGrandpaUpdategenderInput
-  typeDocument: UserGrandpaUpdatetypeDocumentInput
   country: CountryUpdateOneInput
   association: AssociationUpdateOneInput
   province: ProvinceUpdateOneInput
@@ -5095,14 +5087,14 @@ input UserGrandpaUpdateManyMutationInput {
   name: String
   lastName: String
   secondLastName: String
+  gender: Gender
   birthData: DateTime
   adress: String
+  typeDocument: TypeDocument
   numberDocument: String
   imageProfile: String
   contactPerson: String
   phone: String
-  gender: UserGrandpaUpdategenderInput
-  typeDocument: UserGrandpaUpdatetypeDocumentInput
 }
 
 input UserGrandpaUpdateOneWithoutCoupleIDInput {
@@ -5114,22 +5106,18 @@ input UserGrandpaUpdateOneWithoutCoupleIDInput {
   upsert: UserGrandpaUpsertWithoutCoupleIDInput
 }
 
-input UserGrandpaUpdatetypeDocumentInput {
-  set: [TypeDocument!]
-}
-
 input UserGrandpaUpdateWithoutCoupleIDDataInput {
   name: String
   lastName: String
   secondLastName: String
+  gender: Gender
   birthData: DateTime
   adress: String
+  typeDocument: TypeDocument
   numberDocument: String
   imageProfile: String
   contactPerson: String
   phone: String
-  gender: UserGrandpaUpdategenderInput
-  typeDocument: UserGrandpaUpdatetypeDocumentInput
   country: CountryUpdateOneInput
   association: AssociationUpdateOneInput
   province: ProvinceUpdateOneInput
@@ -5313,6 +5301,16 @@ input UserGrandpaWhereInput {
 
   """All values not ending with the given string."""
   secondLastName_not_ends_with: String
+  gender: Gender
+
+  """All values that are not equal to given value."""
+  gender_not: Gender
+
+  """All values that are contained in given list."""
+  gender_in: [Gender!]
+
+  """All values that are not contained in given list."""
+  gender_not_in: [Gender!]
   birthData: DateTime
 
   """All values that are not equal to given value."""
@@ -5375,6 +5373,16 @@ input UserGrandpaWhereInput {
 
   """All values not ending with the given string."""
   adress_not_ends_with: String
+  typeDocument: TypeDocument
+
+  """All values that are not equal to given value."""
+  typeDocument_not: TypeDocument
+
+  """All values that are contained in given list."""
+  typeDocument_in: [TypeDocument!]
+
+  """All values that are not contained in given list."""
+  typeDocument_not_in: [TypeDocument!]
   numberDocument: String
 
   """All values that are not equal to given value."""

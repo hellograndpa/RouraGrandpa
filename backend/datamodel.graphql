@@ -95,8 +95,8 @@ type UserGrandpa {
   name: String!
   lastName: String!
   secondLastName: String
-  gender: [Gender] @scalarList(strategy: RELATION)
-  birthData: DateTime!
+  gender: Gender
+  birthData: DateTime
   country: Country
   adress: String
   association: Association
@@ -105,7 +105,7 @@ type UserGrandpa {
   interview: [Interviews]
   house: House
   techResponsible: UserTech
-  typeDocument: [TypeDocument] @scalarList(strategy: RELATION)
+  typeDocument: TypeDocument
   numberDocument: String
   imageProfile: String
   contactPerson: String
