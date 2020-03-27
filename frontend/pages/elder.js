@@ -9,4 +9,4 @@ const Elder = props => (
   </>
 );
 
-export default Elder;
+export default ElderPages;

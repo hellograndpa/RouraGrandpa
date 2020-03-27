@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Wed Mar 18 2020 11:24:07 GMT+0100 (Central European Standard Time)
+# timestamp: Thu Mar 26 2020 19:05:04 GMT+0100 (Central European Standard Time)
 
 type AggregateAssociation {
   count: Int!
@@ -1466,8 +1466,8 @@ input CountryWhereUniqueInput {
 
 type Couple implements Node {
   id: ID!
-  userIdStudent: User!
-  userIdGrandpa: User!
+  userIdStudent: User
+  userIdGrandpa: UserGrandpa
 }
 
 """A connection to a list of items."""
@@ -1482,13 +1482,23 @@ type CoupleConnection {
 
 input CoupleCreateInput {
   id: ID
-  userIdStudent: UserCreateOneInput!
-  userIdGrandpa: UserCreateOneInput!
+  userIdStudent: UserCreateOneInput
+  userIdGrandpa: UserGrandpaCreateOneWithoutCoupleIDInput
 }
 
 input CoupleCreateOneInput {
   create: CoupleCreateInput
   connect: CoupleWhereUniqueInput
+}
+
+input CoupleCreateOneWithoutUserIdGrandpaInput {
+  create: CoupleCreateWithoutUserIdGrandpaInput
+  connect: CoupleWhereUniqueInput
+}
+
+input CoupleCreateWithoutUserIdGrandpaInput {
+  id: ID
+  userIdStudent: UserCreateOneInput
 }
 
 """An edge in a connection."""
@@ -1549,13 +1559,13 @@ input CoupleSubscriptionWhereInput {
 }
 
 input CoupleUpdateDataInput {
-  userIdStudent: UserUpdateOneRequiredInput
-  userIdGrandpa: UserUpdateOneRequiredInput
+  userIdStudent: UserUpdateOneInput
+  userIdGrandpa: UserGrandpaUpdateOneWithoutCoupleIDInput
 }
 
 input CoupleUpdateInput {
-  userIdStudent: UserUpdateOneRequiredInput
-  userIdGrandpa: UserUpdateOneRequiredInput
+  userIdStudent: UserUpdateOneInput
+  userIdGrandpa: UserGrandpaUpdateOneWithoutCoupleIDInput
 }
 
 input CoupleUpdateOneInput {
@@ -1567,9 +1577,27 @@ input CoupleUpdateOneInput {
   upsert: CoupleUpsertNestedInput
 }
 
+input CoupleUpdateOneWithoutUserIdGrandpaInput {
+  create: CoupleCreateWithoutUserIdGrandpaInput
+  connect: CoupleWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: CoupleUpdateWithoutUserIdGrandpaDataInput
+  upsert: CoupleUpsertWithoutUserIdGrandpaInput
+}
+
+input CoupleUpdateWithoutUserIdGrandpaDataInput {
+  userIdStudent: UserUpdateOneInput
+}
+
 input CoupleUpsertNestedInput {
   update: CoupleUpdateDataInput!
   create: CoupleCreateInput!
+}
+
+input CoupleUpsertWithoutUserIdGrandpaInput {
+  update: CoupleUpdateWithoutUserIdGrandpaDataInput!
+  create: CoupleCreateWithoutUserIdGrandpaInput!
 }
 
 input CoupleWhereInput {
@@ -1622,7 +1650,7 @@ input CoupleWhereInput {
   """All values not ending with the given string."""
   id_not_ends_with: ID
   userIdStudent: UserWhereInput
-  userIdGrandpa: UserWhereInput
+  userIdGrandpa: UserGrandpaWhereInput
 }
 
 input CoupleWhereUniqueInput {
@@ -2424,9 +2452,11 @@ input HouseUpdateManyMutationInput {
   bathrooms: Int
 }
 
-input HouseUpdateOneRequiredInput {
+input HouseUpdateOneInput {
   create: HouseCreateInput
   connect: HouseWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
   update: HouseUpdateDataInput
   upsert: HouseUpsertNestedInput
 }
@@ -3692,17 +3722,17 @@ type Mutation {
   createUserGrandpa(data: UserGrandpaCreateInput!): UserGrandpa!
   createSource(data: SourceCreateInput!): Source!
   createImagesDocument(data: ImagesDocumentCreateInput!): ImagesDocument!
+  createUser(data: UserCreateInput!): User!
   createHouse(data: HouseCreateInput!): House!
   createEvaluationsGrandpa(data: EvaluationsGrandpaCreateInput!): EvaluationsGrandpa!
+  createCouple(data: CoupleCreateInput!): Couple!
   createUniversity(data: UniversityCreateInput!): University!
   createTypeUser(data: TypeUserCreateInput!): TypeUser!
   createProvince(data: ProvinceCreateInput!): Province!
-  createCouple(data: CoupleCreateInput!): Couple!
   createCountry(data: CountryCreateInput!): Country!
   createUserTech(data: UserTechCreateInput!): UserTech!
   createEvaluationsStudent(data: EvaluationsStudentCreateInput!): EvaluationsStudent!
   createInterviews(data: InterviewsCreateInput!): Interviews!
-  createUser(data: UserCreateInput!): User!
   createImagesUniversity(data: ImagesUniversityCreateInput!): ImagesUniversity!
   createCharacteristics(data: CharacteristicsCreateInput!): Characteristics!
   createCareer(data: CareerCreateInput!): Career!
@@ -3711,17 +3741,17 @@ type Mutation {
   updateUserGrandpa(data: UserGrandpaUpdateInput!, where: UserGrandpaWhereUniqueInput!): UserGrandpa
   updateSource(data: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source
   updateImagesDocument(data: ImagesDocumentUpdateInput!, where: ImagesDocumentWhereUniqueInput!): ImagesDocument
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateHouse(data: HouseUpdateInput!, where: HouseWhereUniqueInput!): House
   updateEvaluationsGrandpa(data: EvaluationsGrandpaUpdateInput!, where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
+  updateCouple(data: CoupleUpdateInput!, where: CoupleWhereUniqueInput!): Couple
   updateUniversity(data: UniversityUpdateInput!, where: UniversityWhereUniqueInput!): University
   updateTypeUser(data: TypeUserUpdateInput!, where: TypeUserWhereUniqueInput!): TypeUser
   updateProvince(data: ProvinceUpdateInput!, where: ProvinceWhereUniqueInput!): Province
-  updateCouple(data: CoupleUpdateInput!, where: CoupleWhereUniqueInput!): Couple
   updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
   updateUserTech(data: UserTechUpdateInput!, where: UserTechWhereUniqueInput!): UserTech
   updateEvaluationsStudent(data: EvaluationsStudentUpdateInput!, where: EvaluationsStudentWhereUniqueInput!): EvaluationsStudent
   updateInterviews(data: InterviewsUpdateInput!, where: InterviewsWhereUniqueInput!): Interviews
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateImagesUniversity(data: ImagesUniversityUpdateInput!, where: ImagesUniversityWhereUniqueInput!): ImagesUniversity
   updateCharacteristics(data: CharacteristicsUpdateInput!, where: CharacteristicsWhereUniqueInput!): Characteristics
   updateCareer(data: CareerUpdateInput!, where: CareerWhereUniqueInput!): Career
@@ -3730,17 +3760,17 @@ type Mutation {
   deleteUserGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
   deleteSource(where: SourceWhereUniqueInput!): Source
   deleteImagesDocument(where: ImagesDocumentWhereUniqueInput!): ImagesDocument
+  deleteUser(where: UserWhereUniqueInput!): User
   deleteHouse(where: HouseWhereUniqueInput!): House
   deleteEvaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
+  deleteCouple(where: CoupleWhereUniqueInput!): Couple
   deleteUniversity(where: UniversityWhereUniqueInput!): University
   deleteTypeUser(where: TypeUserWhereUniqueInput!): TypeUser
   deleteProvince(where: ProvinceWhereUniqueInput!): Province
-  deleteCouple(where: CoupleWhereUniqueInput!): Couple
   deleteCountry(where: CountryWhereUniqueInput!): Country
   deleteUserTech(where: UserTechWhereUniqueInput!): UserTech
   deleteEvaluationsStudent(where: EvaluationsStudentWhereUniqueInput!): EvaluationsStudent
   deleteInterviews(where: InterviewsWhereUniqueInput!): Interviews
-  deleteUser(where: UserWhereUniqueInput!): User
   deleteImagesUniversity(where: ImagesUniversityWhereUniqueInput!): ImagesUniversity
   deleteCharacteristics(where: CharacteristicsWhereUniqueInput!): Characteristics
   deleteCareer(where: CareerWhereUniqueInput!): Career
@@ -3749,17 +3779,17 @@ type Mutation {
   upsertUserGrandpa(where: UserGrandpaWhereUniqueInput!, create: UserGrandpaCreateInput!, update: UserGrandpaUpdateInput!): UserGrandpa!
   upsertSource(where: SourceWhereUniqueInput!, create: SourceCreateInput!, update: SourceUpdateInput!): Source!
   upsertImagesDocument(where: ImagesDocumentWhereUniqueInput!, create: ImagesDocumentCreateInput!, update: ImagesDocumentUpdateInput!): ImagesDocument!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertHouse(where: HouseWhereUniqueInput!, create: HouseCreateInput!, update: HouseUpdateInput!): House!
   upsertEvaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!, create: EvaluationsGrandpaCreateInput!, update: EvaluationsGrandpaUpdateInput!): EvaluationsGrandpa!
+  upsertCouple(where: CoupleWhereUniqueInput!, create: CoupleCreateInput!, update: CoupleUpdateInput!): Couple!
   upsertUniversity(where: UniversityWhereUniqueInput!, create: UniversityCreateInput!, update: UniversityUpdateInput!): University!
   upsertTypeUser(where: TypeUserWhereUniqueInput!, create: TypeUserCreateInput!, update: TypeUserUpdateInput!): TypeUser!
   upsertProvince(where: ProvinceWhereUniqueInput!, create: ProvinceCreateInput!, update: ProvinceUpdateInput!): Province!
-  upsertCouple(where: CoupleWhereUniqueInput!, create: CoupleCreateInput!, update: CoupleUpdateInput!): Couple!
   upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
   upsertUserTech(where: UserTechWhereUniqueInput!, create: UserTechCreateInput!, update: UserTechUpdateInput!): UserTech!
   upsertEvaluationsStudent(where: EvaluationsStudentWhereUniqueInput!, create: EvaluationsStudentCreateInput!, update: EvaluationsStudentUpdateInput!): EvaluationsStudent!
   upsertInterviews(where: InterviewsWhereUniqueInput!, create: InterviewsCreateInput!, update: InterviewsUpdateInput!): Interviews!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertImagesUniversity(where: ImagesUniversityWhereUniqueInput!, create: ImagesUniversityCreateInput!, update: ImagesUniversityUpdateInput!): ImagesUniversity!
   upsertCharacteristics(where: CharacteristicsWhereUniqueInput!, create: CharacteristicsCreateInput!, update: CharacteristicsUpdateInput!): Characteristics!
   upsertCareer(where: CareerWhereUniqueInput!, create: CareerCreateInput!, update: CareerUpdateInput!): Career!
@@ -3768,6 +3798,7 @@ type Mutation {
   updateManyUserGrandpas(data: UserGrandpaUpdateManyMutationInput!, where: UserGrandpaWhereInput): BatchPayload!
   updateManySources(data: SourceUpdateManyMutationInput!, where: SourceWhereInput): BatchPayload!
   updateManyImagesDocuments(data: ImagesDocumentUpdateManyMutationInput!, where: ImagesDocumentWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyHouses(data: HouseUpdateManyMutationInput!, where: HouseWhereInput): BatchPayload!
   updateManyEvaluationsGrandpas(data: EvaluationsGrandpaUpdateManyMutationInput!, where: EvaluationsGrandpaWhereInput): BatchPayload!
   updateManyUniversities(data: UniversityUpdateManyMutationInput!, where: UniversityWhereInput): BatchPayload!
@@ -3777,7 +3808,6 @@ type Mutation {
   updateManyUserTeches(data: UserTechUpdateManyMutationInput!, where: UserTechWhereInput): BatchPayload!
   updateManyEvaluationsStudents(data: EvaluationsStudentUpdateManyMutationInput!, where: EvaluationsStudentWhereInput): BatchPayload!
   updateManyInterviewses(data: InterviewsUpdateManyMutationInput!, where: InterviewsWhereInput): BatchPayload!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyImagesUniversities(data: ImagesUniversityUpdateManyMutationInput!, where: ImagesUniversityWhereInput): BatchPayload!
   updateManyCharacteristicses(data: CharacteristicsUpdateManyMutationInput!, where: CharacteristicsWhereInput): BatchPayload!
   updateManyCareers(data: CareerUpdateManyMutationInput!, where: CareerWhereInput): BatchPayload!
@@ -3786,17 +3816,17 @@ type Mutation {
   deleteManyUserGrandpas(where: UserGrandpaWhereInput): BatchPayload!
   deleteManySources(where: SourceWhereInput): BatchPayload!
   deleteManyImagesDocuments(where: ImagesDocumentWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyHouses(where: HouseWhereInput): BatchPayload!
   deleteManyEvaluationsGrandpas(where: EvaluationsGrandpaWhereInput): BatchPayload!
+  deleteManyCouples(where: CoupleWhereInput): BatchPayload!
   deleteManyUniversities(where: UniversityWhereInput): BatchPayload!
   deleteManyTypeUsers(where: TypeUserWhereInput): BatchPayload!
   deleteManyProvinces(where: ProvinceWhereInput): BatchPayload!
-  deleteManyCouples(where: CoupleWhereInput): BatchPayload!
   deleteManyCountries(where: CountryWhereInput): BatchPayload!
   deleteManyUserTeches(where: UserTechWhereInput): BatchPayload!
   deleteManyEvaluationsStudents(where: EvaluationsStudentWhereInput): BatchPayload!
   deleteManyInterviewses(where: InterviewsWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyImagesUniversities(where: ImagesUniversityWhereInput): BatchPayload!
   deleteManyCharacteristicses(where: CharacteristicsWhereInput): BatchPayload!
   deleteManyCareers(where: CareerWhereInput): BatchPayload!
@@ -4062,17 +4092,17 @@ type Query {
   userGrandpas(where: UserGrandpaWhereInput, orderBy: UserGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserGrandpa]!
   sources(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Source]!
   imagesDocuments(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesDocument]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   houses(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [House]!
   evaluationsGrandpas(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa]!
+  couples(where: CoupleWhereInput, orderBy: CoupleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Couple]!
   universities(where: UniversityWhereInput, orderBy: UniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [University]!
   typeUsers(where: TypeUserWhereInput, orderBy: TypeUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TypeUser]!
   provinces(where: ProvinceWhereInput, orderBy: ProvinceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Province]!
-  couples(where: CoupleWhereInput, orderBy: CoupleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Couple]!
   countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
   userTeches(where: UserTechWhereInput, orderBy: UserTechOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserTech]!
   evaluationsStudents(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsStudent]!
   interviewses(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews]!
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   imagesUniversities(where: ImagesUniversityWhereInput, orderBy: ImagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesUniversity]!
   characteristicses(where: CharacteristicsWhereInput, orderBy: CharacteristicsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Characteristics]!
   careers(where: CareerWhereInput, orderBy: CareerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Career]!
@@ -4081,17 +4111,17 @@ type Query {
   userGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
   source(where: SourceWhereUniqueInput!): Source
   imagesDocument(where: ImagesDocumentWhereUniqueInput!): ImagesDocument
+  user(where: UserWhereUniqueInput!): User
   house(where: HouseWhereUniqueInput!): House
   evaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
+  couple(where: CoupleWhereUniqueInput!): Couple
   university(where: UniversityWhereUniqueInput!): University
   typeUser(where: TypeUserWhereUniqueInput!): TypeUser
   province(where: ProvinceWhereUniqueInput!): Province
-  couple(where: CoupleWhereUniqueInput!): Couple
   country(where: CountryWhereUniqueInput!): Country
   userTech(where: UserTechWhereUniqueInput!): UserTech
   evaluationsStudent(where: EvaluationsStudentWhereUniqueInput!): EvaluationsStudent
   interviews(where: InterviewsWhereUniqueInput!): Interviews
-  user(where: UserWhereUniqueInput!): User
   imagesUniversity(where: ImagesUniversityWhereUniqueInput!): ImagesUniversity
   characteristics(where: CharacteristicsWhereUniqueInput!): Characteristics
   career(where: CareerWhereUniqueInput!): Career
@@ -4100,17 +4130,17 @@ type Query {
   userGrandpasConnection(where: UserGrandpaWhereInput, orderBy: UserGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserGrandpaConnection!
   sourcesConnection(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SourceConnection!
   imagesDocumentsConnection(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ImagesDocumentConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   housesConnection(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HouseConnection!
   evaluationsGrandpasConnection(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EvaluationsGrandpaConnection!
+  couplesConnection(where: CoupleWhereInput, orderBy: CoupleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CoupleConnection!
   universitiesConnection(where: UniversityWhereInput, orderBy: UniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UniversityConnection!
   typeUsersConnection(where: TypeUserWhereInput, orderBy: TypeUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TypeUserConnection!
   provincesConnection(where: ProvinceWhereInput, orderBy: ProvinceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProvinceConnection!
-  couplesConnection(where: CoupleWhereInput, orderBy: CoupleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CoupleConnection!
   countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
   userTechesConnection(where: UserTechWhereInput, orderBy: UserTechOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserTechConnection!
   evaluationsStudentsConnection(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EvaluationsStudentConnection!
   interviewsesConnection(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InterviewsConnection!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   imagesUniversitiesConnection(where: ImagesUniversityWhereInput, orderBy: ImagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ImagesUniversityConnection!
   characteristicsesConnection(where: CharacteristicsWhereInput, orderBy: CharacteristicsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CharacteristicsConnection!
   careersConnection(where: CareerWhereInput, orderBy: CareerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CareerConnection!
@@ -4220,11 +4250,9 @@ input SourceUpdateManyMutationInput {
   sourceName: String
 }
 
-input SourceUpdateOneInput {
+input SourceUpdateOneRequiredInput {
   create: SourceCreateInput
   connect: SourceWhereUniqueInput
-  disconnect: Boolean
-  delete: Boolean
   update: SourceUpdateDataInput
   upsert: SourceUpsertNestedInput
 }
@@ -4341,17 +4369,17 @@ type Subscription {
   userGrandpa(where: UserGrandpaSubscriptionWhereInput): UserGrandpaSubscriptionPayload
   source(where: SourceSubscriptionWhereInput): SourceSubscriptionPayload
   imagesDocument(where: ImagesDocumentSubscriptionWhereInput): ImagesDocumentSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   house(where: HouseSubscriptionWhereInput): HouseSubscriptionPayload
   evaluationsGrandpa(where: EvaluationsGrandpaSubscriptionWhereInput): EvaluationsGrandpaSubscriptionPayload
+  couple(where: CoupleSubscriptionWhereInput): CoupleSubscriptionPayload
   university(where: UniversitySubscriptionWhereInput): UniversitySubscriptionPayload
   typeUser(where: TypeUserSubscriptionWhereInput): TypeUserSubscriptionPayload
   province(where: ProvinceSubscriptionWhereInput): ProvinceSubscriptionPayload
-  couple(where: CoupleSubscriptionWhereInput): CoupleSubscriptionPayload
   country(where: CountrySubscriptionWhereInput): CountrySubscriptionPayload
   userTech(where: UserTechSubscriptionWhereInput): UserTechSubscriptionPayload
   evaluationsStudent(where: EvaluationsStudentSubscriptionWhereInput): EvaluationsStudentSubscriptionPayload
   interviews(where: InterviewsSubscriptionWhereInput): InterviewsSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   imagesUniversity(where: ImagesUniversitySubscriptionWhereInput): ImagesUniversitySubscriptionPayload
   characteristics(where: CharacteristicsSubscriptionWhereInput): CharacteristicsSubscriptionPayload
   career(where: CareerSubscriptionWhereInput): CareerSubscriptionPayload
@@ -4854,22 +4882,27 @@ type UserEdge {
 
 type UserGrandpa implements Node {
   id: ID!
-  userId: User!
-  association: Association!
-  evaluation(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa!]
-  interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
+  name: String!
+  lastName: String!
+  secondLastName: String
   gender: [Gender!]!
   birthData: DateTime!
-  originCountry: Country
+  country: Country
+  adress: String
+  association: Association
+  province: Province
+  evaluation(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa!]
+  interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
+  house: House
   techResponsible: UserTech
   typeDocument: [TypeDocument!]!
   numberDocument: String
   imageProfile: String
+  contactPerson: String
+  phone: String
   coupleID: Couple
   createDate: DateTime
   updateDate: DateTime
-  adress: String
-  house: House!
 }
 
 """A connection to a list of items."""
@@ -4888,24 +4921,56 @@ input UserGrandpaCreategenderInput {
 
 input UserGrandpaCreateInput {
   id: ID
+  name: String!
+  lastName: String!
+  secondLastName: String
   birthData: DateTime!
+  adress: String
   numberDocument: String
   imageProfile: String
-  adress: String
+  contactPerson: String
+  phone: String
   gender: UserGrandpaCreategenderInput
   typeDocument: UserGrandpaCreatetypeDocumentInput
-  userId: UserCreateOneInput!
-  association: AssociationCreateOneInput!
+  country: CountryCreateOneInput
+  association: AssociationCreateOneInput
+  province: ProvinceCreateOneInput
   evaluation: EvaluationsGrandpaCreateManyInput
   interview: InterviewsCreateManyInput
-  originCountry: CountryCreateOneInput
+  house: HouseCreateOneInput
   techResponsible: UserTechCreateOneInput
-  coupleID: CoupleCreateOneInput
-  house: HouseCreateOneInput!
+  coupleID: CoupleCreateOneWithoutUserIdGrandpaInput
+}
+
+input UserGrandpaCreateOneWithoutCoupleIDInput {
+  create: UserGrandpaCreateWithoutCoupleIDInput
+  connect: UserGrandpaWhereUniqueInput
 }
 
 input UserGrandpaCreatetypeDocumentInput {
   set: [TypeDocument!]
+}
+
+input UserGrandpaCreateWithoutCoupleIDInput {
+  id: ID
+  name: String!
+  lastName: String!
+  secondLastName: String
+  birthData: DateTime!
+  adress: String
+  numberDocument: String
+  imageProfile: String
+  contactPerson: String
+  phone: String
+  gender: UserGrandpaCreategenderInput
+  typeDocument: UserGrandpaCreatetypeDocumentInput
+  country: CountryCreateOneInput
+  association: AssociationCreateOneInput
+  province: ProvinceCreateOneInput
+  evaluation: EvaluationsGrandpaCreateManyInput
+  interview: InterviewsCreateManyInput
+  house: HouseCreateOneInput
+  techResponsible: UserTechCreateOneInput
 }
 
 """An edge in a connection."""
@@ -4920,30 +4985,45 @@ type UserGrandpaEdge {
 enum UserGrandpaOrderByInput {
   id_ASC
   id_DESC
+  name_ASC
+  name_DESC
+  lastName_ASC
+  lastName_DESC
+  secondLastName_ASC
+  secondLastName_DESC
   birthData_ASC
   birthData_DESC
+  adress_ASC
+  adress_DESC
   numberDocument_ASC
   numberDocument_DESC
   imageProfile_ASC
   imageProfile_DESC
+  contactPerson_ASC
+  contactPerson_DESC
+  phone_ASC
+  phone_DESC
   createDate_ASC
   createDate_DESC
   updateDate_ASC
   updateDate_DESC
-  adress_ASC
-  adress_DESC
 }
 
 type UserGrandpaPreviousValues {
   id: ID!
+  name: String!
+  lastName: String!
+  secondLastName: String
   gender: [Gender!]!
   birthData: DateTime!
+  adress: String
   typeDocument: [TypeDocument!]!
   numberDocument: String
   imageProfile: String
+  contactPerson: String
+  phone: String
   createDate: DateTime
   updateDate: DateTime
-  adress: String
 }
 
 type UserGrandpaSubscriptionPayload {
@@ -4990,33 +5070,78 @@ input UserGrandpaUpdategenderInput {
 }
 
 input UserGrandpaUpdateInput {
+  name: String
+  lastName: String
+  secondLastName: String
   birthData: DateTime
+  adress: String
   numberDocument: String
   imageProfile: String
-  adress: String
+  contactPerson: String
+  phone: String
   gender: UserGrandpaUpdategenderInput
   typeDocument: UserGrandpaUpdatetypeDocumentInput
-  userId: UserUpdateOneRequiredInput
-  association: AssociationUpdateOneRequiredInput
+  country: CountryUpdateOneInput
+  association: AssociationUpdateOneInput
+  province: ProvinceUpdateOneInput
   evaluation: EvaluationsGrandpaUpdateManyInput
   interview: InterviewsUpdateManyInput
-  originCountry: CountryUpdateOneInput
+  house: HouseUpdateOneInput
   techResponsible: UserTechUpdateOneInput
-  coupleID: CoupleUpdateOneInput
-  house: HouseUpdateOneRequiredInput
+  coupleID: CoupleUpdateOneWithoutUserIdGrandpaInput
 }
 
 input UserGrandpaUpdateManyMutationInput {
+  name: String
+  lastName: String
+  secondLastName: String
   birthData: DateTime
+  adress: String
   numberDocument: String
   imageProfile: String
-  adress: String
+  contactPerson: String
+  phone: String
   gender: UserGrandpaUpdategenderInput
   typeDocument: UserGrandpaUpdatetypeDocumentInput
+}
+
+input UserGrandpaUpdateOneWithoutCoupleIDInput {
+  create: UserGrandpaCreateWithoutCoupleIDInput
+  connect: UserGrandpaWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserGrandpaUpdateWithoutCoupleIDDataInput
+  upsert: UserGrandpaUpsertWithoutCoupleIDInput
 }
 
 input UserGrandpaUpdatetypeDocumentInput {
   set: [TypeDocument!]
+}
+
+input UserGrandpaUpdateWithoutCoupleIDDataInput {
+  name: String
+  lastName: String
+  secondLastName: String
+  birthData: DateTime
+  adress: String
+  numberDocument: String
+  imageProfile: String
+  contactPerson: String
+  phone: String
+  gender: UserGrandpaUpdategenderInput
+  typeDocument: UserGrandpaUpdatetypeDocumentInput
+  country: CountryUpdateOneInput
+  association: AssociationUpdateOneInput
+  province: ProvinceUpdateOneInput
+  evaluation: EvaluationsGrandpaUpdateManyInput
+  interview: InterviewsUpdateManyInput
+  house: HouseUpdateOneInput
+  techResponsible: UserTechUpdateOneInput
+}
+
+input UserGrandpaUpsertWithoutCoupleIDInput {
+  update: UserGrandpaUpdateWithoutCoupleIDDataInput!
+  create: UserGrandpaCreateWithoutCoupleIDInput!
 }
 
 input UserGrandpaWhereInput {
@@ -5068,6 +5193,126 @@ input UserGrandpaWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  lastName: String
+
+  """All values that are not equal to given value."""
+  lastName_not: String
+
+  """All values that are contained in given list."""
+  lastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastName_not_in: [String!]
+
+  """All values less than the given value."""
+  lastName_lt: String
+
+  """All values less than or equal the given value."""
+  lastName_lte: String
+
+  """All values greater than the given value."""
+  lastName_gt: String
+
+  """All values greater than or equal the given value."""
+  lastName_gte: String
+
+  """All values containing the given string."""
+  lastName_contains: String
+
+  """All values not containing the given string."""
+  lastName_not_contains: String
+
+  """All values starting with the given string."""
+  lastName_starts_with: String
+
+  """All values not starting with the given string."""
+  lastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastName_ends_with: String
+
+  """All values not ending with the given string."""
+  lastName_not_ends_with: String
+  secondLastName: String
+
+  """All values that are not equal to given value."""
+  secondLastName_not: String
+
+  """All values that are contained in given list."""
+  secondLastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  secondLastName_not_in: [String!]
+
+  """All values less than the given value."""
+  secondLastName_lt: String
+
+  """All values less than or equal the given value."""
+  secondLastName_lte: String
+
+  """All values greater than the given value."""
+  secondLastName_gt: String
+
+  """All values greater than or equal the given value."""
+  secondLastName_gte: String
+
+  """All values containing the given string."""
+  secondLastName_contains: String
+
+  """All values not containing the given string."""
+  secondLastName_not_contains: String
+
+  """All values starting with the given string."""
+  secondLastName_starts_with: String
+
+  """All values not starting with the given string."""
+  secondLastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  secondLastName_ends_with: String
+
+  """All values not ending with the given string."""
+  secondLastName_not_ends_with: String
   birthData: DateTime
 
   """All values that are not equal to given value."""
@@ -5090,6 +5335,46 @@ input UserGrandpaWhereInput {
 
   """All values greater than or equal the given value."""
   birthData_gte: DateTime
+  adress: String
+
+  """All values that are not equal to given value."""
+  adress_not: String
+
+  """All values that are contained in given list."""
+  adress_in: [String!]
+
+  """All values that are not contained in given list."""
+  adress_not_in: [String!]
+
+  """All values less than the given value."""
+  adress_lt: String
+
+  """All values less than or equal the given value."""
+  adress_lte: String
+
+  """All values greater than the given value."""
+  adress_gt: String
+
+  """All values greater than or equal the given value."""
+  adress_gte: String
+
+  """All values containing the given string."""
+  adress_contains: String
+
+  """All values not containing the given string."""
+  adress_not_contains: String
+
+  """All values starting with the given string."""
+  adress_starts_with: String
+
+  """All values not starting with the given string."""
+  adress_not_starts_with: String
+
+  """All values ending with the given string."""
+  adress_ends_with: String
+
+  """All values not ending with the given string."""
+  adress_not_ends_with: String
   numberDocument: String
 
   """All values that are not equal to given value."""
@@ -5170,6 +5455,86 @@ input UserGrandpaWhereInput {
 
   """All values not ending with the given string."""
   imageProfile_not_ends_with: String
+  contactPerson: String
+
+  """All values that are not equal to given value."""
+  contactPerson_not: String
+
+  """All values that are contained in given list."""
+  contactPerson_in: [String!]
+
+  """All values that are not contained in given list."""
+  contactPerson_not_in: [String!]
+
+  """All values less than the given value."""
+  contactPerson_lt: String
+
+  """All values less than or equal the given value."""
+  contactPerson_lte: String
+
+  """All values greater than the given value."""
+  contactPerson_gt: String
+
+  """All values greater than or equal the given value."""
+  contactPerson_gte: String
+
+  """All values containing the given string."""
+  contactPerson_contains: String
+
+  """All values not containing the given string."""
+  contactPerson_not_contains: String
+
+  """All values starting with the given string."""
+  contactPerson_starts_with: String
+
+  """All values not starting with the given string."""
+  contactPerson_not_starts_with: String
+
+  """All values ending with the given string."""
+  contactPerson_ends_with: String
+
+  """All values not ending with the given string."""
+  contactPerson_not_ends_with: String
+  phone: String
+
+  """All values that are not equal to given value."""
+  phone_not: String
+
+  """All values that are contained in given list."""
+  phone_in: [String!]
+
+  """All values that are not contained in given list."""
+  phone_not_in: [String!]
+
+  """All values less than the given value."""
+  phone_lt: String
+
+  """All values less than or equal the given value."""
+  phone_lte: String
+
+  """All values greater than the given value."""
+  phone_gt: String
+
+  """All values greater than or equal the given value."""
+  phone_gte: String
+
+  """All values containing the given string."""
+  phone_contains: String
+
+  """All values not containing the given string."""
+  phone_not_contains: String
+
+  """All values starting with the given string."""
+  phone_starts_with: String
+
+  """All values not starting with the given string."""
+  phone_not_starts_with: String
+
+  """All values ending with the given string."""
+  phone_ends_with: String
+
+  """All values not ending with the given string."""
+  phone_not_ends_with: String
   createDate: DateTime
 
   """All values that are not equal to given value."""
@@ -5214,58 +5579,18 @@ input UserGrandpaWhereInput {
 
   """All values greater than or equal the given value."""
   updateDate_gte: DateTime
-  adress: String
-
-  """All values that are not equal to given value."""
-  adress_not: String
-
-  """All values that are contained in given list."""
-  adress_in: [String!]
-
-  """All values that are not contained in given list."""
-  adress_not_in: [String!]
-
-  """All values less than the given value."""
-  adress_lt: String
-
-  """All values less than or equal the given value."""
-  adress_lte: String
-
-  """All values greater than the given value."""
-  adress_gt: String
-
-  """All values greater than or equal the given value."""
-  adress_gte: String
-
-  """All values containing the given string."""
-  adress_contains: String
-
-  """All values not containing the given string."""
-  adress_not_contains: String
-
-  """All values starting with the given string."""
-  adress_starts_with: String
-
-  """All values not starting with the given string."""
-  adress_not_starts_with: String
-
-  """All values ending with the given string."""
-  adress_ends_with: String
-
-  """All values not ending with the given string."""
-  adress_not_ends_with: String
-  userId: UserWhereInput
+  country: CountryWhereInput
   association: AssociationWhereInput
+  province: ProvinceWhereInput
   evaluation_every: EvaluationsGrandpaWhereInput
   evaluation_some: EvaluationsGrandpaWhereInput
   evaluation_none: EvaluationsGrandpaWhereInput
   interview_every: InterviewsWhereInput
   interview_some: InterviewsWhereInput
   interview_none: InterviewsWhereInput
-  originCountry: CountryWhereInput
+  house: HouseWhereInput
   techResponsible: UserTechWhereInput
   coupleID: CoupleWhereInput
-  house: HouseWhereInput
 }
 
 input UserGrandpaWhereUniqueInput {
@@ -5320,7 +5645,7 @@ type UserStudent implements Node {
   career: Career
   university: University
   classSchedule: String
-  sourceExternal: Source
+  sourceExternal: Source!
   gender: Gender
   birthData: DateTime
   originCountry: Country
@@ -5364,7 +5689,7 @@ input UserStudentCreateInput {
   techResponsible: UserTechCreateOneInput
   career: CareerCreateOneInput
   university: UniversityCreateOneInput
-  sourceExternal: SourceCreateOneInput
+  sourceExternal: SourceCreateOneInput!
   originCountry: CountryCreateOneInput
   evaluation: EvaluationsStudentCreateManyInput
   interview: InterviewsCreateManyInput
@@ -5482,7 +5807,7 @@ input UserStudentUpdateInput {
   techResponsible: UserTechUpdateOneInput
   career: CareerUpdateOneInput
   university: UniversityUpdateOneInput
-  sourceExternal: SourceUpdateOneInput
+  sourceExternal: SourceUpdateOneRequiredInput
   originCountry: CountryUpdateOneInput
   evaluation: EvaluationsStudentUpdateManyInput
   interview: InterviewsUpdateManyInput

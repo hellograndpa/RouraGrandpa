@@ -97,6 +97,13 @@ type Query {
     first: Int
   ): [User!]
   usersConnection(where: UserWhereInput): UserConnection!
+  userGrandpas(
+    where: UserGrandpaWhereInput
+    orderBy: UserGrandpaOrderByInput
+    skip: Int
+    first: Int
+  ): [UserGrandpa!]
+  userGrandpasConnection(where: UserGrandpaWhereInput): UserGrandpaConnection!
   me: User
   user(where: UserWhereUniqueInput!): User
   userTeches(where: UserWhereInput): [UserTech]!

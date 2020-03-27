@@ -7,6 +7,8 @@ const Query = {
   associations: forwardTo('db'),
   users: forwardTo('db'),
   usersConnection: forwardTo('db'),
+  userGrandpas: forwardTo('db'),
+  userGrandpasConnection: forwardTo('db'),
   associations: forwardTo('db'),
 
   // with this query we know who is the person and we can ask for the type

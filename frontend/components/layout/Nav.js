@@ -20,6 +20,10 @@ const Nav = () => (
       <a> GO TO USERS LIST</a>
     </Link>{' '}
     {' || '}{' '}
+    <Link href="/elders">
+      <a> GO TO USERS GRANDPAS</a>
+    </Link>{' '}
+    {' || '}{' '}
     <Link href="/profile">
       <a> GO TO MY PROFILE</a>
     </Link>{' '}
