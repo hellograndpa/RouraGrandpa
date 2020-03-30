@@ -17,15 +17,15 @@ const Nav = () => (
       }}
     </User>
     <Link href="/users">
-      <a> GO TO USERS LIST</a>
+      <a> USERS </a>
     </Link>{' '}
     {' || '}{' '}
     <Link href="/elders">
-      <a> GO TO USERS GRANDPAS</a>
+      <a> GRANDPAS </a>
     </Link>{' '}
     {' || '}{' '}
     <Link href="/profile">
-      <a> GO TO MY PROFILE</a>
+      <a> MI PERFIL</a>
     </Link>{' '}
     {' || '}{' '}
     <Link href="/signup">
@@ -33,7 +33,7 @@ const Nav = () => (
     </Link>{' '}
     {' || '}{' '}
     <Link href="/">
-      <a>got to home</a>
+      <a> HOME </a>
     </Link>
   </div>
 );
