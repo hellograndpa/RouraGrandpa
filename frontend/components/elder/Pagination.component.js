@@ -10,21 +10,13 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 
-const PaginationStyles = styled.div`
-  text-align: center;
-  display: inline-grid;
-  grid-template-columns: repeat(4, auto);
-  align-items: stretch;
-  justify-content: center;
-  align-content: center;
-  margin: 2rem 0;
-  & > * {
-    margin: 0;
-    padding: 15px 30px;
-    &:last-child {
-      border-right: 0;
-    }
-  }
+import {
+  Pagination,
+  PaginationItem,
+  PaginationLink,
+} from '@bootstrap-styled/v4';
+
+const Enlace = styled.a`
   a[aria-disabled='true'] {
     color: grey;
     pointer-events: none;
@@ -41,7 +33,7 @@ const PAGINATION_QUERY = gql`
   }
 `;
 
-const Pagination = props => (
+const PaginationComponent = props => (
   <div>
     <Query query={PAGINATION_QUERY}>
       {({ data, loading, error }) => {
@@ -51,35 +43,43 @@ const Pagination = props => (
         const { count } = data.userGrandpasConnection.aggregate;
         const pages = Math.ceil(count / perPage);
         return (
-          <PaginationStyles>
+          <Pagination>
             <Head>
               <title>
                 HelloGrandpa - Usuarios Abuelos - page {page} of {pages}
               </title>
             </Head>
-            <Link
-              prefetch
-              href={{
-                pathname: 'elders',
-                query: { page: page - 1 },
-              }}>
-              <a aria-disabled={page <= 1}> {'< '} Previo</a>
-            </Link>
-            <p>
+            <PaginationItem>
+              <PaginationLink previous>
+                <Link
+                  prefetch
+                  href={{
+                    pathname: 'elders',
+                    query: { page: page - 1 },
+                  }}>
+                  <a aria-disabled={page <= 1}> {'< '} Previo</a>
+                </Link>
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
               page {page} of {pages}
-            </p>
-            <Link
-              href={{
-                pathname: 'elders',
-                query: { page: page + 1 },
-              }}>
-              <a aria-disabled={page === pages}>Siguiente {' >'}</a>
-            </Link>
-          </PaginationStyles>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink next>
+                <Link
+                  href={{
+                    pathname: 'elders',
+                    query: { page: page + 1 },
+                  }}>
+                  <a aria-disabled={page === pages}>Siguiente {' >'}</a>
+                </Link>
+              </PaginationLink>
+            </PaginationItem>
+          </Pagination>
         );
       }}
     </Query>
   </div>
 );
 
-export default Pagination;
+export default PaginationComponent;

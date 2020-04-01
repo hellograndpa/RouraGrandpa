@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
-import Pagination from './Pagination.component';
+import PaginationComponent from './Pagination.component';
 import { perPage } from '../../config';
 import styled from 'styled-components';
 
@@ -43,7 +43,7 @@ class Elders extends Component {
     return (
       <div>
         <h2>User List</h2>
-        <Pagination page={this.props.page} />
+        <PaginationComponent page={this.props.page} />
 
         <Query
           query={ALL_USERGRANPA_QUERY}
@@ -83,7 +83,7 @@ class Elders extends Component {
             );
           }}
         </Query>
-        <Pagination page={this.props.page} />
+        <PaginationComponent page={this.props.page} />
       </div>
     );
   }

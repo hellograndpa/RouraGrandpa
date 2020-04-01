@@ -1,5 +1,9 @@
+/** @format */
+
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import BootstrapProvider from '@bootstrap-styled/provider';
+import myTheme from '../theme/theme';
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -13,13 +17,15 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html>
-        <Head>{this.props.styleTags}</Head>
-        <body>
-          <Main />
-          <NextScript />
-        </body>
-      </html>
+      <BootstrapProvider theme={myTheme}>
+        <html>
+          <Head>{this.props.styleTags}</Head>
+          <body>
+            <Main />
+            <NextScript />
+          </body>
+        </html>
+      </BootstrapProvider>
     );
   }
 }

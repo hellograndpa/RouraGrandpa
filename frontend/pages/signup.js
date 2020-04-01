@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 const SignupPage = props => (
   <div>
-    {/* <Signup /> */}
+    <Signup />
     <Signin />
   </div>
 );

@@ -24,11 +24,11 @@ class MyApp extends App {
     return (
       <Container>
         <ApolloProvider client={apollo}>
-          <BootstrapProvider theme={myTheme}>
-            <Page>
+          <Page>
+            <BootstrapProvider theme={myTheme}>
               <Component {...pageProps} />
-            </Page>
-          </BootstrapProvider>
+            </BootstrapProvider>
+          </Page>
         </ApolloProvider>
       </Container>
     );
