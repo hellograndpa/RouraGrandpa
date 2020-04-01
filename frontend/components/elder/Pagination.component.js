@@ -85,7 +85,6 @@ const PaginationComponent = props => (
                 </PaginationItem>
               );
             })}
-
             <PaginationItem>
               <Enlace>
                 <PaginationLink>
