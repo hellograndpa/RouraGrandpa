@@ -42,38 +42,62 @@ const PaginationComponent = props => (
         if (error) return <p>Error: {error.message}</p>;
         const { count } = data.userGrandpasConnection.aggregate;
         const pages = Math.ceil(count / perPage);
+        let arrayNumberPagination = Array(pages)
+          .join()
+          .split(',')
+          .map(
+            function(a) {
+              return this.i++;
+            },
+            { i: 1 }
+          );
         return (
           <Pagination>
             <Head>
               <title>
-                HelloGrandpa - Usuarios Abuelos - page {page} of {pages}
+                HelloGrandpa - PG - {page} of {pages}
               </title>
             </Head>
             <PaginationItem>
-              <PaginationLink previous>
-                <Link
-                  prefetch
-                  href={{
-                    pathname: 'elders',
-                    query: { page: page - 1 },
-                  }}>
-                  <a aria-disabled={page <= 1}> {'< '} Previo</a>
-                </Link>
-              </PaginationLink>
+              <Enlace>
+                <PaginationLink>
+                  <Link
+                    prefetch
+                    href={{
+                      pathname: 'elders',
+                      query: { page: page - 1 },
+                    }}>
+                    <a aria-disabled={page <= 1}> {'<< '} </a>
+                  </Link>
+                </PaginationLink>
+              </Enlace>
             </PaginationItem>
+            {arrayNumberPagination.map(element => {
+              return (
+                <PaginationItem>
+                  <Enlace>
+                    <PaginationLink>
+                      <Link prefetch href={`elders?page=${element}`}>
+                        <a aria-disabled={page == element}> {element} </a>
+                      </Link>
+                    </PaginationLink>
+                  </Enlace>
+                </PaginationItem>
+              );
+            })}
+
             <PaginationItem>
-              page {page} of {pages}
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink next>
-                <Link
-                  href={{
-                    pathname: 'elders',
-                    query: { page: page + 1 },
-                  }}>
-                  <a aria-disabled={page === pages}>Siguiente {' >'}</a>
-                </Link>
-              </PaginationLink>
+              <Enlace>
+                <PaginationLink>
+                  <Link
+                    href={{
+                      pathname: 'elders',
+                      query: { page: page + 1 },
+                    }}>
+                    <a aria-disabled={page === pages}>{' >>'}</a>
+                  </Link>
+                </PaginationLink>
+              </Enlace>
             </PaginationItem>
           </Pagination>
         );
