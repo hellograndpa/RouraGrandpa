@@ -90,6 +90,8 @@ type Mutation {
 type Query {
   typeUsers: [TypeUser]!
   associations: [Association]
+  me: User
+  user(where: UserWhereUniqueInput!): User
   users(
     where: UserWhereInput
     orderBy: UserOrderByInput
@@ -104,8 +106,7 @@ type Query {
     first: Int
   ): [UserGrandpa!]
   userGrandpasConnection(where: UserGrandpaWhereInput): UserGrandpaConnection!
-  me: User
-  user(where: UserWhereUniqueInput!): User
+  userGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
   userTeches(where: UserWhereInput): [UserTech]!
   userTech(where: UserTechWhereUniqueInput!): UserTech
   userStudents(where: UserWhereInput): [UserStudent]!

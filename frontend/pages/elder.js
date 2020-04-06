@@ -1,12 +1,12 @@
 /** @format */
 
-import Users from '../components/users/Users';
+import SingleElder from '../components/elder/ElderView.component';
 
-const Elder = props => (
+const ElderPage = (props) => (
   <>
     <h2>This Elder profile</h2>
-    <Elder />
+    <SingleElder id={props.query.id} />
   </>
 );
 
-export default ElderPages;
+export default ElderPage;

@@ -25,9 +25,7 @@ class MyApp extends App {
       <Container>
         <ApolloProvider client={apollo}>
           <Page>
-            <BootstrapProvider theme={myTheme}>
-              <Component {...pageProps} />
-            </BootstrapProvider>
+            <Component {...pageProps} />
           </Page>
         </ApolloProvider>
       </Container>

@@ -92,25 +92,25 @@ type UserTech {
 
 type UserGrandpa {
   id: ID! @id
-  name: String!
-  lastName: String!
-  secondLastName: String
-  gender: Gender
-  birthData: DateTime
-  country: Country
   adress: String
   association: Association
-  province: Province
+  birthData: DateTime
+  contactPerson: String
+  country: Country
+  coupleID: Couple @relation(link: INLINE)
   evaluation: [EvaluationsGrandpa]
-  interview: [Interviews]
   house: House
+  imageProfile: String
+  interview: [Interviews]
+  gender: Gender
+  lastName: String!
+  name: String!
+  numberDocument: String
+  phone: String
+  province: Province
+  secondLastName: String
   techResponsible: UserTech
   typeDocument: TypeDocument
-  numberDocument: String
-  imageProfile: String
-  contactPerson: String
-  phone: String
-  coupleID: Couple @relation(link: INLINE)
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
 }

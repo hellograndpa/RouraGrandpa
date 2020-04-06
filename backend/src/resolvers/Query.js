@@ -8,6 +8,7 @@ const Query = {
   users: forwardTo('db'),
   usersConnection: forwardTo('db'),
   userGrandpas: forwardTo('db'),
+  userGrandpa: forwardTo('db'),
   userGrandpasConnection: forwardTo('db'),
   associations: forwardTo('db'),
 
@@ -43,7 +44,7 @@ const Query = {
       info
     );
     return allStudents;
-  }
+  },
 };
 
 module.exports = Query;

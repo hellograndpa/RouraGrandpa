@@ -17,15 +17,15 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <BootstrapProvider theme={myTheme}>
-        <html>
+      <html>
+        <BootstrapProvider theme={myTheme}>
           <Head>{this.props.styleTags}</Head>
           <body>
             <Main />
             <NextScript />
           </body>
-        </html>
-      </BootstrapProvider>
+        </BootstrapProvider>
+      </html>
     );
   }
 }
