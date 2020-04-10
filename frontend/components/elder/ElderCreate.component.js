@@ -9,7 +9,6 @@ import Head from 'next/head';
 import Router from 'next/router';
 import SINGLE_USERGRANDPA_QUERY from './ElderView.component';
 
-//style
 import {
   H3,
   Row,
@@ -54,9 +53,8 @@ const All_USERS_TECH = gql`
   }
 `;
 
-const UPDATE_USERGRANDPA_MUTATION = gql`
-  mutation UPDATE_USERGRANDPA_MUTATION(
-    $id: ID!
+const CREATE_USERGRANDPA_MUTATION = gql`
+  mutation CREATE_USERGRANDPA_MUTATION(
     $adress: String
     $birthData: DateTime
     $contactPerson: String
@@ -76,8 +74,7 @@ const UPDATE_USERGRANDPA_MUTATION = gql`
     $techResponsible: ID
     $typeDocument: String
   ) {
-    updateUserGrandpa(
-      id: $id
+    createUserGrandpa(
       adress: $adress
       birthData: $birthData
       contactPerson: $contactPerson
@@ -140,25 +137,10 @@ const UPDATE_USERGRANDPA_MUTATION = gql`
   }
 `;
 
-class ElderEdit extends Component {
-  state = {
-    province: this.props.userGrandpa.province.id,
-    country: this.props.userGrandpa.country.id,
-    techResponsible: this.props.userGrandpa.techResponsible.id,
-  };
-
+class ElderCreate extends Component {
+  state = {};
   saveToState = (e) => {
     this.setState({ [e.target.name]: e.target.value });
-  };
-
-  updateUserGrandpa = async (e, updateUserGrandpaMutation, id) => {
-    e.preventDefault();
-    const res = await updateUserGrandpaMutation({
-      variables: {
-        id,
-        ...this.state,
-      },
-    });
   };
 
   render() {
@@ -166,36 +148,27 @@ class ElderEdit extends Component {
     return (
       <>
         <Head>
-          <title>Edición de Persona Mayor</title>
+          <title>Creación de Persona Mayor</title>
         </Head>
-        <Row>
-          <Col xs="12" md="auto" lg="6">
-            <H3> EDICIÓN DE USUARIO MAYOR</H3>
-          </Col>
-          <Col className="my-2 my-lg-0">
-            <Button className="mr-sm-2" href="javascript:;" color="info">
-              Crear pareja
-            </Button>
-            <Button className="mr-sm-2" onClick={action} color="warning">
-              Modificar
-            </Button>
-            <Button className="mr-sm-2" href="javascript:;" color="danger">
-              Dar de baja
-            </Button>
-          </Col>
-        </Row>
+
         <Row>
           <Mutation
-            mutation={UPDATE_USERGRANDPA_MUTATION}
+            mutation={CREATE_USERGRANDPA_MUTATION}
             variables={this.state}>
-            {(updateUserGrandpa, { loading, error }) => (
+            {(createUserGrandpa, { loading, error }) => (
               <Col xs="12" md="auto" lg="6">
                 <Form
                   method="post"
-                  onSubmit={(e) => {
+                  onSubmit={async (e) => {
+                    // Stop the form from submitting
                     e.preventDefault();
-                    this.updateUserGrandpa(e, updateUserGrandpa, id);
-                    action();
+                    // call the mutation
+                    const res = await createUserGrandpa();
+                    // change them to the single item page
+                    Router.push({
+                      pathname: '/elder',
+                      query: { id: res.data.createUserGrandpa.id },
+                    });
                   }}>
                   <Error error={error} />
 
@@ -208,7 +181,6 @@ class ElderEdit extends Component {
                           name="name"
                           placeholder="Nombre"
                           value={this.state.name}
-                          defaultValue={userGrandpa.name}
                           onChange={this.saveToState}
                         />
                       </InputGroup>
@@ -221,7 +193,6 @@ class ElderEdit extends Component {
                           name="lastName"
                           placeholder="Primer Apellido"
                           value={this.state.lastName}
-                          defaultValue={userGrandpa.lastName}
                           onChange={this.saveToState}
                         />
                       </InputGroup>
@@ -234,7 +205,6 @@ class ElderEdit extends Component {
                           name="secondLastName"
                           placeholder="Segundo Apellido"
                           value={this.state.secondLastName}
-                          defaultValue={userGrandpa.secondLastName}
                           onChange={this.saveToState}
                         />
                       </InputGroup>
@@ -247,7 +217,6 @@ class ElderEdit extends Component {
                           type="select"
                           name="typeDocument"
                           value={this.state.typeDocument}
-                          defaultValue={userGrandpa.typeDocument}
                           onChange={this.saveToState}>
                           <Option>DNI</Option>
                           <Option>NIE</Option>
@@ -262,7 +231,6 @@ class ElderEdit extends Component {
                           name="numberDocument"
                           placeholder="Númoero de Documento de Identificación"
                           value={this.state.numberDocument}
-                          defaultValue={userGrandpa.numberDocument}
                           onChange={this.saveToState}
                         />
                       </InputGroup>
@@ -275,7 +243,6 @@ class ElderEdit extends Component {
                           name="phone"
                           placeholder="Númoero de Teléfono"
                           value={this.state.phone}
-                          defaultValue={userGrandpa.phone}
                           onChange={this.saveToState}
                         />
                       </InputGroup>
@@ -287,7 +254,6 @@ class ElderEdit extends Component {
                           type="select"
                           name="typeDocument"
                           value={this.state.gender}
-                          defaultValue={userGrandpa.gender}
                           onChange={this.saveToState}>
                           <Option>FEMALE</Option>
                           <Option>MALE</Option>
@@ -303,7 +269,6 @@ class ElderEdit extends Component {
                           name="adress"
                           placeholder="Dirección completa"
                           value={this.state.adress}
-                          defaultValue={userGrandpa.adress}
                           onChange={this.saveToState}
                         />
                       </InputGroup>
@@ -317,7 +282,6 @@ class ElderEdit extends Component {
                           name="province"
                           placeholder="Povincia"
                           value={this.state.province}
-                          defaultValue={userGrandpa.prvince}
                           onChange={this.saveToState}>
                           <Query query={PROVINCES_QUERY}>
                             {({ data, loading, error }) => {
@@ -341,7 +305,6 @@ class ElderEdit extends Component {
                           name="country"
                           placeholder="País"
                           value={this.state.country}
-                          defaultValue={userGrandpa.country}
                           onChange={this.saveToState}>
                           <Query query={COUNTRIES_QUERY}>
                             {({ data, loading, error }) => {
@@ -365,7 +328,6 @@ class ElderEdit extends Component {
                           name="techResponsible"
                           placeholder="Técnico Responsable"
                           value={this.state.techResponsible}
-                          defaultValue={userGrandpa.techResponsible}
                           onChange={this.saveToState}>
                           <Query query={All_USERS_TECH}>
                             {({ data, loading, error }) => {
@@ -390,7 +352,6 @@ class ElderEdit extends Component {
                           name="contactPerson"
                           placeholder="Nombre persona de contacto"
                           value={this.state.contactPerson}
-                          defaultValue={userGrandpa.contactPerson}
                           onChange={this.saveToState}
                         />
                       </InputGroup>
@@ -413,4 +374,4 @@ class ElderEdit extends Component {
   }
 }
 
-export default ElderEdit;
+export default ElderCreate;

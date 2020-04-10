@@ -47,7 +47,14 @@ class Elders extends Component {
           <PaginationComponent page={this.props.page} />
           <Nav pills>
             <NavItem>
-              <NavLink href="javascript:;">Crear un Nuevo usuario</NavLink>
+              <NavLink>
+                <Link
+                  href={{
+                    pathname: '/elderCreate',
+                  }}>
+                  <a>Crear un Nuevo usuario</a>
+                </Link>
+              </NavLink>
             </NavItem>
             <NavItem>
               <Form inline className="my-2 my-lg-0">
