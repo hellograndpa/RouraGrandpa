@@ -1,12 +1,7 @@
 /** @format */
 
-import Users from '../components/users/Users';
+import Elder from '../components/elder/Elder.container';
 
-const Elder = props => (
-  <>
-    <h2>This Elder profile</h2>
-    <Elder />
-  </>
-);
+const ElderPage = (props) => <Elder id={props.query.id} />;
 
-export default ElderPages;
+export default ElderPage;

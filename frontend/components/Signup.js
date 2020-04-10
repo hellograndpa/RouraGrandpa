@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import Error from './ErrorMessage';
-import User from './meUser/UserMe.component';
 
 const ALL_TYPEUSER_QUERY = gql`
   query TYPE_USER_QUERY {
@@ -131,7 +130,11 @@ class Signup extends Component {
                   <option>Selecciona un tipo de usuario </option>
                   <Query query={ALL_TYPEUSER_QUERY}>
                     {({ data, error, loading }) => {
-                      return data.typeUsers.map(i => (
+                      const { typeUsers } = data;
+                      if (loading) return <p>Loading...</p>;
+                      if (error) return <p> Error: {error.message}</p>;
+
+                      return typeUsers.map(i => (
                         <option key={i.id} value={i.typeName}>
                           {i.typeName}
                         </option>

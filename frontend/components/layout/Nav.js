@@ -16,6 +16,7 @@ import {
   Nav,
   NavItem,
   NavLink,
+  Row,
 } from '@bootstrap-styled/v4';
 
 class Navigation extends Component {
@@ -38,12 +39,12 @@ class Navigation extends Component {
             <Nav navbar className="mr-auto">
               <NavItem>
                 <Link href="/users">
-                  <a>USERS</a>
+                  <a>USERSs</a>
                 </Link>
               </NavItem>
               <NavItem>
                 <Link href="/elders">
-                  <a>GRANDPAS</a>
+                  <a>GRANDPAS </a>
                 </Link>
               </NavItem>
               <NavItem>

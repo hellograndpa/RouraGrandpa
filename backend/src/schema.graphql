@@ -84,12 +84,38 @@ type Mutation {
     coupleID: ID
   ): UserStudent!
   createUserGrandpa(userId: ID!): UserGrandpa!
+  updateUserGrandpa(
+    id: ID!
+    adress: String
+    association: ID
+    birthData: DateTime
+    contactPerson: String
+    country: ID
+    coupleID: [ID]
+    evaluation: ID
+    house: [ID]
+    imageProfile: String
+    interview: [ID]
+    gender: String
+    lastName: String
+    name: String
+    numberDocument: String
+    phone: String
+    province: ID
+    secondLastName: String
+    techResponsible: ID
+    typeDocument: String
+  ): UserGrandpa!
   createAssociation(name: String): Association!
 }
 
 type Query {
   typeUsers: [TypeUser]!
   associations: [Association]
+  countries: [Country]
+  provinces: [Province]
+  me: User
+  user(where: UserWhereUniqueInput!): User
   users(
     where: UserWhereInput
     orderBy: UserOrderByInput
@@ -104,10 +130,10 @@ type Query {
     first: Int
   ): [UserGrandpa!]
   userGrandpasConnection(where: UserGrandpaWhereInput): UserGrandpaConnection!
-  me: User
-  user(where: UserWhereUniqueInput!): User
+  userGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
   userTeches(where: UserWhereInput): [UserTech]!
   userTech(where: UserTechWhereUniqueInput!): UserTech
   userStudents(where: UserWhereInput): [UserStudent]!
   userStudent(where: UserTechWhereUniqueInput!): UserStudent
+  userTechesUserId: [UserTech]!
 }

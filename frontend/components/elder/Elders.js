@@ -5,27 +5,25 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import PaginationComponent from './Pagination.component';
 import { perPage } from '../../config';
-import styled from 'styled-components';
+import Link from 'next/link';
 
-const CustomTable = styled.table`
-  table,
-  th,
-  td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  th,
-  td,
-  tr {
-    padding: 5px;
-  }
-  th {
-    text-align: left;
-  }
-  table {
-    width: 100%;
-  }
-`;
+import {
+  Card,
+  CardImg,
+  CardBlock,
+  CardTitle,
+  CardSubtitle,
+  CardText,
+  Button,
+  Col,
+  Row,
+  Header,
+  Nav,
+  NavItem,
+  NavLink,
+  Form,
+  Input,
+} from '@bootstrap-styled/v4';
 
 const ALL_USERGRANPA_QUERY = gql`
   query ALL_USERGRANPA_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
@@ -33,7 +31,8 @@ const ALL_USERGRANPA_QUERY = gql`
       id
       name
       lastName
-
+      phone
+      adress
     }
   }
 `;
@@ -42,9 +41,28 @@ class Elders extends Component {
   render() {
     return (
       <div>
-        <h2>User List</h2>
-        <PaginationComponent page={this.props.page} />
+        <h2>Hay "N" Personas Mayores </h2>
 
+        <Header className="d-flex justify-content-between pb-2">
+          <PaginationComponent page={this.props.page} />
+          <Nav pills>
+            <NavItem>
+              <NavLink href="javascript:;">Crear un Nuevo usuario</NavLink>
+            </NavItem>
+            <NavItem>
+              <Form inline className="my-2 my-lg-0">
+                <Input
+                  className="form-control mr-sm-2"
+                  type="text"
+                  placeholder="Search"
+                />
+                <Button href="/" color="success">
+                  Search
+                </Button>
+              </Form>
+            </NavItem>
+          </Nav>
+        </Header>
         <Query
           query={ALL_USERGRANPA_QUERY}
           fetchPolicy="network-only"
@@ -57,29 +75,45 @@ class Elders extends Component {
             if (error) return <p> Error: {error.message}</p>;
 
             return (
-              <CustomTable>
-                <thead>
-                  <tr>
-                    <th> id</th>
-                    <th> Name</th>
-                    <th> Last Name</th>
-                    <th> Phone </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.userGrandpas.map((user, index) => {
-                    const { id, name, lastName, phone } = user;
-                    return (
-                      <tr key={id}>
-                        <td> {id}</td>
-                        <td> {name}</td>
-                        <td> {lastName}</td>
-                        <td> {phone}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </CustomTable>
+              <Row>
+                {data.userGrandpas.map((user, index) => {
+                  const { id, name, lastName, phone, adress } = user;
+                  return (
+                    <Col lg="3" md="4" xs="6" kewy={id}>
+                      <Card>
+                        <CardImg
+                          top
+                          src="https://img.favpng.com/16/6/21/grandparent-grandfather-grandpa-grandpa-clip-art-png-favpng-1WBdNQE8v2LE3mcDkhqtFPAVS.jpg?txtsize=33&txt=318%C3%97180&w=318&h=180"
+                          alt="Card image cap"
+                          height="200px"
+                        />
+                        <CardBlock>
+                          <CardTitle>
+                            {name} {lastName}
+                          </CardTitle>
+                          <CardSubtitle>
+                            <p>{adress}</p>
+                            <p>Telf: {phone}</p>
+                          </CardSubtitle>
+                          {/* <CardText>
+                            Some quick example text to build on the card title
+                            and make up the bulk of the Card content.
+                          </CardText> */}
+                          <Button color="primary">
+                            <Link
+                              href={{
+                                pathname: '/elder',
+                                query: { id: id },
+                              }}>
+                              <a> Ir ficha </a>
+                            </Link>
+                          </Button>
+                        </CardBlock>
+                      </Card>
+                    </Col>
+                  );
+                })}
+              </Row>
             );
           }}
         </Query>

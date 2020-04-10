@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Fri Mar 27 2020 19:19:02 GMT+0100 (Central European Standard Time)
+# timestamp: Thu Apr 09 2020 11:56:11 GMT+0200 (Central European Summer Time)
 
 type AggregateAssociation {
   count: Int!
@@ -4882,25 +4882,25 @@ type UserEdge {
 
 type UserGrandpa implements Node {
   id: ID!
-  name: String!
-  lastName: String!
-  secondLastName: String
-  gender: Gender
-  birthData: DateTime
-  country: Country
   adress: String
-  association: Association
-  province: Province
-  evaluation(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa!]
-  interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
-  house: House
-  techResponsible: UserTech
-  typeDocument: TypeDocument
-  numberDocument: String
-  imageProfile: String
+  association: Association!
+  birthData: DateTime
   contactPerson: String
-  phone: String
+  country: Country
   coupleID: Couple
+  evaluation(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa!]
+  house: House
+  imageProfile: String
+  interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
+  gender: Gender
+  lastName: String!
+  name: String!
+  numberDocument: String
+  phone: String
+  province: Province
+  secondLastName: String
+  techResponsible: User
+  typeDocument: TypeDocument
   createDate: DateTime
   updateDate: DateTime
 }
@@ -4917,25 +4917,25 @@ type UserGrandpaConnection {
 
 input UserGrandpaCreateInput {
   id: ID
-  name: String!
-  lastName: String!
-  secondLastName: String
-  gender: Gender
-  birthData: DateTime
   adress: String
-  typeDocument: TypeDocument
-  numberDocument: String
-  imageProfile: String
+  birthData: DateTime
   contactPerson: String
+  imageProfile: String
+  gender: Gender
+  lastName: String!
+  name: String!
+  numberDocument: String
   phone: String
+  secondLastName: String
+  typeDocument: TypeDocument
+  association: AssociationCreateOneInput!
   country: CountryCreateOneInput
-  association: AssociationCreateOneInput
-  province: ProvinceCreateOneInput
-  evaluation: EvaluationsGrandpaCreateManyInput
-  interview: InterviewsCreateManyInput
-  house: HouseCreateOneInput
-  techResponsible: UserTechCreateOneInput
   coupleID: CoupleCreateOneWithoutUserIdGrandpaInput
+  evaluation: EvaluationsGrandpaCreateManyInput
+  house: HouseCreateOneInput
+  interview: InterviewsCreateManyInput
+  province: ProvinceCreateOneInput
+  techResponsible: UserCreateOneInput
 }
 
 input UserGrandpaCreateOneWithoutCoupleIDInput {
@@ -4945,24 +4945,24 @@ input UserGrandpaCreateOneWithoutCoupleIDInput {
 
 input UserGrandpaCreateWithoutCoupleIDInput {
   id: ID
-  name: String!
-  lastName: String!
-  secondLastName: String
-  gender: Gender
-  birthData: DateTime
   adress: String
-  typeDocument: TypeDocument
-  numberDocument: String
-  imageProfile: String
+  birthData: DateTime
   contactPerson: String
+  imageProfile: String
+  gender: Gender
+  lastName: String!
+  name: String!
+  numberDocument: String
   phone: String
+  secondLastName: String
+  typeDocument: TypeDocument
+  association: AssociationCreateOneInput!
   country: CountryCreateOneInput
-  association: AssociationCreateOneInput
-  province: ProvinceCreateOneInput
   evaluation: EvaluationsGrandpaCreateManyInput
-  interview: InterviewsCreateManyInput
   house: HouseCreateOneInput
-  techResponsible: UserTechCreateOneInput
+  interview: InterviewsCreateManyInput
+  province: ProvinceCreateOneInput
+  techResponsible: UserCreateOneInput
 }
 
 """An edge in a connection."""
@@ -4977,28 +4977,28 @@ type UserGrandpaEdge {
 enum UserGrandpaOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
-  lastName_ASC
-  lastName_DESC
-  secondLastName_ASC
-  secondLastName_DESC
-  gender_ASC
-  gender_DESC
-  birthData_ASC
-  birthData_DESC
   adress_ASC
   adress_DESC
-  typeDocument_ASC
-  typeDocument_DESC
-  numberDocument_ASC
-  numberDocument_DESC
-  imageProfile_ASC
-  imageProfile_DESC
+  birthData_ASC
+  birthData_DESC
   contactPerson_ASC
   contactPerson_DESC
+  imageProfile_ASC
+  imageProfile_DESC
+  gender_ASC
+  gender_DESC
+  lastName_ASC
+  lastName_DESC
+  name_ASC
+  name_DESC
+  numberDocument_ASC
+  numberDocument_DESC
   phone_ASC
   phone_DESC
+  secondLastName_ASC
+  secondLastName_DESC
+  typeDocument_ASC
+  typeDocument_DESC
   createDate_ASC
   createDate_DESC
   updateDate_ASC
@@ -5007,17 +5007,17 @@ enum UserGrandpaOrderByInput {
 
 type UserGrandpaPreviousValues {
   id: ID!
-  name: String!
-  lastName: String!
-  secondLastName: String
-  gender: Gender
-  birthData: DateTime
   adress: String
-  typeDocument: TypeDocument
-  numberDocument: String
-  imageProfile: String
+  birthData: DateTime
   contactPerson: String
+  imageProfile: String
+  gender: Gender
+  lastName: String!
+  name: String!
+  numberDocument: String
   phone: String
+  secondLastName: String
+  typeDocument: TypeDocument
   createDate: DateTime
   updateDate: DateTime
 }
@@ -5062,39 +5062,39 @@ input UserGrandpaSubscriptionWhereInput {
 }
 
 input UserGrandpaUpdateInput {
-  name: String
-  lastName: String
-  secondLastName: String
-  gender: Gender
-  birthData: DateTime
   adress: String
-  typeDocument: TypeDocument
-  numberDocument: String
-  imageProfile: String
+  birthData: DateTime
   contactPerson: String
+  imageProfile: String
+  gender: Gender
+  lastName: String
+  name: String
+  numberDocument: String
   phone: String
+  secondLastName: String
+  typeDocument: TypeDocument
+  association: AssociationUpdateOneRequiredInput
   country: CountryUpdateOneInput
-  association: AssociationUpdateOneInput
-  province: ProvinceUpdateOneInput
-  evaluation: EvaluationsGrandpaUpdateManyInput
-  interview: InterviewsUpdateManyInput
-  house: HouseUpdateOneInput
-  techResponsible: UserTechUpdateOneInput
   coupleID: CoupleUpdateOneWithoutUserIdGrandpaInput
+  evaluation: EvaluationsGrandpaUpdateManyInput
+  house: HouseUpdateOneInput
+  interview: InterviewsUpdateManyInput
+  province: ProvinceUpdateOneInput
+  techResponsible: UserUpdateOneInput
 }
 
 input UserGrandpaUpdateManyMutationInput {
-  name: String
-  lastName: String
-  secondLastName: String
-  gender: Gender
-  birthData: DateTime
   adress: String
-  typeDocument: TypeDocument
-  numberDocument: String
-  imageProfile: String
+  birthData: DateTime
   contactPerson: String
+  imageProfile: String
+  gender: Gender
+  lastName: String
+  name: String
+  numberDocument: String
   phone: String
+  secondLastName: String
+  typeDocument: TypeDocument
 }
 
 input UserGrandpaUpdateOneWithoutCoupleIDInput {
@@ -5107,24 +5107,24 @@ input UserGrandpaUpdateOneWithoutCoupleIDInput {
 }
 
 input UserGrandpaUpdateWithoutCoupleIDDataInput {
-  name: String
-  lastName: String
-  secondLastName: String
-  gender: Gender
-  birthData: DateTime
   adress: String
-  typeDocument: TypeDocument
-  numberDocument: String
-  imageProfile: String
+  birthData: DateTime
   contactPerson: String
+  imageProfile: String
+  gender: Gender
+  lastName: String
+  name: String
+  numberDocument: String
   phone: String
+  secondLastName: String
+  typeDocument: TypeDocument
+  association: AssociationUpdateOneRequiredInput
   country: CountryUpdateOneInput
-  association: AssociationUpdateOneInput
-  province: ProvinceUpdateOneInput
   evaluation: EvaluationsGrandpaUpdateManyInput
-  interview: InterviewsUpdateManyInput
   house: HouseUpdateOneInput
-  techResponsible: UserTechUpdateOneInput
+  interview: InterviewsUpdateManyInput
+  province: ProvinceUpdateOneInput
+  techResponsible: UserUpdateOneInput
 }
 
 input UserGrandpaUpsertWithoutCoupleIDInput {
@@ -5181,158 +5181,6 @@ input UserGrandpaWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  name: String
-
-  """All values that are not equal to given value."""
-  name_not: String
-
-  """All values that are contained in given list."""
-  name_in: [String!]
-
-  """All values that are not contained in given list."""
-  name_not_in: [String!]
-
-  """All values less than the given value."""
-  name_lt: String
-
-  """All values less than or equal the given value."""
-  name_lte: String
-
-  """All values greater than the given value."""
-  name_gt: String
-
-  """All values greater than or equal the given value."""
-  name_gte: String
-
-  """All values containing the given string."""
-  name_contains: String
-
-  """All values not containing the given string."""
-  name_not_contains: String
-
-  """All values starting with the given string."""
-  name_starts_with: String
-
-  """All values not starting with the given string."""
-  name_not_starts_with: String
-
-  """All values ending with the given string."""
-  name_ends_with: String
-
-  """All values not ending with the given string."""
-  name_not_ends_with: String
-  lastName: String
-
-  """All values that are not equal to given value."""
-  lastName_not: String
-
-  """All values that are contained in given list."""
-  lastName_in: [String!]
-
-  """All values that are not contained in given list."""
-  lastName_not_in: [String!]
-
-  """All values less than the given value."""
-  lastName_lt: String
-
-  """All values less than or equal the given value."""
-  lastName_lte: String
-
-  """All values greater than the given value."""
-  lastName_gt: String
-
-  """All values greater than or equal the given value."""
-  lastName_gte: String
-
-  """All values containing the given string."""
-  lastName_contains: String
-
-  """All values not containing the given string."""
-  lastName_not_contains: String
-
-  """All values starting with the given string."""
-  lastName_starts_with: String
-
-  """All values not starting with the given string."""
-  lastName_not_starts_with: String
-
-  """All values ending with the given string."""
-  lastName_ends_with: String
-
-  """All values not ending with the given string."""
-  lastName_not_ends_with: String
-  secondLastName: String
-
-  """All values that are not equal to given value."""
-  secondLastName_not: String
-
-  """All values that are contained in given list."""
-  secondLastName_in: [String!]
-
-  """All values that are not contained in given list."""
-  secondLastName_not_in: [String!]
-
-  """All values less than the given value."""
-  secondLastName_lt: String
-
-  """All values less than or equal the given value."""
-  secondLastName_lte: String
-
-  """All values greater than the given value."""
-  secondLastName_gt: String
-
-  """All values greater than or equal the given value."""
-  secondLastName_gte: String
-
-  """All values containing the given string."""
-  secondLastName_contains: String
-
-  """All values not containing the given string."""
-  secondLastName_not_contains: String
-
-  """All values starting with the given string."""
-  secondLastName_starts_with: String
-
-  """All values not starting with the given string."""
-  secondLastName_not_starts_with: String
-
-  """All values ending with the given string."""
-  secondLastName_ends_with: String
-
-  """All values not ending with the given string."""
-  secondLastName_not_ends_with: String
-  gender: Gender
-
-  """All values that are not equal to given value."""
-  gender_not: Gender
-
-  """All values that are contained in given list."""
-  gender_in: [Gender!]
-
-  """All values that are not contained in given list."""
-  gender_not_in: [Gender!]
-  birthData: DateTime
-
-  """All values that are not equal to given value."""
-  birthData_not: DateTime
-
-  """All values that are contained in given list."""
-  birthData_in: [DateTime!]
-
-  """All values that are not contained in given list."""
-  birthData_not_in: [DateTime!]
-
-  """All values less than the given value."""
-  birthData_lt: DateTime
-
-  """All values less than or equal the given value."""
-  birthData_lte: DateTime
-
-  """All values greater than the given value."""
-  birthData_gt: DateTime
-
-  """All values greater than or equal the given value."""
-  birthData_gte: DateTime
   adress: String
 
   """All values that are not equal to given value."""
@@ -5373,96 +5221,28 @@ input UserGrandpaWhereInput {
 
   """All values not ending with the given string."""
   adress_not_ends_with: String
-  typeDocument: TypeDocument
+  birthData: DateTime
 
   """All values that are not equal to given value."""
-  typeDocument_not: TypeDocument
+  birthData_not: DateTime
 
   """All values that are contained in given list."""
-  typeDocument_in: [TypeDocument!]
+  birthData_in: [DateTime!]
 
   """All values that are not contained in given list."""
-  typeDocument_not_in: [TypeDocument!]
-  numberDocument: String
-
-  """All values that are not equal to given value."""
-  numberDocument_not: String
-
-  """All values that are contained in given list."""
-  numberDocument_in: [String!]
-
-  """All values that are not contained in given list."""
-  numberDocument_not_in: [String!]
+  birthData_not_in: [DateTime!]
 
   """All values less than the given value."""
-  numberDocument_lt: String
+  birthData_lt: DateTime
 
   """All values less than or equal the given value."""
-  numberDocument_lte: String
+  birthData_lte: DateTime
 
   """All values greater than the given value."""
-  numberDocument_gt: String
+  birthData_gt: DateTime
 
   """All values greater than or equal the given value."""
-  numberDocument_gte: String
-
-  """All values containing the given string."""
-  numberDocument_contains: String
-
-  """All values not containing the given string."""
-  numberDocument_not_contains: String
-
-  """All values starting with the given string."""
-  numberDocument_starts_with: String
-
-  """All values not starting with the given string."""
-  numberDocument_not_starts_with: String
-
-  """All values ending with the given string."""
-  numberDocument_ends_with: String
-
-  """All values not ending with the given string."""
-  numberDocument_not_ends_with: String
-  imageProfile: String
-
-  """All values that are not equal to given value."""
-  imageProfile_not: String
-
-  """All values that are contained in given list."""
-  imageProfile_in: [String!]
-
-  """All values that are not contained in given list."""
-  imageProfile_not_in: [String!]
-
-  """All values less than the given value."""
-  imageProfile_lt: String
-
-  """All values less than or equal the given value."""
-  imageProfile_lte: String
-
-  """All values greater than the given value."""
-  imageProfile_gt: String
-
-  """All values greater than or equal the given value."""
-  imageProfile_gte: String
-
-  """All values containing the given string."""
-  imageProfile_contains: String
-
-  """All values not containing the given string."""
-  imageProfile_not_contains: String
-
-  """All values starting with the given string."""
-  imageProfile_starts_with: String
-
-  """All values not starting with the given string."""
-  imageProfile_not_starts_with: String
-
-  """All values ending with the given string."""
-  imageProfile_ends_with: String
-
-  """All values not ending with the given string."""
-  imageProfile_not_ends_with: String
+  birthData_gte: DateTime
   contactPerson: String
 
   """All values that are not equal to given value."""
@@ -5503,6 +5283,176 @@ input UserGrandpaWhereInput {
 
   """All values not ending with the given string."""
   contactPerson_not_ends_with: String
+  imageProfile: String
+
+  """All values that are not equal to given value."""
+  imageProfile_not: String
+
+  """All values that are contained in given list."""
+  imageProfile_in: [String!]
+
+  """All values that are not contained in given list."""
+  imageProfile_not_in: [String!]
+
+  """All values less than the given value."""
+  imageProfile_lt: String
+
+  """All values less than or equal the given value."""
+  imageProfile_lte: String
+
+  """All values greater than the given value."""
+  imageProfile_gt: String
+
+  """All values greater than or equal the given value."""
+  imageProfile_gte: String
+
+  """All values containing the given string."""
+  imageProfile_contains: String
+
+  """All values not containing the given string."""
+  imageProfile_not_contains: String
+
+  """All values starting with the given string."""
+  imageProfile_starts_with: String
+
+  """All values not starting with the given string."""
+  imageProfile_not_starts_with: String
+
+  """All values ending with the given string."""
+  imageProfile_ends_with: String
+
+  """All values not ending with the given string."""
+  imageProfile_not_ends_with: String
+  gender: Gender
+
+  """All values that are not equal to given value."""
+  gender_not: Gender
+
+  """All values that are contained in given list."""
+  gender_in: [Gender!]
+
+  """All values that are not contained in given list."""
+  gender_not_in: [Gender!]
+  lastName: String
+
+  """All values that are not equal to given value."""
+  lastName_not: String
+
+  """All values that are contained in given list."""
+  lastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  lastName_not_in: [String!]
+
+  """All values less than the given value."""
+  lastName_lt: String
+
+  """All values less than or equal the given value."""
+  lastName_lte: String
+
+  """All values greater than the given value."""
+  lastName_gt: String
+
+  """All values greater than or equal the given value."""
+  lastName_gte: String
+
+  """All values containing the given string."""
+  lastName_contains: String
+
+  """All values not containing the given string."""
+  lastName_not_contains: String
+
+  """All values starting with the given string."""
+  lastName_starts_with: String
+
+  """All values not starting with the given string."""
+  lastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  lastName_ends_with: String
+
+  """All values not ending with the given string."""
+  lastName_not_ends_with: String
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  numberDocument: String
+
+  """All values that are not equal to given value."""
+  numberDocument_not: String
+
+  """All values that are contained in given list."""
+  numberDocument_in: [String!]
+
+  """All values that are not contained in given list."""
+  numberDocument_not_in: [String!]
+
+  """All values less than the given value."""
+  numberDocument_lt: String
+
+  """All values less than or equal the given value."""
+  numberDocument_lte: String
+
+  """All values greater than the given value."""
+  numberDocument_gt: String
+
+  """All values greater than or equal the given value."""
+  numberDocument_gte: String
+
+  """All values containing the given string."""
+  numberDocument_contains: String
+
+  """All values not containing the given string."""
+  numberDocument_not_contains: String
+
+  """All values starting with the given string."""
+  numberDocument_starts_with: String
+
+  """All values not starting with the given string."""
+  numberDocument_not_starts_with: String
+
+  """All values ending with the given string."""
+  numberDocument_ends_with: String
+
+  """All values not ending with the given string."""
+  numberDocument_not_ends_with: String
   phone: String
 
   """All values that are not equal to given value."""
@@ -5543,6 +5493,56 @@ input UserGrandpaWhereInput {
 
   """All values not ending with the given string."""
   phone_not_ends_with: String
+  secondLastName: String
+
+  """All values that are not equal to given value."""
+  secondLastName_not: String
+
+  """All values that are contained in given list."""
+  secondLastName_in: [String!]
+
+  """All values that are not contained in given list."""
+  secondLastName_not_in: [String!]
+
+  """All values less than the given value."""
+  secondLastName_lt: String
+
+  """All values less than or equal the given value."""
+  secondLastName_lte: String
+
+  """All values greater than the given value."""
+  secondLastName_gt: String
+
+  """All values greater than or equal the given value."""
+  secondLastName_gte: String
+
+  """All values containing the given string."""
+  secondLastName_contains: String
+
+  """All values not containing the given string."""
+  secondLastName_not_contains: String
+
+  """All values starting with the given string."""
+  secondLastName_starts_with: String
+
+  """All values not starting with the given string."""
+  secondLastName_not_starts_with: String
+
+  """All values ending with the given string."""
+  secondLastName_ends_with: String
+
+  """All values not ending with the given string."""
+  secondLastName_not_ends_with: String
+  typeDocument: TypeDocument
+
+  """All values that are not equal to given value."""
+  typeDocument_not: TypeDocument
+
+  """All values that are contained in given list."""
+  typeDocument_in: [TypeDocument!]
+
+  """All values that are not contained in given list."""
+  typeDocument_not_in: [TypeDocument!]
   createDate: DateTime
 
   """All values that are not equal to given value."""
@@ -5587,18 +5587,18 @@ input UserGrandpaWhereInput {
 
   """All values greater than or equal the given value."""
   updateDate_gte: DateTime
-  country: CountryWhereInput
   association: AssociationWhereInput
-  province: ProvinceWhereInput
+  country: CountryWhereInput
+  coupleID: CoupleWhereInput
   evaluation_every: EvaluationsGrandpaWhereInput
   evaluation_some: EvaluationsGrandpaWhereInput
   evaluation_none: EvaluationsGrandpaWhereInput
+  house: HouseWhereInput
   interview_every: InterviewsWhereInput
   interview_some: InterviewsWhereInput
   interview_none: InterviewsWhereInput
-  house: HouseWhereInput
-  techResponsible: UserTechWhereInput
-  coupleID: CoupleWhereInput
+  province: ProvinceWhereInput
+  techResponsible: UserWhereInput
 }
 
 input UserGrandpaWhereUniqueInput {

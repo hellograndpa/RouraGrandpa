@@ -5,10 +5,11 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import UserTechCreate from './UserTechCreate.component';
 import UserTechEdit from './userTechEdit.component';
+import Error from '../../ErrorMessage';
 
 const USERTECH_QUERY = gql`
   query USERTECH_QUERY {
-    userTeches {
+    userTechesUserId {
       id
       userId {
         id
@@ -39,10 +40,18 @@ class UserTechView extends Component {
     return (
       <div>
         <Query query={USERTECH_QUERY} fetchPolicy="network-only">
-          {({ data: { userTeches }, error, loading }) => {
-            const tech = userTeches[0];
+          {({ data: { userTechesUserId }, error, loading }) => {
+            if (!userTechesUserId) {
+              return (
+                <div>
+                  <p>Por favor, amplía tus datos </p>
+                  <UserTechCreate me={me} />
+                </div>
+              );
+            }
+            const tech = userTechesUserId[0];
+            if (error) return <Error error={error} />;
             if (loading) return <p>Loading...</p>;
-            if (error) return <p>Error: {error.message}</p>;
             if (!tech) {
               return (
                 <div>
