@@ -83,7 +83,27 @@ type Mutation {
     imageUniversity: [String]
     coupleID: ID
   ): UserStudent!
-  createUserGrandpa(userId: ID!): UserGrandpa!
+  createUserGrandpa(
+    adress: String
+    association: ID
+    birthData: DateTime
+    contactPerson: String
+    country: ID
+    coupleID: [ID]
+    evaluation: ID
+    house: [ID]
+    imageProfile: String
+    interview: [ID]
+    gender: String
+    lastName: String
+    name: String
+    numberDocument: String
+    phone: String
+    province: ID
+    secondLastName: String
+    techResponsible: ID
+    typeDocument: String
+  ): UserGrandpa!
   updateUserGrandpa(
     id: ID!
     adress: String

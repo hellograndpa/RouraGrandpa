@@ -373,7 +373,78 @@ const mutations = {
     );
     return updateUserGrandpa;
   },
-  // async createUserGrandpa(parent, args, ctx, info) {},
+  async createUserGrandpa(parent, args, ctx, info) {
+    const userId = await ctx.request.userId;
+
+    if (!userId) {
+      throw new Error('you must be signed in!');
+    }
+    const userTeches = await ctx.db.query.userTeches(
+      { where: { userId: { id: userId } } },
+      info
+    );
+    const association = userTeches[0].association.id;
+
+    const {
+      adress,
+      birthData,
+      contactPerson,
+      country,
+      coupleID,
+      evaluation,
+      house,
+      imageProfile,
+      interview,
+      gender,
+      lastName,
+      name,
+      numberDocument,
+      phone,
+      province,
+      secondLastName,
+      techResponsible,
+      typeDocument,
+    } = args;
+
+    const createUserGrandpa = await ctx.db.mutation.createUserGrandpa(
+      {
+        data: {
+          adress,
+          association: {
+            connect: {
+              id: association,
+            },
+          },
+          birthData,
+          contactPerson,
+          country: {
+            connect: {
+              id: country,
+            },
+          },
+          gender,
+          lastName,
+          name,
+          numberDocument,
+          phone,
+          province: {
+            connect: {
+              id: province,
+            },
+          },
+          secondLastName,
+          techResponsible: {
+            connect: {
+              id: techResponsible,
+            },
+          },
+          typeDocument,
+        },
+      },
+      info
+    );
+    return createUserGrandpa;
+  },
 };
 
 module.exports = mutations;
