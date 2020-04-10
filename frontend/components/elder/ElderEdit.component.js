@@ -285,7 +285,7 @@ class ElderEdit extends Component {
                         <InputGroupAddon>Género</InputGroupAddon>
                         <Input
                           type="select"
-                          name="typeDocument"
+                          name="gender"
                           value={this.state.gender}
                           defaultValue={userGrandpa.gender}
                           onChange={this.saveToState}>
