@@ -2,6 +2,12 @@
 
 import React, { Component } from 'react';
 
+import { Query } from 'react-apollo';
+import ElderView from './ElderView.component';
+import ElderEdit from './ElderEdit.component';
+
+import { SINGLE_USERGRANDPA_QUERY } from './ElderView.component';
+
 class Elder extends Component {
   state = {
     edition: false,
@@ -13,43 +19,32 @@ class Elder extends Component {
   };
 
   render() {
+    const { id } = this.props;
     const { edition } = this.state;
     return (
       <div>
-        {!edition && (
-          <>
-            <button onClick={this.handleEdition}> Edit Elder </button>
-            <User>
-              {({ data: { me } }) => {
-                if (me)
-                  return (
-                    <div>
-                      <div>
-                        <p>Id: {me.id}</p>
-                        <p>Name: {me.name}</p>
-                        <p>Last Name: {me.lastname}</p>
-                        <p>Type User: {me.typeUser.typeName}</p>
-                        <p>Phone: {me.phone}</p>
-                        <p>Email: {me.email}</p>
-                      </div>
-                      <div>
-                        <UserDataViewContainer me={me} />
-                      </div>
-                    </div>
-                  );
-                return null;
-              }}
-            </User>
-          </>
-        )}
-        {edition && (
-          <>
-            <button onClick={this.handleEdition}>
-              {' '}
-              Cerrar edición de perfil{' '}
-            </button>
-            <ElderEdit />
-          </>
+        {!edition ? (
+          <ElderView id={id} action={this.handleEdition} />
+        ) : (
+          <Query
+            query={SINGLE_USERGRANDPA_QUERY}
+            variables={{
+              id: this.props.id,
+            }}>
+            {({ data, loading, error }) => {
+              if (error) return <Error error={error} />;
+              if (loading) return <p>Loading...</p>;
+              if (!data.userGrandpa)
+                return <p>No Item Found for {this.props.id} </p>;
+              return (
+                <ElderEdit
+                  id={id}
+                  action={this.handleEdition}
+                  userGrandpa={data.userGrandpa}
+                />
+              );
+            }}
+          </Query>
         )}
       </div>
     );

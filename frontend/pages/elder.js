@@ -1,12 +1,7 @@
 /** @format */
 
-import SingleElder from '../components/elder/ElderView.component';
+import Elder from '../components/elder/Elder.container';
 
-const ElderPage = (props) => (
-  <>
-    <h2>This Elder profile</h2>
-    <SingleElder id={props.query.id} />
-  </>
-);
+const ElderPage = (props) => <Elder id={props.query.id} />;
 
 export default ElderPage;

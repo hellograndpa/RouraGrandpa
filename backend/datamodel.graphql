@@ -42,7 +42,7 @@ type User {
   phone: String!
   email: String! @unique
   password: String!
-  typeUser: TypeUser
+  typeUser: TypeUser @relation(link: INLINE)
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
   resetToken: String
@@ -93,7 +93,7 @@ type UserTech {
 type UserGrandpa {
   id: ID! @id
   adress: String
-  association: Association
+  association: Association!
   birthData: DateTime
   contactPerson: String
   country: Country
@@ -109,7 +109,7 @@ type UserGrandpa {
   phone: String
   province: Province
   secondLastName: String
-  techResponsible: UserTech
+  techResponsible: User
   typeDocument: TypeDocument
   createDate: DateTime @createdAt
   updateDate: DateTime @updatedAt
