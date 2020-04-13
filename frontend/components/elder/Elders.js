@@ -22,12 +22,15 @@ import {
   NavItem,
   NavLink,
   Form,
+  FormGroup,
   Input,
+  Option,
+  Label,
 } from '@bootstrap-styled/v4';
 
 const ALL_USERGRANPA_QUERY = gql`
-  query ALL_USERGRANPA_QUERY($skip: Int = 0, $first: Int = ${perPage}) {
-    userGrandpas(first: $first, skip: $skip, orderBy: createDate_DESC) {
+  query ALL_USERGRANPA_QUERY($skip: Int = 0, $first: Int = ${perPage}, $orderBy:UserGrandpaOrderByInput) {
+    userGrandpas(first: $first, skip: $skip, orderBy: $orderBy) {
       id
       name
       lastName
@@ -38,6 +41,14 @@ const ALL_USERGRANPA_QUERY = gql`
 `;
 
 class Elders extends Component {
+  state = {
+    orderBy: 'name_ASC',
+  };
+
+  saveToState = (e) => {
+    this.setState({ orderBy: e.target.value });
+  };
+
   render() {
     return (
       <div>
@@ -56,18 +67,36 @@ class Elders extends Component {
                 </Link>
               </NavLink>
             </NavItem>
-            <NavItem>
-              <Form inline className="my-2 my-lg-0">
-                <Input
-                  className="form-control mr-sm-2"
-                  type="text"
-                  placeholder="Search"
-                />
-                <Button href="/" color="success">
-                  Search
-                </Button>
-              </Form>
-            </NavItem>
+            <Form inline className="my-2 my-lg-0">
+              <NavItem>
+                <FormGroup>
+                  <Label htmlFor="example-select">Ordenar por: </Label>
+                  <Input
+                    type="select"
+                    name="select"
+                    onChange={this.saveToState}>
+                    <Option value="name_ASC">Nombre A-Z</Option>
+                    <Option value="name_DESC">Nombre Z-A</Option>
+                    <Option value="lastName_ASC">Apellido A-Z</Option>
+                    <Option value="lastName_DESC">Apellido Z-A</Option>
+                    <Option value="createDate_ASC">Creado Ascendente</Option>
+                    <Option value="createDate_DESC">Creado Descendente</Option>
+                  </Input>
+                </FormGroup>
+              </NavItem>
+              <NavItem>
+                <FormGroup>
+                  <Input
+                    className="form-control mr-sm-2"
+                    type="text"
+                    placeholder="Search"
+                  />
+                  <Button href="/" color="success">
+                    Search
+                  </Button>
+                </FormGroup>
+              </NavItem>
+            </Form>
           </Nav>
         </Header>
         <Query
@@ -76,6 +105,7 @@ class Elders extends Component {
           variables={{
             skip: this.props.page * perPage - perPage,
             first: perPage,
+            orderBy: this.state.orderBy,
           }}>
           {({ data, error, loading }) => {
             if (loading) return <p>Loading...</p>;
