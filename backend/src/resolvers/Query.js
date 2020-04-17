@@ -15,6 +15,8 @@ const Query = {
   countries: forwardTo('db'),
   provinces: forwardTo('db'),
   userTeches: forwardTo('db'),
+  evaluationGrandpas: forwardTo('db'),
+  evaluationGrandpasConnection: forwardTo('db'),
 
   // with this query we know who is the person and we can ask for the type
   me(parent, args, ctx, info) {
@@ -48,7 +50,7 @@ const Query = {
       info
     );
     return allStudents;
-  },
+  }
 };
 
 module.exports = Query;

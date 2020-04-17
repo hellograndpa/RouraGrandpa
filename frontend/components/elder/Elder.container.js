@@ -10,26 +10,30 @@ import { SINGLE_USERGRANDPA_QUERY } from './ElderView.component';
 
 class Elder extends Component {
   state = {
-    edition: false,
+    edition: false
   };
   handleEdition = () => {
     this.setState({
-      edition: !this.state.edition,
+      edition: !this.state.edition
     });
   };
 
   render() {
-    const { id } = this.props;
+    const { id, assessment } = this.props;
     const { edition } = this.state;
     return (
       <div>
         {!edition ? (
-          <ElderView id={id} action={this.handleEdition} />
+          <ElderView
+            id={id}
+            action={this.handleEdition}
+            assessment={assessment}
+          />
         ) : (
           <Query
             query={SINGLE_USERGRANDPA_QUERY}
             variables={{
-              id: this.props.id,
+              id: this.props.id
             }}>
             {({ data, loading, error }) => {
               if (error) return <Error error={error} />;

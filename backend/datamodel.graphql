@@ -52,31 +52,31 @@ type User {
 
 type UserStudent {
   id: ID! @id
-  userId: User!
-  typeDocument: TypeDocument
-  numberDocument: String
-  association: Association
-  techResponsible: UserTech
-  studing: String
-  career: Career
-  university: University
-  classSchedule: String
-  sourceExternal: Source!
-  gender: Gender
-  birthData: DateTime
-  originCountry: Country
-  weekendFree: String
-  evaluation: [EvaluationsStudent]
-  interview: [Interviews]
-  state: StateProcess
   adress: String
-  createDate: DateTime @createdAt
-  updateDate: DateTime @updatedAt
+  association: Association
+  birthData: DateTime
+  career: Career
+  classSchedule: String
+  coupleID: Couple @relation(link: INLINE)
+  evaluation: [EvaluationStudent]
+  gender: Gender
   imageDocument: [ImagesDocument]
   imageProfile: String
   imageUniversity: [ImagesUniversity]
-  coupleID: Couple @relation(link: INLINE)
+  interview: [Interviews]
+  numberDocument: String
+  originCountry: Country
   # permissions: [Permissions] @scalarList(strategy: RELATION)
+  sourceExternal: Source!
+  state: StateProcess
+  studing: String
+  techResponsible: UserTech
+  typeDocument: TypeDocument
+  university: University
+  userId: User!
+  weekendFree: String
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
 }
 
 type UserTech {
@@ -98,7 +98,7 @@ type UserGrandpa {
   contactPerson: String
   country: Country
   coupleID: Couple @relation(link: INLINE)
-  evaluation: [EvaluationsGrandpa]
+  evaluation: [EvaluationGrandpa]
   house: House
   imageProfile: String
   interview: [Interviews]
@@ -203,14 +203,41 @@ type Association {
   updateDate: DateTime @updatedAt
 }
 
-type EvaluationsGrandpa {
+type EvaluationGrandpa {
   id: ID! @id
-  name: String
+  evaluation_01: Int @default(value: 0)
+  evaluation_02: Int @default(value: 0)
+  evaluation_03: Int @default(value: 0)
+  evaluation_04: Int @default(value: 0)
+  evaluation_05: Int @default(value: 0)
+  evaluation_06: Int @default(value: 0)
+  evaluation_07: Int @default(value: 0)
+  evaluation_08: Int @default(value: 0)
+  evaluation_09: Int @default(value: 0)
+  evaluation_10: Int @default(value: 0)
+  user: User
+  userGrandpa: UserGrandpa
+  description: String
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
 }
 
-type EvaluationsStudent {
+type EvaluationStudent {
   id: ID! @id
-  name: String
+  evaluation_01: Int @default(value: 0)
+  evaluation_02: Int @default(value: 0)
+  evaluation_03: Int @default(value: 0)
+  evaluation_04: Int @default(value: 0)
+  evaluation_05: Int @default(value: 0)
+  evaluation_06: Int @default(value: 0)
+  evaluation_07: Int @default(value: 0)
+  evaluation_08: Int @default(value: 0)
+  evaluation_09: Int @default(value: 0)
+  evaluation_10: Int @default(value: 0)
+  description: String
+  user: User
+  createDate: DateTime @createdAt
+  updateDate: DateTime @updatedAt
 }
 
 type Interviews {

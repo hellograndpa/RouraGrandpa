@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/rouregrandpa/rouregrandpadb/rgdb
-# timestamp: Thu Apr 09 2020 11:56:11 GMT+0200 (Central European Summer Time)
+# timestamp: Mon Apr 13 2020 22:35:09 GMT+0200 (Central European Summer Time)
 
 type AggregateAssociation {
   count: Int!
@@ -21,11 +21,11 @@ type AggregateCouple {
   count: Int!
 }
 
-type AggregateEvaluationsGrandpa {
+type AggregateEvaluationGrandpa {
   count: Int!
 }
 
-type AggregateEvaluationsStudent {
+type AggregateEvaluationStudent {
   count: Int!
 }
 
@@ -1659,61 +1659,139 @@ input CoupleWhereUniqueInput {
 
 scalar DateTime
 
-type EvaluationsGrandpa implements Node {
+type EvaluationGrandpa implements Node {
   id: ID!
-  name: String
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  user: User
+  userGrandpa: UserGrandpa
+  description: String
+  createDate: DateTime
+  updateDate: DateTime
 }
 
 """A connection to a list of items."""
-type EvaluationsGrandpaConnection {
+type EvaluationGrandpaConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [EvaluationsGrandpaEdge]!
-  aggregate: AggregateEvaluationsGrandpa!
+  edges: [EvaluationGrandpaEdge]!
+  aggregate: AggregateEvaluationGrandpa!
 }
 
-input EvaluationsGrandpaCreateInput {
+input EvaluationGrandpaCreateInput {
   id: ID
-  name: String
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  user: UserCreateOneInput
+  userGrandpa: UserGrandpaCreateOneWithoutEvaluationInput
 }
 
-input EvaluationsGrandpaCreateManyInput {
-  create: [EvaluationsGrandpaCreateInput!]
-  connect: [EvaluationsGrandpaWhereUniqueInput!]
+input EvaluationGrandpaCreateManyWithoutUserGrandpaInput {
+  create: [EvaluationGrandpaCreateWithoutUserGrandpaInput!]
+  connect: [EvaluationGrandpaWhereUniqueInput!]
+}
+
+input EvaluationGrandpaCreateWithoutUserGrandpaInput {
+  id: ID
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  user: UserCreateOneInput
 }
 
 """An edge in a connection."""
-type EvaluationsGrandpaEdge {
+type EvaluationGrandpaEdge {
   """The item at the end of the edge."""
-  node: EvaluationsGrandpa!
+  node: EvaluationGrandpa!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum EvaluationsGrandpaOrderByInput {
+enum EvaluationGrandpaOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
+  evaluation_01_ASC
+  evaluation_01_DESC
+  evaluation_02_ASC
+  evaluation_02_DESC
+  evaluation_03_ASC
+  evaluation_03_DESC
+  evaluation_04_ASC
+  evaluation_04_DESC
+  evaluation_05_ASC
+  evaluation_05_DESC
+  evaluation_06_ASC
+  evaluation_06_DESC
+  evaluation_07_ASC
+  evaluation_07_DESC
+  evaluation_08_ASC
+  evaluation_08_DESC
+  evaluation_09_ASC
+  evaluation_09_DESC
+  evaluation_10_ASC
+  evaluation_10_DESC
+  description_ASC
+  description_DESC
+  createDate_ASC
+  createDate_DESC
+  updateDate_ASC
+  updateDate_DESC
 }
 
-type EvaluationsGrandpaPreviousValues {
+type EvaluationGrandpaPreviousValues {
   id: ID!
-  name: String
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  createDate: DateTime
+  updateDate: DateTime
 }
 
-input EvaluationsGrandpaScalarWhereInput {
+input EvaluationGrandpaScalarWhereInput {
   """Logical AND on all given filters."""
-  AND: [EvaluationsGrandpaScalarWhereInput!]
+  AND: [EvaluationGrandpaScalarWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [EvaluationsGrandpaScalarWhereInput!]
+  OR: [EvaluationGrandpaScalarWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [EvaluationsGrandpaScalarWhereInput!]
+  NOT: [EvaluationGrandpaScalarWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -1754,64 +1832,328 @@ input EvaluationsGrandpaScalarWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  name: String
+  evaluation_01: Int
 
   """All values that are not equal to given value."""
-  name_not: String
+  evaluation_01_not: Int
 
   """All values that are contained in given list."""
-  name_in: [String!]
+  evaluation_01_in: [Int!]
 
   """All values that are not contained in given list."""
-  name_not_in: [String!]
+  evaluation_01_not_in: [Int!]
 
   """All values less than the given value."""
-  name_lt: String
+  evaluation_01_lt: Int
 
   """All values less than or equal the given value."""
-  name_lte: String
+  evaluation_01_lte: Int
 
   """All values greater than the given value."""
-  name_gt: String
+  evaluation_01_gt: Int
 
   """All values greater than or equal the given value."""
-  name_gte: String
+  evaluation_01_gte: Int
+  evaluation_02: Int
+
+  """All values that are not equal to given value."""
+  evaluation_02_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_02_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_02_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_02_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_02_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_02_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_02_gte: Int
+  evaluation_03: Int
+
+  """All values that are not equal to given value."""
+  evaluation_03_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_03_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_03_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_03_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_03_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_03_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_03_gte: Int
+  evaluation_04: Int
+
+  """All values that are not equal to given value."""
+  evaluation_04_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_04_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_04_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_04_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_04_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_04_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_04_gte: Int
+  evaluation_05: Int
+
+  """All values that are not equal to given value."""
+  evaluation_05_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_05_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_05_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_05_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_05_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_05_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_05_gte: Int
+  evaluation_06: Int
+
+  """All values that are not equal to given value."""
+  evaluation_06_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_06_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_06_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_06_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_06_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_06_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_06_gte: Int
+  evaluation_07: Int
+
+  """All values that are not equal to given value."""
+  evaluation_07_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_07_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_07_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_07_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_07_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_07_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_07_gte: Int
+  evaluation_08: Int
+
+  """All values that are not equal to given value."""
+  evaluation_08_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_08_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_08_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_08_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_08_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_08_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_08_gte: Int
+  evaluation_09: Int
+
+  """All values that are not equal to given value."""
+  evaluation_09_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_09_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_09_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_09_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_09_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_09_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_09_gte: Int
+  evaluation_10: Int
+
+  """All values that are not equal to given value."""
+  evaluation_10_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_10_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_10_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_10_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_10_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_10_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_10_gte: Int
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
 
   """All values containing the given string."""
-  name_contains: String
+  description_contains: String
 
   """All values not containing the given string."""
-  name_not_contains: String
+  description_not_contains: String
 
   """All values starting with the given string."""
-  name_starts_with: String
+  description_starts_with: String
 
   """All values not starting with the given string."""
-  name_not_starts_with: String
+  description_not_starts_with: String
 
   """All values ending with the given string."""
-  name_ends_with: String
+  description_ends_with: String
 
   """All values not ending with the given string."""
-  name_not_ends_with: String
+  description_not_ends_with: String
+  createDate: DateTime
+
+  """All values that are not equal to given value."""
+  createDate_not: DateTime
+
+  """All values that are contained in given list."""
+  createDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createDate_lte: DateTime
+
+  """All values greater than the given value."""
+  createDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createDate_gte: DateTime
+  updateDate: DateTime
+
+  """All values that are not equal to given value."""
+  updateDate_not: DateTime
+
+  """All values that are contained in given list."""
+  updateDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updateDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updateDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updateDate_lte: DateTime
+
+  """All values greater than the given value."""
+  updateDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updateDate_gte: DateTime
 }
 
-type EvaluationsGrandpaSubscriptionPayload {
+type EvaluationGrandpaSubscriptionPayload {
   mutation: MutationType!
-  node: EvaluationsGrandpa
+  node: EvaluationGrandpa
   updatedFields: [String!]
-  previousValues: EvaluationsGrandpaPreviousValues
+  previousValues: EvaluationGrandpaPreviousValues
 }
 
-input EvaluationsGrandpaSubscriptionWhereInput {
+input EvaluationGrandpaSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [EvaluationsGrandpaSubscriptionWhereInput!]
+  AND: [EvaluationGrandpaSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [EvaluationsGrandpaSubscriptionWhereInput!]
+  OR: [EvaluationGrandpaSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [EvaluationsGrandpaSubscriptionWhereInput!]
+  NOT: [EvaluationGrandpaSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -1832,62 +2174,105 @@ input EvaluationsGrandpaSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: EvaluationsGrandpaWhereInput
+  node: EvaluationGrandpaWhereInput
 }
 
-input EvaluationsGrandpaUpdateDataInput {
-  name: String
+input EvaluationGrandpaUpdateInput {
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  user: UserUpdateOneInput
+  userGrandpa: UserGrandpaUpdateOneWithoutEvaluationInput
 }
 
-input EvaluationsGrandpaUpdateInput {
-  name: String
+input EvaluationGrandpaUpdateManyDataInput {
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
 }
 
-input EvaluationsGrandpaUpdateManyDataInput {
-  name: String
+input EvaluationGrandpaUpdateManyMutationInput {
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
 }
 
-input EvaluationsGrandpaUpdateManyInput {
-  create: [EvaluationsGrandpaCreateInput!]
-  connect: [EvaluationsGrandpaWhereUniqueInput!]
-  set: [EvaluationsGrandpaWhereUniqueInput!]
-  disconnect: [EvaluationsGrandpaWhereUniqueInput!]
-  delete: [EvaluationsGrandpaWhereUniqueInput!]
-  update: [EvaluationsGrandpaUpdateWithWhereUniqueNestedInput!]
-  updateMany: [EvaluationsGrandpaUpdateManyWithWhereNestedInput!]
-  deleteMany: [EvaluationsGrandpaScalarWhereInput!]
-  upsert: [EvaluationsGrandpaUpsertWithWhereUniqueNestedInput!]
+input EvaluationGrandpaUpdateManyWithoutUserGrandpaInput {
+  create: [EvaluationGrandpaCreateWithoutUserGrandpaInput!]
+  connect: [EvaluationGrandpaWhereUniqueInput!]
+  set: [EvaluationGrandpaWhereUniqueInput!]
+  disconnect: [EvaluationGrandpaWhereUniqueInput!]
+  delete: [EvaluationGrandpaWhereUniqueInput!]
+  update: [EvaluationGrandpaUpdateWithWhereUniqueWithoutUserGrandpaInput!]
+  updateMany: [EvaluationGrandpaUpdateManyWithWhereNestedInput!]
+  deleteMany: [EvaluationGrandpaScalarWhereInput!]
+  upsert: [EvaluationGrandpaUpsertWithWhereUniqueWithoutUserGrandpaInput!]
 }
 
-input EvaluationsGrandpaUpdateManyMutationInput {
-  name: String
+input EvaluationGrandpaUpdateManyWithWhereNestedInput {
+  where: EvaluationGrandpaScalarWhereInput!
+  data: EvaluationGrandpaUpdateManyDataInput!
 }
 
-input EvaluationsGrandpaUpdateManyWithWhereNestedInput {
-  where: EvaluationsGrandpaScalarWhereInput!
-  data: EvaluationsGrandpaUpdateManyDataInput!
+input EvaluationGrandpaUpdateWithoutUserGrandpaDataInput {
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  user: UserUpdateOneInput
 }
 
-input EvaluationsGrandpaUpdateWithWhereUniqueNestedInput {
-  where: EvaluationsGrandpaWhereUniqueInput!
-  data: EvaluationsGrandpaUpdateDataInput!
+input EvaluationGrandpaUpdateWithWhereUniqueWithoutUserGrandpaInput {
+  where: EvaluationGrandpaWhereUniqueInput!
+  data: EvaluationGrandpaUpdateWithoutUserGrandpaDataInput!
 }
 
-input EvaluationsGrandpaUpsertWithWhereUniqueNestedInput {
-  where: EvaluationsGrandpaWhereUniqueInput!
-  update: EvaluationsGrandpaUpdateDataInput!
-  create: EvaluationsGrandpaCreateInput!
+input EvaluationGrandpaUpsertWithWhereUniqueWithoutUserGrandpaInput {
+  where: EvaluationGrandpaWhereUniqueInput!
+  update: EvaluationGrandpaUpdateWithoutUserGrandpaDataInput!
+  create: EvaluationGrandpaCreateWithoutUserGrandpaInput!
 }
 
-input EvaluationsGrandpaWhereInput {
+input EvaluationGrandpaWhereInput {
   """Logical AND on all given filters."""
-  AND: [EvaluationsGrandpaWhereInput!]
+  AND: [EvaluationGrandpaWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [EvaluationsGrandpaWhereInput!]
+  OR: [EvaluationGrandpaWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [EvaluationsGrandpaWhereInput!]
+  NOT: [EvaluationGrandpaWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -1928,107 +2313,433 @@ input EvaluationsGrandpaWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  name: String
+  evaluation_01: Int
 
   """All values that are not equal to given value."""
-  name_not: String
+  evaluation_01_not: Int
 
   """All values that are contained in given list."""
-  name_in: [String!]
+  evaluation_01_in: [Int!]
 
   """All values that are not contained in given list."""
-  name_not_in: [String!]
+  evaluation_01_not_in: [Int!]
 
   """All values less than the given value."""
-  name_lt: String
+  evaluation_01_lt: Int
 
   """All values less than or equal the given value."""
-  name_lte: String
+  evaluation_01_lte: Int
 
   """All values greater than the given value."""
-  name_gt: String
+  evaluation_01_gt: Int
 
   """All values greater than or equal the given value."""
-  name_gte: String
+  evaluation_01_gte: Int
+  evaluation_02: Int
+
+  """All values that are not equal to given value."""
+  evaluation_02_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_02_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_02_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_02_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_02_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_02_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_02_gte: Int
+  evaluation_03: Int
+
+  """All values that are not equal to given value."""
+  evaluation_03_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_03_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_03_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_03_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_03_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_03_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_03_gte: Int
+  evaluation_04: Int
+
+  """All values that are not equal to given value."""
+  evaluation_04_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_04_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_04_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_04_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_04_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_04_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_04_gte: Int
+  evaluation_05: Int
+
+  """All values that are not equal to given value."""
+  evaluation_05_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_05_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_05_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_05_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_05_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_05_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_05_gte: Int
+  evaluation_06: Int
+
+  """All values that are not equal to given value."""
+  evaluation_06_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_06_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_06_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_06_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_06_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_06_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_06_gte: Int
+  evaluation_07: Int
+
+  """All values that are not equal to given value."""
+  evaluation_07_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_07_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_07_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_07_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_07_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_07_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_07_gte: Int
+  evaluation_08: Int
+
+  """All values that are not equal to given value."""
+  evaluation_08_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_08_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_08_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_08_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_08_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_08_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_08_gte: Int
+  evaluation_09: Int
+
+  """All values that are not equal to given value."""
+  evaluation_09_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_09_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_09_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_09_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_09_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_09_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_09_gte: Int
+  evaluation_10: Int
+
+  """All values that are not equal to given value."""
+  evaluation_10_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_10_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_10_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_10_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_10_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_10_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_10_gte: Int
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
 
   """All values containing the given string."""
-  name_contains: String
+  description_contains: String
 
   """All values not containing the given string."""
-  name_not_contains: String
+  description_not_contains: String
 
   """All values starting with the given string."""
-  name_starts_with: String
+  description_starts_with: String
 
   """All values not starting with the given string."""
-  name_not_starts_with: String
+  description_not_starts_with: String
 
   """All values ending with the given string."""
-  name_ends_with: String
+  description_ends_with: String
 
   """All values not ending with the given string."""
-  name_not_ends_with: String
+  description_not_ends_with: String
+  createDate: DateTime
+
+  """All values that are not equal to given value."""
+  createDate_not: DateTime
+
+  """All values that are contained in given list."""
+  createDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createDate_lte: DateTime
+
+  """All values greater than the given value."""
+  createDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createDate_gte: DateTime
+  updateDate: DateTime
+
+  """All values that are not equal to given value."""
+  updateDate_not: DateTime
+
+  """All values that are contained in given list."""
+  updateDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updateDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updateDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updateDate_lte: DateTime
+
+  """All values greater than the given value."""
+  updateDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updateDate_gte: DateTime
+  user: UserWhereInput
+  userGrandpa: UserGrandpaWhereInput
 }
 
-input EvaluationsGrandpaWhereUniqueInput {
+input EvaluationGrandpaWhereUniqueInput {
   id: ID
 }
 
-type EvaluationsStudent implements Node {
+type EvaluationStudent implements Node {
   id: ID!
-  name: String
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  user: User
+  createDate: DateTime
+  updateDate: DateTime
 }
 
 """A connection to a list of items."""
-type EvaluationsStudentConnection {
+type EvaluationStudentConnection {
   """Information to aid in pagination."""
   pageInfo: PageInfo!
 
   """A list of edges."""
-  edges: [EvaluationsStudentEdge]!
-  aggregate: AggregateEvaluationsStudent!
+  edges: [EvaluationStudentEdge]!
+  aggregate: AggregateEvaluationStudent!
 }
 
-input EvaluationsStudentCreateInput {
+input EvaluationStudentCreateInput {
   id: ID
-  name: String
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  user: UserCreateOneInput
 }
 
-input EvaluationsStudentCreateManyInput {
-  create: [EvaluationsStudentCreateInput!]
-  connect: [EvaluationsStudentWhereUniqueInput!]
+input EvaluationStudentCreateManyInput {
+  create: [EvaluationStudentCreateInput!]
+  connect: [EvaluationStudentWhereUniqueInput!]
 }
 
 """An edge in a connection."""
-type EvaluationsStudentEdge {
+type EvaluationStudentEdge {
   """The item at the end of the edge."""
-  node: EvaluationsStudent!
+  node: EvaluationStudent!
 
   """A cursor for use in pagination."""
   cursor: String!
 }
 
-enum EvaluationsStudentOrderByInput {
+enum EvaluationStudentOrderByInput {
   id_ASC
   id_DESC
-  name_ASC
-  name_DESC
+  evaluation_01_ASC
+  evaluation_01_DESC
+  evaluation_02_ASC
+  evaluation_02_DESC
+  evaluation_03_ASC
+  evaluation_03_DESC
+  evaluation_04_ASC
+  evaluation_04_DESC
+  evaluation_05_ASC
+  evaluation_05_DESC
+  evaluation_06_ASC
+  evaluation_06_DESC
+  evaluation_07_ASC
+  evaluation_07_DESC
+  evaluation_08_ASC
+  evaluation_08_DESC
+  evaluation_09_ASC
+  evaluation_09_DESC
+  evaluation_10_ASC
+  evaluation_10_DESC
+  description_ASC
+  description_DESC
+  createDate_ASC
+  createDate_DESC
+  updateDate_ASC
+  updateDate_DESC
 }
 
-type EvaluationsStudentPreviousValues {
+type EvaluationStudentPreviousValues {
   id: ID!
-  name: String
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  createDate: DateTime
+  updateDate: DateTime
 }
 
-input EvaluationsStudentScalarWhereInput {
+input EvaluationStudentScalarWhereInput {
   """Logical AND on all given filters."""
-  AND: [EvaluationsStudentScalarWhereInput!]
+  AND: [EvaluationStudentScalarWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [EvaluationsStudentScalarWhereInput!]
+  OR: [EvaluationStudentScalarWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [EvaluationsStudentScalarWhereInput!]
+  NOT: [EvaluationStudentScalarWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -2069,64 +2780,328 @@ input EvaluationsStudentScalarWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  name: String
+  evaluation_01: Int
 
   """All values that are not equal to given value."""
-  name_not: String
+  evaluation_01_not: Int
 
   """All values that are contained in given list."""
-  name_in: [String!]
+  evaluation_01_in: [Int!]
 
   """All values that are not contained in given list."""
-  name_not_in: [String!]
+  evaluation_01_not_in: [Int!]
 
   """All values less than the given value."""
-  name_lt: String
+  evaluation_01_lt: Int
 
   """All values less than or equal the given value."""
-  name_lte: String
+  evaluation_01_lte: Int
 
   """All values greater than the given value."""
-  name_gt: String
+  evaluation_01_gt: Int
 
   """All values greater than or equal the given value."""
-  name_gte: String
+  evaluation_01_gte: Int
+  evaluation_02: Int
+
+  """All values that are not equal to given value."""
+  evaluation_02_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_02_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_02_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_02_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_02_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_02_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_02_gte: Int
+  evaluation_03: Int
+
+  """All values that are not equal to given value."""
+  evaluation_03_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_03_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_03_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_03_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_03_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_03_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_03_gte: Int
+  evaluation_04: Int
+
+  """All values that are not equal to given value."""
+  evaluation_04_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_04_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_04_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_04_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_04_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_04_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_04_gte: Int
+  evaluation_05: Int
+
+  """All values that are not equal to given value."""
+  evaluation_05_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_05_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_05_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_05_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_05_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_05_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_05_gte: Int
+  evaluation_06: Int
+
+  """All values that are not equal to given value."""
+  evaluation_06_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_06_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_06_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_06_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_06_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_06_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_06_gte: Int
+  evaluation_07: Int
+
+  """All values that are not equal to given value."""
+  evaluation_07_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_07_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_07_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_07_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_07_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_07_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_07_gte: Int
+  evaluation_08: Int
+
+  """All values that are not equal to given value."""
+  evaluation_08_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_08_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_08_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_08_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_08_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_08_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_08_gte: Int
+  evaluation_09: Int
+
+  """All values that are not equal to given value."""
+  evaluation_09_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_09_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_09_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_09_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_09_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_09_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_09_gte: Int
+  evaluation_10: Int
+
+  """All values that are not equal to given value."""
+  evaluation_10_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_10_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_10_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_10_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_10_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_10_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_10_gte: Int
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
 
   """All values containing the given string."""
-  name_contains: String
+  description_contains: String
 
   """All values not containing the given string."""
-  name_not_contains: String
+  description_not_contains: String
 
   """All values starting with the given string."""
-  name_starts_with: String
+  description_starts_with: String
 
   """All values not starting with the given string."""
-  name_not_starts_with: String
+  description_not_starts_with: String
 
   """All values ending with the given string."""
-  name_ends_with: String
+  description_ends_with: String
 
   """All values not ending with the given string."""
-  name_not_ends_with: String
+  description_not_ends_with: String
+  createDate: DateTime
+
+  """All values that are not equal to given value."""
+  createDate_not: DateTime
+
+  """All values that are contained in given list."""
+  createDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createDate_lte: DateTime
+
+  """All values greater than the given value."""
+  createDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createDate_gte: DateTime
+  updateDate: DateTime
+
+  """All values that are not equal to given value."""
+  updateDate_not: DateTime
+
+  """All values that are contained in given list."""
+  updateDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updateDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updateDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updateDate_lte: DateTime
+
+  """All values greater than the given value."""
+  updateDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updateDate_gte: DateTime
 }
 
-type EvaluationsStudentSubscriptionPayload {
+type EvaluationStudentSubscriptionPayload {
   mutation: MutationType!
-  node: EvaluationsStudent
+  node: EvaluationStudent
   updatedFields: [String!]
-  previousValues: EvaluationsStudentPreviousValues
+  previousValues: EvaluationStudentPreviousValues
 }
 
-input EvaluationsStudentSubscriptionWhereInput {
+input EvaluationStudentSubscriptionWhereInput {
   """Logical AND on all given filters."""
-  AND: [EvaluationsStudentSubscriptionWhereInput!]
+  AND: [EvaluationStudentSubscriptionWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [EvaluationsStudentSubscriptionWhereInput!]
+  OR: [EvaluationStudentSubscriptionWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [EvaluationsStudentSubscriptionWhereInput!]
+  NOT: [EvaluationStudentSubscriptionWhereInput!]
 
   """
   The subscription event gets dispatched when it's listed in mutation_in
@@ -2147,62 +3122,104 @@ input EvaluationsStudentSubscriptionWhereInput {
   The subscription event gets only dispatched when some of the field names included in this list have been updated
   """
   updatedFields_contains_some: [String!]
-  node: EvaluationsStudentWhereInput
+  node: EvaluationStudentWhereInput
 }
 
-input EvaluationsStudentUpdateDataInput {
-  name: String
+input EvaluationStudentUpdateDataInput {
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  user: UserUpdateOneInput
 }
 
-input EvaluationsStudentUpdateInput {
-  name: String
+input EvaluationStudentUpdateInput {
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
+  user: UserUpdateOneInput
 }
 
-input EvaluationsStudentUpdateManyDataInput {
-  name: String
+input EvaluationStudentUpdateManyDataInput {
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
 }
 
-input EvaluationsStudentUpdateManyInput {
-  create: [EvaluationsStudentCreateInput!]
-  connect: [EvaluationsStudentWhereUniqueInput!]
-  set: [EvaluationsStudentWhereUniqueInput!]
-  disconnect: [EvaluationsStudentWhereUniqueInput!]
-  delete: [EvaluationsStudentWhereUniqueInput!]
-  update: [EvaluationsStudentUpdateWithWhereUniqueNestedInput!]
-  updateMany: [EvaluationsStudentUpdateManyWithWhereNestedInput!]
-  deleteMany: [EvaluationsStudentScalarWhereInput!]
-  upsert: [EvaluationsStudentUpsertWithWhereUniqueNestedInput!]
+input EvaluationStudentUpdateManyInput {
+  create: [EvaluationStudentCreateInput!]
+  connect: [EvaluationStudentWhereUniqueInput!]
+  set: [EvaluationStudentWhereUniqueInput!]
+  disconnect: [EvaluationStudentWhereUniqueInput!]
+  delete: [EvaluationStudentWhereUniqueInput!]
+  update: [EvaluationStudentUpdateWithWhereUniqueNestedInput!]
+  updateMany: [EvaluationStudentUpdateManyWithWhereNestedInput!]
+  deleteMany: [EvaluationStudentScalarWhereInput!]
+  upsert: [EvaluationStudentUpsertWithWhereUniqueNestedInput!]
 }
 
-input EvaluationsStudentUpdateManyMutationInput {
-  name: String
+input EvaluationStudentUpdateManyMutationInput {
+  evaluation_01: Int
+  evaluation_02: Int
+  evaluation_03: Int
+  evaluation_04: Int
+  evaluation_05: Int
+  evaluation_06: Int
+  evaluation_07: Int
+  evaluation_08: Int
+  evaluation_09: Int
+  evaluation_10: Int
+  description: String
 }
 
-input EvaluationsStudentUpdateManyWithWhereNestedInput {
-  where: EvaluationsStudentScalarWhereInput!
-  data: EvaluationsStudentUpdateManyDataInput!
+input EvaluationStudentUpdateManyWithWhereNestedInput {
+  where: EvaluationStudentScalarWhereInput!
+  data: EvaluationStudentUpdateManyDataInput!
 }
 
-input EvaluationsStudentUpdateWithWhereUniqueNestedInput {
-  where: EvaluationsStudentWhereUniqueInput!
-  data: EvaluationsStudentUpdateDataInput!
+input EvaluationStudentUpdateWithWhereUniqueNestedInput {
+  where: EvaluationStudentWhereUniqueInput!
+  data: EvaluationStudentUpdateDataInput!
 }
 
-input EvaluationsStudentUpsertWithWhereUniqueNestedInput {
-  where: EvaluationsStudentWhereUniqueInput!
-  update: EvaluationsStudentUpdateDataInput!
-  create: EvaluationsStudentCreateInput!
+input EvaluationStudentUpsertWithWhereUniqueNestedInput {
+  where: EvaluationStudentWhereUniqueInput!
+  update: EvaluationStudentUpdateDataInput!
+  create: EvaluationStudentCreateInput!
 }
 
-input EvaluationsStudentWhereInput {
+input EvaluationStudentWhereInput {
   """Logical AND on all given filters."""
-  AND: [EvaluationsStudentWhereInput!]
+  AND: [EvaluationStudentWhereInput!]
 
   """Logical OR on all given filters."""
-  OR: [EvaluationsStudentWhereInput!]
+  OR: [EvaluationStudentWhereInput!]
 
   """Logical NOT on all given filters combined by AND."""
-  NOT: [EvaluationsStudentWhereInput!]
+  NOT: [EvaluationStudentWhereInput!]
   id: ID
 
   """All values that are not equal to given value."""
@@ -2243,49 +3260,314 @@ input EvaluationsStudentWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  name: String
+  evaluation_01: Int
 
   """All values that are not equal to given value."""
-  name_not: String
+  evaluation_01_not: Int
 
   """All values that are contained in given list."""
-  name_in: [String!]
+  evaluation_01_in: [Int!]
 
   """All values that are not contained in given list."""
-  name_not_in: [String!]
+  evaluation_01_not_in: [Int!]
 
   """All values less than the given value."""
-  name_lt: String
+  evaluation_01_lt: Int
 
   """All values less than or equal the given value."""
-  name_lte: String
+  evaluation_01_lte: Int
 
   """All values greater than the given value."""
-  name_gt: String
+  evaluation_01_gt: Int
 
   """All values greater than or equal the given value."""
-  name_gte: String
+  evaluation_01_gte: Int
+  evaluation_02: Int
+
+  """All values that are not equal to given value."""
+  evaluation_02_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_02_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_02_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_02_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_02_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_02_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_02_gte: Int
+  evaluation_03: Int
+
+  """All values that are not equal to given value."""
+  evaluation_03_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_03_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_03_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_03_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_03_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_03_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_03_gte: Int
+  evaluation_04: Int
+
+  """All values that are not equal to given value."""
+  evaluation_04_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_04_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_04_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_04_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_04_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_04_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_04_gte: Int
+  evaluation_05: Int
+
+  """All values that are not equal to given value."""
+  evaluation_05_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_05_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_05_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_05_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_05_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_05_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_05_gte: Int
+  evaluation_06: Int
+
+  """All values that are not equal to given value."""
+  evaluation_06_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_06_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_06_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_06_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_06_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_06_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_06_gte: Int
+  evaluation_07: Int
+
+  """All values that are not equal to given value."""
+  evaluation_07_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_07_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_07_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_07_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_07_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_07_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_07_gte: Int
+  evaluation_08: Int
+
+  """All values that are not equal to given value."""
+  evaluation_08_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_08_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_08_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_08_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_08_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_08_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_08_gte: Int
+  evaluation_09: Int
+
+  """All values that are not equal to given value."""
+  evaluation_09_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_09_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_09_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_09_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_09_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_09_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_09_gte: Int
+  evaluation_10: Int
+
+  """All values that are not equal to given value."""
+  evaluation_10_not: Int
+
+  """All values that are contained in given list."""
+  evaluation_10_in: [Int!]
+
+  """All values that are not contained in given list."""
+  evaluation_10_not_in: [Int!]
+
+  """All values less than the given value."""
+  evaluation_10_lt: Int
+
+  """All values less than or equal the given value."""
+  evaluation_10_lte: Int
+
+  """All values greater than the given value."""
+  evaluation_10_gt: Int
+
+  """All values greater than or equal the given value."""
+  evaluation_10_gte: Int
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
 
   """All values containing the given string."""
-  name_contains: String
+  description_contains: String
 
   """All values not containing the given string."""
-  name_not_contains: String
+  description_not_contains: String
 
   """All values starting with the given string."""
-  name_starts_with: String
+  description_starts_with: String
 
   """All values not starting with the given string."""
-  name_not_starts_with: String
+  description_not_starts_with: String
 
   """All values ending with the given string."""
-  name_ends_with: String
+  description_ends_with: String
 
   """All values not ending with the given string."""
-  name_not_ends_with: String
+  description_not_ends_with: String
+  createDate: DateTime
+
+  """All values that are not equal to given value."""
+  createDate_not: DateTime
+
+  """All values that are contained in given list."""
+  createDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createDate_lte: DateTime
+
+  """All values greater than the given value."""
+  createDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createDate_gte: DateTime
+  updateDate: DateTime
+
+  """All values that are not equal to given value."""
+  updateDate_not: DateTime
+
+  """All values that are contained in given list."""
+  updateDate_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updateDate_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updateDate_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updateDate_lte: DateTime
+
+  """All values greater than the given value."""
+  updateDate_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updateDate_gte: DateTime
+  user: UserWhereInput
 }
 
-input EvaluationsStudentWhereUniqueInput {
+input EvaluationStudentWhereUniqueInput {
   id: ID
 }
 
@@ -3720,116 +5002,116 @@ scalar Long
 type Mutation {
   createUserStudent(data: UserStudentCreateInput!): UserStudent!
   createUserGrandpa(data: UserGrandpaCreateInput!): UserGrandpa!
+  createEvaluationGrandpa(data: EvaluationGrandpaCreateInput!): EvaluationGrandpa!
   createSource(data: SourceCreateInput!): Source!
   createImagesDocument(data: ImagesDocumentCreateInput!): ImagesDocument!
-  createUser(data: UserCreateInput!): User!
   createHouse(data: HouseCreateInput!): House!
-  createEvaluationsGrandpa(data: EvaluationsGrandpaCreateInput!): EvaluationsGrandpa!
   createCouple(data: CoupleCreateInput!): Couple!
   createUniversity(data: UniversityCreateInput!): University!
   createTypeUser(data: TypeUserCreateInput!): TypeUser!
   createProvince(data: ProvinceCreateInput!): Province!
   createCountry(data: CountryCreateInput!): Country!
   createUserTech(data: UserTechCreateInput!): UserTech!
-  createEvaluationsStudent(data: EvaluationsStudentCreateInput!): EvaluationsStudent!
   createInterviews(data: InterviewsCreateInput!): Interviews!
   createImagesUniversity(data: ImagesUniversityCreateInput!): ImagesUniversity!
   createCharacteristics(data: CharacteristicsCreateInput!): Characteristics!
+  createEvaluationStudent(data: EvaluationStudentCreateInput!): EvaluationStudent!
   createCareer(data: CareerCreateInput!): Career!
+  createUser(data: UserCreateInput!): User!
   createAssociation(data: AssociationCreateInput!): Association!
   updateUserStudent(data: UserStudentUpdateInput!, where: UserStudentWhereUniqueInput!): UserStudent
   updateUserGrandpa(data: UserGrandpaUpdateInput!, where: UserGrandpaWhereUniqueInput!): UserGrandpa
+  updateEvaluationGrandpa(data: EvaluationGrandpaUpdateInput!, where: EvaluationGrandpaWhereUniqueInput!): EvaluationGrandpa
   updateSource(data: SourceUpdateInput!, where: SourceWhereUniqueInput!): Source
   updateImagesDocument(data: ImagesDocumentUpdateInput!, where: ImagesDocumentWhereUniqueInput!): ImagesDocument
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateHouse(data: HouseUpdateInput!, where: HouseWhereUniqueInput!): House
-  updateEvaluationsGrandpa(data: EvaluationsGrandpaUpdateInput!, where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
   updateCouple(data: CoupleUpdateInput!, where: CoupleWhereUniqueInput!): Couple
   updateUniversity(data: UniversityUpdateInput!, where: UniversityWhereUniqueInput!): University
   updateTypeUser(data: TypeUserUpdateInput!, where: TypeUserWhereUniqueInput!): TypeUser
   updateProvince(data: ProvinceUpdateInput!, where: ProvinceWhereUniqueInput!): Province
   updateCountry(data: CountryUpdateInput!, where: CountryWhereUniqueInput!): Country
   updateUserTech(data: UserTechUpdateInput!, where: UserTechWhereUniqueInput!): UserTech
-  updateEvaluationsStudent(data: EvaluationsStudentUpdateInput!, where: EvaluationsStudentWhereUniqueInput!): EvaluationsStudent
   updateInterviews(data: InterviewsUpdateInput!, where: InterviewsWhereUniqueInput!): Interviews
   updateImagesUniversity(data: ImagesUniversityUpdateInput!, where: ImagesUniversityWhereUniqueInput!): ImagesUniversity
   updateCharacteristics(data: CharacteristicsUpdateInput!, where: CharacteristicsWhereUniqueInput!): Characteristics
+  updateEvaluationStudent(data: EvaluationStudentUpdateInput!, where: EvaluationStudentWhereUniqueInput!): EvaluationStudent
   updateCareer(data: CareerUpdateInput!, where: CareerWhereUniqueInput!): Career
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateAssociation(data: AssociationUpdateInput!, where: AssociationWhereUniqueInput!): Association
   deleteUserStudent(where: UserStudentWhereUniqueInput!): UserStudent
   deleteUserGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
+  deleteEvaluationGrandpa(where: EvaluationGrandpaWhereUniqueInput!): EvaluationGrandpa
   deleteSource(where: SourceWhereUniqueInput!): Source
   deleteImagesDocument(where: ImagesDocumentWhereUniqueInput!): ImagesDocument
-  deleteUser(where: UserWhereUniqueInput!): User
   deleteHouse(where: HouseWhereUniqueInput!): House
-  deleteEvaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
   deleteCouple(where: CoupleWhereUniqueInput!): Couple
   deleteUniversity(where: UniversityWhereUniqueInput!): University
   deleteTypeUser(where: TypeUserWhereUniqueInput!): TypeUser
   deleteProvince(where: ProvinceWhereUniqueInput!): Province
   deleteCountry(where: CountryWhereUniqueInput!): Country
   deleteUserTech(where: UserTechWhereUniqueInput!): UserTech
-  deleteEvaluationsStudent(where: EvaluationsStudentWhereUniqueInput!): EvaluationsStudent
   deleteInterviews(where: InterviewsWhereUniqueInput!): Interviews
   deleteImagesUniversity(where: ImagesUniversityWhereUniqueInput!): ImagesUniversity
   deleteCharacteristics(where: CharacteristicsWhereUniqueInput!): Characteristics
+  deleteEvaluationStudent(where: EvaluationStudentWhereUniqueInput!): EvaluationStudent
   deleteCareer(where: CareerWhereUniqueInput!): Career
+  deleteUser(where: UserWhereUniqueInput!): User
   deleteAssociation(where: AssociationWhereUniqueInput!): Association
   upsertUserStudent(where: UserStudentWhereUniqueInput!, create: UserStudentCreateInput!, update: UserStudentUpdateInput!): UserStudent!
   upsertUserGrandpa(where: UserGrandpaWhereUniqueInput!, create: UserGrandpaCreateInput!, update: UserGrandpaUpdateInput!): UserGrandpa!
+  upsertEvaluationGrandpa(where: EvaluationGrandpaWhereUniqueInput!, create: EvaluationGrandpaCreateInput!, update: EvaluationGrandpaUpdateInput!): EvaluationGrandpa!
   upsertSource(where: SourceWhereUniqueInput!, create: SourceCreateInput!, update: SourceUpdateInput!): Source!
   upsertImagesDocument(where: ImagesDocumentWhereUniqueInput!, create: ImagesDocumentCreateInput!, update: ImagesDocumentUpdateInput!): ImagesDocument!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertHouse(where: HouseWhereUniqueInput!, create: HouseCreateInput!, update: HouseUpdateInput!): House!
-  upsertEvaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!, create: EvaluationsGrandpaCreateInput!, update: EvaluationsGrandpaUpdateInput!): EvaluationsGrandpa!
   upsertCouple(where: CoupleWhereUniqueInput!, create: CoupleCreateInput!, update: CoupleUpdateInput!): Couple!
   upsertUniversity(where: UniversityWhereUniqueInput!, create: UniversityCreateInput!, update: UniversityUpdateInput!): University!
   upsertTypeUser(where: TypeUserWhereUniqueInput!, create: TypeUserCreateInput!, update: TypeUserUpdateInput!): TypeUser!
   upsertProvince(where: ProvinceWhereUniqueInput!, create: ProvinceCreateInput!, update: ProvinceUpdateInput!): Province!
   upsertCountry(where: CountryWhereUniqueInput!, create: CountryCreateInput!, update: CountryUpdateInput!): Country!
   upsertUserTech(where: UserTechWhereUniqueInput!, create: UserTechCreateInput!, update: UserTechUpdateInput!): UserTech!
-  upsertEvaluationsStudent(where: EvaluationsStudentWhereUniqueInput!, create: EvaluationsStudentCreateInput!, update: EvaluationsStudentUpdateInput!): EvaluationsStudent!
   upsertInterviews(where: InterviewsWhereUniqueInput!, create: InterviewsCreateInput!, update: InterviewsUpdateInput!): Interviews!
   upsertImagesUniversity(where: ImagesUniversityWhereUniqueInput!, create: ImagesUniversityCreateInput!, update: ImagesUniversityUpdateInput!): ImagesUniversity!
   upsertCharacteristics(where: CharacteristicsWhereUniqueInput!, create: CharacteristicsCreateInput!, update: CharacteristicsUpdateInput!): Characteristics!
+  upsertEvaluationStudent(where: EvaluationStudentWhereUniqueInput!, create: EvaluationStudentCreateInput!, update: EvaluationStudentUpdateInput!): EvaluationStudent!
   upsertCareer(where: CareerWhereUniqueInput!, create: CareerCreateInput!, update: CareerUpdateInput!): Career!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertAssociation(where: AssociationWhereUniqueInput!, create: AssociationCreateInput!, update: AssociationUpdateInput!): Association!
   updateManyUserStudents(data: UserStudentUpdateManyMutationInput!, where: UserStudentWhereInput): BatchPayload!
   updateManyUserGrandpas(data: UserGrandpaUpdateManyMutationInput!, where: UserGrandpaWhereInput): BatchPayload!
+  updateManyEvaluationGrandpas(data: EvaluationGrandpaUpdateManyMutationInput!, where: EvaluationGrandpaWhereInput): BatchPayload!
   updateManySources(data: SourceUpdateManyMutationInput!, where: SourceWhereInput): BatchPayload!
   updateManyImagesDocuments(data: ImagesDocumentUpdateManyMutationInput!, where: ImagesDocumentWhereInput): BatchPayload!
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyHouses(data: HouseUpdateManyMutationInput!, where: HouseWhereInput): BatchPayload!
-  updateManyEvaluationsGrandpas(data: EvaluationsGrandpaUpdateManyMutationInput!, where: EvaluationsGrandpaWhereInput): BatchPayload!
   updateManyUniversities(data: UniversityUpdateManyMutationInput!, where: UniversityWhereInput): BatchPayload!
   updateManyTypeUsers(data: TypeUserUpdateManyMutationInput!, where: TypeUserWhereInput): BatchPayload!
   updateManyProvinces(data: ProvinceUpdateManyMutationInput!, where: ProvinceWhereInput): BatchPayload!
   updateManyCountries(data: CountryUpdateManyMutationInput!, where: CountryWhereInput): BatchPayload!
   updateManyUserTeches(data: UserTechUpdateManyMutationInput!, where: UserTechWhereInput): BatchPayload!
-  updateManyEvaluationsStudents(data: EvaluationsStudentUpdateManyMutationInput!, where: EvaluationsStudentWhereInput): BatchPayload!
   updateManyInterviewses(data: InterviewsUpdateManyMutationInput!, where: InterviewsWhereInput): BatchPayload!
   updateManyImagesUniversities(data: ImagesUniversityUpdateManyMutationInput!, where: ImagesUniversityWhereInput): BatchPayload!
   updateManyCharacteristicses(data: CharacteristicsUpdateManyMutationInput!, where: CharacteristicsWhereInput): BatchPayload!
+  updateManyEvaluationStudents(data: EvaluationStudentUpdateManyMutationInput!, where: EvaluationStudentWhereInput): BatchPayload!
   updateManyCareers(data: CareerUpdateManyMutationInput!, where: CareerWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyAssociations(data: AssociationUpdateManyMutationInput!, where: AssociationWhereInput): BatchPayload!
   deleteManyUserStudents(where: UserStudentWhereInput): BatchPayload!
   deleteManyUserGrandpas(where: UserGrandpaWhereInput): BatchPayload!
+  deleteManyEvaluationGrandpas(where: EvaluationGrandpaWhereInput): BatchPayload!
   deleteManySources(where: SourceWhereInput): BatchPayload!
   deleteManyImagesDocuments(where: ImagesDocumentWhereInput): BatchPayload!
-  deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyHouses(where: HouseWhereInput): BatchPayload!
-  deleteManyEvaluationsGrandpas(where: EvaluationsGrandpaWhereInput): BatchPayload!
   deleteManyCouples(where: CoupleWhereInput): BatchPayload!
   deleteManyUniversities(where: UniversityWhereInput): BatchPayload!
   deleteManyTypeUsers(where: TypeUserWhereInput): BatchPayload!
   deleteManyProvinces(where: ProvinceWhereInput): BatchPayload!
   deleteManyCountries(where: CountryWhereInput): BatchPayload!
   deleteManyUserTeches(where: UserTechWhereInput): BatchPayload!
-  deleteManyEvaluationsStudents(where: EvaluationsStudentWhereInput): BatchPayload!
   deleteManyInterviewses(where: InterviewsWhereInput): BatchPayload!
   deleteManyImagesUniversities(where: ImagesUniversityWhereInput): BatchPayload!
   deleteManyCharacteristicses(where: CharacteristicsWhereInput): BatchPayload!
+  deleteManyEvaluationStudents(where: EvaluationStudentWhereInput): BatchPayload!
   deleteManyCareers(where: CareerWhereInput): BatchPayload!
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyAssociations(where: AssociationWhereInput): BatchPayload!
 }
 
@@ -4090,60 +5372,60 @@ input ProvinceWhereUniqueInput {
 type Query {
   userStudents(where: UserStudentWhereInput, orderBy: UserStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserStudent]!
   userGrandpas(where: UserGrandpaWhereInput, orderBy: UserGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserGrandpa]!
+  evaluationGrandpas(where: EvaluationGrandpaWhereInput, orderBy: EvaluationGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationGrandpa]!
   sources(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Source]!
   imagesDocuments(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesDocument]!
-  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   houses(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [House]!
-  evaluationsGrandpas(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa]!
   couples(where: CoupleWhereInput, orderBy: CoupleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Couple]!
   universities(where: UniversityWhereInput, orderBy: UniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [University]!
   typeUsers(where: TypeUserWhereInput, orderBy: TypeUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [TypeUser]!
   provinces(where: ProvinceWhereInput, orderBy: ProvinceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Province]!
   countries(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Country]!
   userTeches(where: UserTechWhereInput, orderBy: UserTechOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [UserTech]!
-  evaluationsStudents(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsStudent]!
   interviewses(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews]!
   imagesUniversities(where: ImagesUniversityWhereInput, orderBy: ImagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesUniversity]!
   characteristicses(where: CharacteristicsWhereInput, orderBy: CharacteristicsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Characteristics]!
+  evaluationStudents(where: EvaluationStudentWhereInput, orderBy: EvaluationStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationStudent]!
   careers(where: CareerWhereInput, orderBy: CareerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Career]!
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   associations(where: AssociationWhereInput, orderBy: AssociationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Association]!
   userStudent(where: UserStudentWhereUniqueInput!): UserStudent
   userGrandpa(where: UserGrandpaWhereUniqueInput!): UserGrandpa
+  evaluationGrandpa(where: EvaluationGrandpaWhereUniqueInput!): EvaluationGrandpa
   source(where: SourceWhereUniqueInput!): Source
   imagesDocument(where: ImagesDocumentWhereUniqueInput!): ImagesDocument
-  user(where: UserWhereUniqueInput!): User
   house(where: HouseWhereUniqueInput!): House
-  evaluationsGrandpa(where: EvaluationsGrandpaWhereUniqueInput!): EvaluationsGrandpa
   couple(where: CoupleWhereUniqueInput!): Couple
   university(where: UniversityWhereUniqueInput!): University
   typeUser(where: TypeUserWhereUniqueInput!): TypeUser
   province(where: ProvinceWhereUniqueInput!): Province
   country(where: CountryWhereUniqueInput!): Country
   userTech(where: UserTechWhereUniqueInput!): UserTech
-  evaluationsStudent(where: EvaluationsStudentWhereUniqueInput!): EvaluationsStudent
   interviews(where: InterviewsWhereUniqueInput!): Interviews
   imagesUniversity(where: ImagesUniversityWhereUniqueInput!): ImagesUniversity
   characteristics(where: CharacteristicsWhereUniqueInput!): Characteristics
+  evaluationStudent(where: EvaluationStudentWhereUniqueInput!): EvaluationStudent
   career(where: CareerWhereUniqueInput!): Career
+  user(where: UserWhereUniqueInput!): User
   association(where: AssociationWhereUniqueInput!): Association
   userStudentsConnection(where: UserStudentWhereInput, orderBy: UserStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserStudentConnection!
   userGrandpasConnection(where: UserGrandpaWhereInput, orderBy: UserGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserGrandpaConnection!
+  evaluationGrandpasConnection(where: EvaluationGrandpaWhereInput, orderBy: EvaluationGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EvaluationGrandpaConnection!
   sourcesConnection(where: SourceWhereInput, orderBy: SourceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): SourceConnection!
   imagesDocumentsConnection(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ImagesDocumentConnection!
-  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   housesConnection(where: HouseWhereInput, orderBy: HouseOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): HouseConnection!
-  evaluationsGrandpasConnection(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EvaluationsGrandpaConnection!
   couplesConnection(where: CoupleWhereInput, orderBy: CoupleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CoupleConnection!
   universitiesConnection(where: UniversityWhereInput, orderBy: UniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UniversityConnection!
   typeUsersConnection(where: TypeUserWhereInput, orderBy: TypeUserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TypeUserConnection!
   provincesConnection(where: ProvinceWhereInput, orderBy: ProvinceOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ProvinceConnection!
   countriesConnection(where: CountryWhereInput, orderBy: CountryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CountryConnection!
   userTechesConnection(where: UserTechWhereInput, orderBy: UserTechOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserTechConnection!
-  evaluationsStudentsConnection(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EvaluationsStudentConnection!
   interviewsesConnection(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): InterviewsConnection!
   imagesUniversitiesConnection(where: ImagesUniversityWhereInput, orderBy: ImagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ImagesUniversityConnection!
   characteristicsesConnection(where: CharacteristicsWhereInput, orderBy: CharacteristicsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CharacteristicsConnection!
+  evaluationStudentsConnection(where: EvaluationStudentWhereInput, orderBy: EvaluationStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EvaluationStudentConnection!
   careersConnection(where: CareerWhereInput, orderBy: CareerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CareerConnection!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   associationsConnection(where: AssociationWhereInput, orderBy: AssociationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AssociationConnection!
 
   """Fetches an object given its ID"""
@@ -4367,22 +5649,22 @@ enum StateProcess {
 type Subscription {
   userStudent(where: UserStudentSubscriptionWhereInput): UserStudentSubscriptionPayload
   userGrandpa(where: UserGrandpaSubscriptionWhereInput): UserGrandpaSubscriptionPayload
+  evaluationGrandpa(where: EvaluationGrandpaSubscriptionWhereInput): EvaluationGrandpaSubscriptionPayload
   source(where: SourceSubscriptionWhereInput): SourceSubscriptionPayload
   imagesDocument(where: ImagesDocumentSubscriptionWhereInput): ImagesDocumentSubscriptionPayload
-  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   house(where: HouseSubscriptionWhereInput): HouseSubscriptionPayload
-  evaluationsGrandpa(where: EvaluationsGrandpaSubscriptionWhereInput): EvaluationsGrandpaSubscriptionPayload
   couple(where: CoupleSubscriptionWhereInput): CoupleSubscriptionPayload
   university(where: UniversitySubscriptionWhereInput): UniversitySubscriptionPayload
   typeUser(where: TypeUserSubscriptionWhereInput): TypeUserSubscriptionPayload
   province(where: ProvinceSubscriptionWhereInput): ProvinceSubscriptionPayload
   country(where: CountrySubscriptionWhereInput): CountrySubscriptionPayload
   userTech(where: UserTechSubscriptionWhereInput): UserTechSubscriptionPayload
-  evaluationsStudent(where: EvaluationsStudentSubscriptionWhereInput): EvaluationsStudentSubscriptionPayload
   interviews(where: InterviewsSubscriptionWhereInput): InterviewsSubscriptionPayload
   imagesUniversity(where: ImagesUniversitySubscriptionWhereInput): ImagesUniversitySubscriptionPayload
   characteristics(where: CharacteristicsSubscriptionWhereInput): CharacteristicsSubscriptionPayload
+  evaluationStudent(where: EvaluationStudentSubscriptionWhereInput): EvaluationStudentSubscriptionPayload
   career(where: CareerSubscriptionWhereInput): CareerSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   association(where: AssociationSubscriptionWhereInput): AssociationSubscriptionPayload
 }
 
@@ -4888,7 +6170,7 @@ type UserGrandpa implements Node {
   contactPerson: String
   country: Country
   coupleID: Couple
-  evaluation(where: EvaluationsGrandpaWhereInput, orderBy: EvaluationsGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsGrandpa!]
+  evaluation(where: EvaluationGrandpaWhereInput, orderBy: EvaluationGrandpaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationGrandpa!]
   house: House
   imageProfile: String
   interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
@@ -4931,7 +6213,7 @@ input UserGrandpaCreateInput {
   association: AssociationCreateOneInput!
   country: CountryCreateOneInput
   coupleID: CoupleCreateOneWithoutUserIdGrandpaInput
-  evaluation: EvaluationsGrandpaCreateManyInput
+  evaluation: EvaluationGrandpaCreateManyWithoutUserGrandpaInput
   house: HouseCreateOneInput
   interview: InterviewsCreateManyInput
   province: ProvinceCreateOneInput
@@ -4940,6 +6222,11 @@ input UserGrandpaCreateInput {
 
 input UserGrandpaCreateOneWithoutCoupleIDInput {
   create: UserGrandpaCreateWithoutCoupleIDInput
+  connect: UserGrandpaWhereUniqueInput
+}
+
+input UserGrandpaCreateOneWithoutEvaluationInput {
+  create: UserGrandpaCreateWithoutEvaluationInput
   connect: UserGrandpaWhereUniqueInput
 }
 
@@ -4958,7 +6245,29 @@ input UserGrandpaCreateWithoutCoupleIDInput {
   typeDocument: TypeDocument
   association: AssociationCreateOneInput!
   country: CountryCreateOneInput
-  evaluation: EvaluationsGrandpaCreateManyInput
+  evaluation: EvaluationGrandpaCreateManyWithoutUserGrandpaInput
+  house: HouseCreateOneInput
+  interview: InterviewsCreateManyInput
+  province: ProvinceCreateOneInput
+  techResponsible: UserCreateOneInput
+}
+
+input UserGrandpaCreateWithoutEvaluationInput {
+  id: ID
+  adress: String
+  birthData: DateTime
+  contactPerson: String
+  imageProfile: String
+  gender: Gender
+  lastName: String!
+  name: String!
+  numberDocument: String
+  phone: String
+  secondLastName: String
+  typeDocument: TypeDocument
+  association: AssociationCreateOneInput!
+  country: CountryCreateOneInput
+  coupleID: CoupleCreateOneWithoutUserIdGrandpaInput
   house: HouseCreateOneInput
   interview: InterviewsCreateManyInput
   province: ProvinceCreateOneInput
@@ -5076,7 +6385,7 @@ input UserGrandpaUpdateInput {
   association: AssociationUpdateOneRequiredInput
   country: CountryUpdateOneInput
   coupleID: CoupleUpdateOneWithoutUserIdGrandpaInput
-  evaluation: EvaluationsGrandpaUpdateManyInput
+  evaluation: EvaluationGrandpaUpdateManyWithoutUserGrandpaInput
   house: HouseUpdateOneInput
   interview: InterviewsUpdateManyInput
   province: ProvinceUpdateOneInput
@@ -5106,6 +6415,15 @@ input UserGrandpaUpdateOneWithoutCoupleIDInput {
   upsert: UserGrandpaUpsertWithoutCoupleIDInput
 }
 
+input UserGrandpaUpdateOneWithoutEvaluationInput {
+  create: UserGrandpaCreateWithoutEvaluationInput
+  connect: UserGrandpaWhereUniqueInput
+  disconnect: Boolean
+  delete: Boolean
+  update: UserGrandpaUpdateWithoutEvaluationDataInput
+  upsert: UserGrandpaUpsertWithoutEvaluationInput
+}
+
 input UserGrandpaUpdateWithoutCoupleIDDataInput {
   adress: String
   birthData: DateTime
@@ -5120,7 +6438,28 @@ input UserGrandpaUpdateWithoutCoupleIDDataInput {
   typeDocument: TypeDocument
   association: AssociationUpdateOneRequiredInput
   country: CountryUpdateOneInput
-  evaluation: EvaluationsGrandpaUpdateManyInput
+  evaluation: EvaluationGrandpaUpdateManyWithoutUserGrandpaInput
+  house: HouseUpdateOneInput
+  interview: InterviewsUpdateManyInput
+  province: ProvinceUpdateOneInput
+  techResponsible: UserUpdateOneInput
+}
+
+input UserGrandpaUpdateWithoutEvaluationDataInput {
+  adress: String
+  birthData: DateTime
+  contactPerson: String
+  imageProfile: String
+  gender: Gender
+  lastName: String
+  name: String
+  numberDocument: String
+  phone: String
+  secondLastName: String
+  typeDocument: TypeDocument
+  association: AssociationUpdateOneRequiredInput
+  country: CountryUpdateOneInput
+  coupleID: CoupleUpdateOneWithoutUserIdGrandpaInput
   house: HouseUpdateOneInput
   interview: InterviewsUpdateManyInput
   province: ProvinceUpdateOneInput
@@ -5130,6 +6469,11 @@ input UserGrandpaUpdateWithoutCoupleIDDataInput {
 input UserGrandpaUpsertWithoutCoupleIDInput {
   update: UserGrandpaUpdateWithoutCoupleIDDataInput!
   create: UserGrandpaCreateWithoutCoupleIDInput!
+}
+
+input UserGrandpaUpsertWithoutEvaluationInput {
+  update: UserGrandpaUpdateWithoutEvaluationDataInput!
+  create: UserGrandpaCreateWithoutEvaluationInput!
 }
 
 input UserGrandpaWhereInput {
@@ -5590,9 +6934,9 @@ input UserGrandpaWhereInput {
   association: AssociationWhereInput
   country: CountryWhereInput
   coupleID: CoupleWhereInput
-  evaluation_every: EvaluationsGrandpaWhereInput
-  evaluation_some: EvaluationsGrandpaWhereInput
-  evaluation_none: EvaluationsGrandpaWhereInput
+  evaluation_every: EvaluationGrandpaWhereInput
+  evaluation_some: EvaluationGrandpaWhereInput
+  evaluation_none: EvaluationGrandpaWhereInput
   house: HouseWhereInput
   interview_every: InterviewsWhereInput
   interview_some: InterviewsWhereInput
@@ -5644,30 +6988,30 @@ type UserPreviousValues {
 
 type UserStudent implements Node {
   id: ID!
-  userId: User!
-  typeDocument: TypeDocument
-  numberDocument: String
-  association: Association
-  techResponsible: UserTech
-  studing: String
-  career: Career
-  university: University
-  classSchedule: String
-  sourceExternal: Source!
-  gender: Gender
-  birthData: DateTime
-  originCountry: Country
-  weekendFree: String
-  evaluation(where: EvaluationsStudentWhereInput, orderBy: EvaluationsStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationsStudent!]
-  interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
-  state: StateProcess
   adress: String
-  createDate: DateTime
-  updateDate: DateTime
+  association: Association
+  birthData: DateTime
+  career: Career
+  classSchedule: String
+  coupleID: Couple
+  evaluation(where: EvaluationStudentWhereInput, orderBy: EvaluationStudentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [EvaluationStudent!]
+  gender: Gender
   imageDocument(where: ImagesDocumentWhereInput, orderBy: ImagesDocumentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesDocument!]
   imageProfile: String
   imageUniversity(where: ImagesUniversityWhereInput, orderBy: ImagesUniversityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [ImagesUniversity!]
-  coupleID: Couple
+  interview(where: InterviewsWhereInput, orderBy: InterviewsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Interviews!]
+  numberDocument: String
+  originCountry: Country
+  sourceExternal: Source!
+  state: StateProcess
+  studing: String
+  techResponsible: UserTech
+  typeDocument: TypeDocument
+  university: University
+  userId: User!
+  weekendFree: String
+  createDate: DateTime
+  updateDate: DateTime
 }
 
 """A connection to a list of items."""
@@ -5682,28 +7026,28 @@ type UserStudentConnection {
 
 input UserStudentCreateInput {
   id: ID
-  typeDocument: TypeDocument
-  numberDocument: String
-  studing: String
+  adress: String
+  birthData: DateTime
   classSchedule: String
   gender: Gender
-  birthData: DateTime
-  weekendFree: String
-  state: StateProcess
-  adress: String
   imageProfile: String
-  userId: UserCreateOneInput!
+  numberDocument: String
+  state: StateProcess
+  studing: String
+  typeDocument: TypeDocument
+  weekendFree: String
   association: AssociationCreateOneInput
-  techResponsible: UserTechCreateOneInput
   career: CareerCreateOneInput
-  university: UniversityCreateOneInput
-  sourceExternal: SourceCreateOneInput!
-  originCountry: CountryCreateOneInput
-  evaluation: EvaluationsStudentCreateManyInput
-  interview: InterviewsCreateManyInput
+  coupleID: CoupleCreateOneInput
+  evaluation: EvaluationStudentCreateManyInput
   imageDocument: ImagesDocumentCreateManyInput
   imageUniversity: ImagesUniversityCreateManyInput
-  coupleID: CoupleCreateOneInput
+  interview: InterviewsCreateManyInput
+  originCountry: CountryCreateOneInput
+  sourceExternal: SourceCreateOneInput!
+  techResponsible: UserTechCreateOneInput
+  university: UniversityCreateOneInput
+  userId: UserCreateOneInput!
 }
 
 """An edge in a connection."""
@@ -5718,46 +7062,46 @@ type UserStudentEdge {
 enum UserStudentOrderByInput {
   id_ASC
   id_DESC
-  typeDocument_ASC
-  typeDocument_DESC
-  numberDocument_ASC
-  numberDocument_DESC
-  studing_ASC
-  studing_DESC
+  adress_ASC
+  adress_DESC
+  birthData_ASC
+  birthData_DESC
   classSchedule_ASC
   classSchedule_DESC
   gender_ASC
   gender_DESC
-  birthData_ASC
-  birthData_DESC
-  weekendFree_ASC
-  weekendFree_DESC
+  imageProfile_ASC
+  imageProfile_DESC
+  numberDocument_ASC
+  numberDocument_DESC
   state_ASC
   state_DESC
-  adress_ASC
-  adress_DESC
+  studing_ASC
+  studing_DESC
+  typeDocument_ASC
+  typeDocument_DESC
+  weekendFree_ASC
+  weekendFree_DESC
   createDate_ASC
   createDate_DESC
   updateDate_ASC
   updateDate_DESC
-  imageProfile_ASC
-  imageProfile_DESC
 }
 
 type UserStudentPreviousValues {
   id: ID!
-  typeDocument: TypeDocument
-  numberDocument: String
-  studing: String
+  adress: String
+  birthData: DateTime
   classSchedule: String
   gender: Gender
-  birthData: DateTime
-  weekendFree: String
+  imageProfile: String
+  numberDocument: String
   state: StateProcess
-  adress: String
+  studing: String
+  typeDocument: TypeDocument
+  weekendFree: String
   createDate: DateTime
   updateDate: DateTime
-  imageProfile: String
 }
 
 type UserStudentSubscriptionPayload {
@@ -5800,41 +7144,41 @@ input UserStudentSubscriptionWhereInput {
 }
 
 input UserStudentUpdateInput {
-  typeDocument: TypeDocument
-  numberDocument: String
-  studing: String
+  adress: String
+  birthData: DateTime
   classSchedule: String
   gender: Gender
-  birthData: DateTime
-  weekendFree: String
-  state: StateProcess
-  adress: String
   imageProfile: String
-  userId: UserUpdateOneRequiredInput
+  numberDocument: String
+  state: StateProcess
+  studing: String
+  typeDocument: TypeDocument
+  weekendFree: String
   association: AssociationUpdateOneInput
-  techResponsible: UserTechUpdateOneInput
   career: CareerUpdateOneInput
-  university: UniversityUpdateOneInput
-  sourceExternal: SourceUpdateOneRequiredInput
-  originCountry: CountryUpdateOneInput
-  evaluation: EvaluationsStudentUpdateManyInput
-  interview: InterviewsUpdateManyInput
+  coupleID: CoupleUpdateOneInput
+  evaluation: EvaluationStudentUpdateManyInput
   imageDocument: ImagesDocumentUpdateManyInput
   imageUniversity: ImagesUniversityUpdateManyInput
-  coupleID: CoupleUpdateOneInput
+  interview: InterviewsUpdateManyInput
+  originCountry: CountryUpdateOneInput
+  sourceExternal: SourceUpdateOneRequiredInput
+  techResponsible: UserTechUpdateOneInput
+  university: UniversityUpdateOneInput
+  userId: UserUpdateOneRequiredInput
 }
 
 input UserStudentUpdateManyMutationInput {
-  typeDocument: TypeDocument
-  numberDocument: String
-  studing: String
+  adress: String
+  birthData: DateTime
   classSchedule: String
   gender: Gender
-  birthData: DateTime
-  weekendFree: String
-  state: StateProcess
-  adress: String
   imageProfile: String
+  numberDocument: String
+  state: StateProcess
+  studing: String
+  typeDocument: TypeDocument
+  weekendFree: String
 }
 
 input UserStudentWhereInput {
@@ -5886,96 +7230,68 @@ input UserStudentWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  typeDocument: TypeDocument
+  adress: String
 
   """All values that are not equal to given value."""
-  typeDocument_not: TypeDocument
+  adress_not: String
 
   """All values that are contained in given list."""
-  typeDocument_in: [TypeDocument!]
+  adress_in: [String!]
 
   """All values that are not contained in given list."""
-  typeDocument_not_in: [TypeDocument!]
-  numberDocument: String
-
-  """All values that are not equal to given value."""
-  numberDocument_not: String
-
-  """All values that are contained in given list."""
-  numberDocument_in: [String!]
-
-  """All values that are not contained in given list."""
-  numberDocument_not_in: [String!]
+  adress_not_in: [String!]
 
   """All values less than the given value."""
-  numberDocument_lt: String
+  adress_lt: String
 
   """All values less than or equal the given value."""
-  numberDocument_lte: String
+  adress_lte: String
 
   """All values greater than the given value."""
-  numberDocument_gt: String
+  adress_gt: String
 
   """All values greater than or equal the given value."""
-  numberDocument_gte: String
+  adress_gte: String
 
   """All values containing the given string."""
-  numberDocument_contains: String
+  adress_contains: String
 
   """All values not containing the given string."""
-  numberDocument_not_contains: String
+  adress_not_contains: String
 
   """All values starting with the given string."""
-  numberDocument_starts_with: String
+  adress_starts_with: String
 
   """All values not starting with the given string."""
-  numberDocument_not_starts_with: String
+  adress_not_starts_with: String
 
   """All values ending with the given string."""
-  numberDocument_ends_with: String
+  adress_ends_with: String
 
   """All values not ending with the given string."""
-  numberDocument_not_ends_with: String
-  studing: String
+  adress_not_ends_with: String
+  birthData: DateTime
 
   """All values that are not equal to given value."""
-  studing_not: String
+  birthData_not: DateTime
 
   """All values that are contained in given list."""
-  studing_in: [String!]
+  birthData_in: [DateTime!]
 
   """All values that are not contained in given list."""
-  studing_not_in: [String!]
+  birthData_not_in: [DateTime!]
 
   """All values less than the given value."""
-  studing_lt: String
+  birthData_lt: DateTime
 
   """All values less than or equal the given value."""
-  studing_lte: String
+  birthData_lte: DateTime
 
   """All values greater than the given value."""
-  studing_gt: String
+  birthData_gt: DateTime
 
   """All values greater than or equal the given value."""
-  studing_gte: String
-
-  """All values containing the given string."""
-  studing_contains: String
-
-  """All values not containing the given string."""
-  studing_not_contains: String
-
-  """All values starting with the given string."""
-  studing_starts_with: String
-
-  """All values not starting with the given string."""
-  studing_not_starts_with: String
-
-  """All values ending with the given string."""
-  studing_ends_with: String
-
-  """All values not ending with the given string."""
-  studing_not_ends_with: String
+  birthData_gte: DateTime
   classSchedule: String
 
   """All values that are not equal to given value."""
@@ -6026,28 +7342,146 @@ input UserStudentWhereInput {
 
   """All values that are not contained in given list."""
   gender_not_in: [Gender!]
-  birthData: DateTime
+  imageProfile: String
 
   """All values that are not equal to given value."""
-  birthData_not: DateTime
+  imageProfile_not: String
 
   """All values that are contained in given list."""
-  birthData_in: [DateTime!]
+  imageProfile_in: [String!]
 
   """All values that are not contained in given list."""
-  birthData_not_in: [DateTime!]
+  imageProfile_not_in: [String!]
 
   """All values less than the given value."""
-  birthData_lt: DateTime
+  imageProfile_lt: String
 
   """All values less than or equal the given value."""
-  birthData_lte: DateTime
+  imageProfile_lte: String
 
   """All values greater than the given value."""
-  birthData_gt: DateTime
+  imageProfile_gt: String
 
   """All values greater than or equal the given value."""
-  birthData_gte: DateTime
+  imageProfile_gte: String
+
+  """All values containing the given string."""
+  imageProfile_contains: String
+
+  """All values not containing the given string."""
+  imageProfile_not_contains: String
+
+  """All values starting with the given string."""
+  imageProfile_starts_with: String
+
+  """All values not starting with the given string."""
+  imageProfile_not_starts_with: String
+
+  """All values ending with the given string."""
+  imageProfile_ends_with: String
+
+  """All values not ending with the given string."""
+  imageProfile_not_ends_with: String
+  numberDocument: String
+
+  """All values that are not equal to given value."""
+  numberDocument_not: String
+
+  """All values that are contained in given list."""
+  numberDocument_in: [String!]
+
+  """All values that are not contained in given list."""
+  numberDocument_not_in: [String!]
+
+  """All values less than the given value."""
+  numberDocument_lt: String
+
+  """All values less than or equal the given value."""
+  numberDocument_lte: String
+
+  """All values greater than the given value."""
+  numberDocument_gt: String
+
+  """All values greater than or equal the given value."""
+  numberDocument_gte: String
+
+  """All values containing the given string."""
+  numberDocument_contains: String
+
+  """All values not containing the given string."""
+  numberDocument_not_contains: String
+
+  """All values starting with the given string."""
+  numberDocument_starts_with: String
+
+  """All values not starting with the given string."""
+  numberDocument_not_starts_with: String
+
+  """All values ending with the given string."""
+  numberDocument_ends_with: String
+
+  """All values not ending with the given string."""
+  numberDocument_not_ends_with: String
+  state: StateProcess
+
+  """All values that are not equal to given value."""
+  state_not: StateProcess
+
+  """All values that are contained in given list."""
+  state_in: [StateProcess!]
+
+  """All values that are not contained in given list."""
+  state_not_in: [StateProcess!]
+  studing: String
+
+  """All values that are not equal to given value."""
+  studing_not: String
+
+  """All values that are contained in given list."""
+  studing_in: [String!]
+
+  """All values that are not contained in given list."""
+  studing_not_in: [String!]
+
+  """All values less than the given value."""
+  studing_lt: String
+
+  """All values less than or equal the given value."""
+  studing_lte: String
+
+  """All values greater than the given value."""
+  studing_gt: String
+
+  """All values greater than or equal the given value."""
+  studing_gte: String
+
+  """All values containing the given string."""
+  studing_contains: String
+
+  """All values not containing the given string."""
+  studing_not_contains: String
+
+  """All values starting with the given string."""
+  studing_starts_with: String
+
+  """All values not starting with the given string."""
+  studing_not_starts_with: String
+
+  """All values ending with the given string."""
+  studing_ends_with: String
+
+  """All values not ending with the given string."""
+  studing_not_ends_with: String
+  typeDocument: TypeDocument
+
+  """All values that are not equal to given value."""
+  typeDocument_not: TypeDocument
+
+  """All values that are contained in given list."""
+  typeDocument_in: [TypeDocument!]
+
+  """All values that are not contained in given list."""
+  typeDocument_not_in: [TypeDocument!]
   weekendFree: String
 
   """All values that are not equal to given value."""
@@ -6088,56 +7522,6 @@ input UserStudentWhereInput {
 
   """All values not ending with the given string."""
   weekendFree_not_ends_with: String
-  state: StateProcess
-
-  """All values that are not equal to given value."""
-  state_not: StateProcess
-
-  """All values that are contained in given list."""
-  state_in: [StateProcess!]
-
-  """All values that are not contained in given list."""
-  state_not_in: [StateProcess!]
-  adress: String
-
-  """All values that are not equal to given value."""
-  adress_not: String
-
-  """All values that are contained in given list."""
-  adress_in: [String!]
-
-  """All values that are not contained in given list."""
-  adress_not_in: [String!]
-
-  """All values less than the given value."""
-  adress_lt: String
-
-  """All values less than or equal the given value."""
-  adress_lte: String
-
-  """All values greater than the given value."""
-  adress_gt: String
-
-  """All values greater than or equal the given value."""
-  adress_gte: String
-
-  """All values containing the given string."""
-  adress_contains: String
-
-  """All values not containing the given string."""
-  adress_not_contains: String
-
-  """All values starting with the given string."""
-  adress_starts_with: String
-
-  """All values not starting with the given string."""
-  adress_not_starts_with: String
-
-  """All values ending with the given string."""
-  adress_ends_with: String
-
-  """All values not ending with the given string."""
-  adress_not_ends_with: String
   createDate: DateTime
 
   """All values that are not equal to given value."""
@@ -6182,66 +7566,26 @@ input UserStudentWhereInput {
 
   """All values greater than or equal the given value."""
   updateDate_gte: DateTime
-  imageProfile: String
-
-  """All values that are not equal to given value."""
-  imageProfile_not: String
-
-  """All values that are contained in given list."""
-  imageProfile_in: [String!]
-
-  """All values that are not contained in given list."""
-  imageProfile_not_in: [String!]
-
-  """All values less than the given value."""
-  imageProfile_lt: String
-
-  """All values less than or equal the given value."""
-  imageProfile_lte: String
-
-  """All values greater than the given value."""
-  imageProfile_gt: String
-
-  """All values greater than or equal the given value."""
-  imageProfile_gte: String
-
-  """All values containing the given string."""
-  imageProfile_contains: String
-
-  """All values not containing the given string."""
-  imageProfile_not_contains: String
-
-  """All values starting with the given string."""
-  imageProfile_starts_with: String
-
-  """All values not starting with the given string."""
-  imageProfile_not_starts_with: String
-
-  """All values ending with the given string."""
-  imageProfile_ends_with: String
-
-  """All values not ending with the given string."""
-  imageProfile_not_ends_with: String
-  userId: UserWhereInput
   association: AssociationWhereInput
-  techResponsible: UserTechWhereInput
   career: CareerWhereInput
-  university: UniversityWhereInput
-  sourceExternal: SourceWhereInput
-  originCountry: CountryWhereInput
-  evaluation_every: EvaluationsStudentWhereInput
-  evaluation_some: EvaluationsStudentWhereInput
-  evaluation_none: EvaluationsStudentWhereInput
-  interview_every: InterviewsWhereInput
-  interview_some: InterviewsWhereInput
-  interview_none: InterviewsWhereInput
+  coupleID: CoupleWhereInput
+  evaluation_every: EvaluationStudentWhereInput
+  evaluation_some: EvaluationStudentWhereInput
+  evaluation_none: EvaluationStudentWhereInput
   imageDocument_every: ImagesDocumentWhereInput
   imageDocument_some: ImagesDocumentWhereInput
   imageDocument_none: ImagesDocumentWhereInput
   imageUniversity_every: ImagesUniversityWhereInput
   imageUniversity_some: ImagesUniversityWhereInput
   imageUniversity_none: ImagesUniversityWhereInput
-  coupleID: CoupleWhereInput
+  interview_every: InterviewsWhereInput
+  interview_some: InterviewsWhereInput
+  interview_none: InterviewsWhereInput
+  originCountry: CountryWhereInput
+  sourceExternal: SourceWhereInput
+  techResponsible: UserTechWhereInput
+  university: UniversityWhereInput
+  userId: UserWhereInput
 }
 
 input UserStudentWhereUniqueInput {
