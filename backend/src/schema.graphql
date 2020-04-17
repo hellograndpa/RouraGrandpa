@@ -156,4 +156,17 @@ type Query {
   userStudents(where: UserWhereInput): [UserStudent]!
   userStudent(where: UserTechWhereUniqueInput!): UserStudent
   userTechesUserId: [UserTech]!
+
+  evaluationGrandpas(
+    where: EvaluationGrandpaWhereInput
+    orderBy: EvaluationGrandpaOrderByInput
+    skip: Int
+    first: Int
+  ): [EvaluationGrandpa!]
+  evaluationGrandpasConnection(
+    where: EvaluationGrandpaWhereInput
+  ): EvaluationGrandpaConnection
+  evaluationGrandpa(
+    where: EvaluationGrandpaWhereUniqueInput!
+  ): EvaluationGrandpa
 }

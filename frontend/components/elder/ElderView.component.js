@@ -7,6 +7,8 @@ import Error from '../ErrorMessage';
 import Link from 'next/link';
 import Head from 'next/head';
 
+import AssessmentView from '../assessment/AssesmentView.compnent';
+
 //style
 import {
   H2,
@@ -28,7 +30,7 @@ import {
   Navbar,
   NavbarBrand,
   Nav,
-  A,
+  A
 } from '@bootstrap-styled/v4';
 
 const SINGLE_USERGRANDPA_QUERY = gql`
@@ -81,12 +83,12 @@ const SINGLE_USERGRANDPA_QUERY = gql`
 `;
 class ElderView extends Component {
   render() {
-    const { id, action } = this.props;
+    const { id, action, assessment } = this.props;
     return (
       <Query
         query={SINGLE_USERGRANDPA_QUERY}
         variables={{
-          id: this.props.id,
+          id: this.props.id
         }}>
         {({ data, loading, error }) => {
           if (error) return <Error error={error} />;
@@ -94,6 +96,7 @@ class ElderView extends Component {
           if (!data.userGrandpa)
             return <p>No Item Found for {this.props.id} </p>;
           const {
+            id,
             adress,
             association,
             birthData,
@@ -114,7 +117,7 @@ class ElderView extends Component {
             techResponsible,
             typeDocument,
             createDate,
-            updateDate,
+            updateDate
           } = data.userGrandpa;
           return (
             <>
@@ -216,6 +219,7 @@ class ElderView extends Component {
                   <Hr />
                   <P>
                     <H5>VALORACIONES</H5>
+                    <AssessmentView id={id} assessment={assessment} />
                   </P>
                   <Hr />
                   <P>
